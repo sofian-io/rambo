@@ -6,7 +6,7 @@ abstract class Form
 {
     public $fields = null;
 
-    public $binding = 'form';
+    public $binding = 'livewire';
 
     abstract public function fields();
 
@@ -20,7 +20,7 @@ abstract class Form
         $binding = $this->getBinding();
         $fields = $this->getFullFieldStack();
 
-        return view("rambo::forms.$binding", [
+        return view("rambo-{$binding}::form", [
             'fields' => $fields
         ]);
     }

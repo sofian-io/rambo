@@ -43,8 +43,18 @@ class Field
 
     public function render()
     {
-        return view($this->component, [
+        return view("rambo-{$this->binding}::{$this->component}", [
             'field' => $this
         ]);
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getLabel()
+    {
+        return $this->label ?? $this->getName();
     }
 }
