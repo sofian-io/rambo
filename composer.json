@@ -1,0 +1,26 @@
+{
+  "name": "angry-moustache/rambo",
+  "description": "",
+  "keywords": [],
+  "license": "proprietary",
+  "require": {
+    "php": ">=7.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AngryMoustache\\Rambo": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "AngryMoustache\\Rambo\\RamboServiceProvider"
+        ],
+        "aliases": {
+            "Rambo": "AngryMoustache\\Rambo\\Facade"
+        }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
