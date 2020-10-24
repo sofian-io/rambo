@@ -1,8 +1,8 @@
 {
   "name": "angry-moustache/rambo",
-  "description": "",
+  "description": "Package for making forms",
   "keywords": [],
-  "license": "proprietary",
+  "license": "MIT",
   "require": {
     "php": ">=7.4.0"
   },
