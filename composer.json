@@ -8,17 +8,14 @@
   },
   "autoload": {
     "psr-4": {
-      "AngryMoustache\\Rambo": "src/"
+      "AngryMoustache\\Rambo\\": "src/"
     }
   },
   "extra": {
     "laravel": {
         "providers": [
             "AngryMoustache\\Rambo\\RamboServiceProvider"
-        ],
-        "aliases": {
-            "Rambo": "AngryMoustache\\Rambo\\Facade"
-        }
+        ]
     }
   },
   "minimum-stability": "dev",
