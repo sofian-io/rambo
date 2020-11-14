@@ -4,5 +4,9 @@ namespace AngryMoustache\Rambo\Fields;
 
 class TextField extends Field
 {
-    public $component = 'fields.text';
+    /**
+     * The fields blade component
+     * @var string
+     */
+    public $component = 'rambo::fields.text';
 }

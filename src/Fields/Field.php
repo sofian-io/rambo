@@ -2,29 +2,43 @@
 
 namespace AngryMoustache\Rambo\Fields;
 
+use AngryMoustache\Rambo\Fields\Traits\HandlesRendering;
 use Closure;
 
 class Field
 {
-    public $name;
+    use HandlesRendering;
 
+    /**
+     * The fields blade component
+     * @var string
+     */
     public $component;
+
+    /**
+     * The fields name
+     * @var string
+     */
+    public $name;
 
     public function __construct($name = null)
     {
         $this->name = $name;
     }
 
-    public static function make($name = null)
-    {
-        return new static($name);
-    }
-
+    /**
+     * Get anything on the field
+     * @return mixed
+     */
     public function __get($name)
     {
         return $this->{$name} ?? null;
     }
 
+    /**
+     * Add an attribute to the field
+     * @return self
+     */
     public function __call($name, $value)
     {
         if ($value === []) {
@@ -41,20 +55,12 @@ class Field
         return $this;
     }
 
-    public function render()
+    /**
+     * Create a new field instance
+     * @return self
+     */
+    public static function make($name = null)
     {
-        return view("rambo-{$this->binding}::{$this->component}", [
-            'field' => $this
-        ]);
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function getLabel()
-    {
-        return $this->label ?? $this->getName();
+        return new static($name);
     }
 }
