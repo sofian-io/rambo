@@ -2,7 +2,6 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire;
 
-use App\Models\Inquiry;
 use Livewire\Component;
 
 class FormController extends Component
@@ -24,6 +23,7 @@ class FormController extends Component
      * @var array
      */
     public $fields = [];
+    public $item = null; // Fill data when in edit view
 
     /**
      * The blade component to render
@@ -45,9 +45,22 @@ class FormController extends Component
         'field:update' => 'updateField',
     ];
 
+    /**
+     * Are we creating or updating?
+     * @var boolean
+     */
+    public $updating = false;
+
     public function mount()
     {
         $this->validation = (new $this->form)->getValidationRules();
+
+        if ($this->item) {
+            $form = (new $this->form);
+            $form->getFullFieldStack()->each(function ($field) {
+                $this->fields[$field->getName()] = $this->item[$field->getName()];
+            });
+        }
     }
 
     public function render()
@@ -70,8 +83,16 @@ class FormController extends Component
 
     public function submit()
     {
-        $form = (new $this->form);
         $this->validate($this->validation);
-        $form->model::create($this->fields);
+
+        if ($this->updating !== false) {
+            $item = $this->form::$model::find($this->updating);
+            $item->update($this->fields);
+        } else {
+            $this->form::$model::create($this->fields);
+        }
+
+
+        return redirect("/admin/{$this->form::$routeBase}/{$this->updating}");
     }
 }

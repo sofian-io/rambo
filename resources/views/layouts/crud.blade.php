@@ -13,9 +13,21 @@
         <div class="flex">
             {{-- Nav --}}
             <div class="fixed w-1/6 h-screen border-r bg-white">
-                <div class="px-3 py-7 border-b bg-red-100">
+                <div class="px-3 py-7 border-b bg-red-200">
                     <x-logo />
                 </div>
+
+                @foreach (config('rambo.resources', []) as $resource)
+                    <a
+                        href="/admin/{{ $resource::$routeBase }}"
+                        class="
+                            block p-5 border-b
+                            @if (request()->is("admin/{$resource::$routeBase}*")) bg-red-100 @endif
+                        "
+                    >
+                        {{ $resource::$label }}
+                    </a>
+                @endforeach
             </div>
 
             {{-- Content --}}

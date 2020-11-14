@@ -9,3 +9,4 @@ Route::get("/admin/{resource}/create", [$controller, 'create']);
 Route::get("/admin/{resource}/{id}", [$controller, 'show']);
 Route::get("/admin/{resource}/{id}/edit", [$controller, 'edit']);
 Route::get("/admin/{resource}/{id}/delete", [$controller, 'delete']);
+Route::get("/admin/{resource}/{id}/delete-confirm", [$controller, 'deleteConfirm']);

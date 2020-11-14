@@ -14,39 +14,43 @@
             Create
         </a>
 
-        <table class="w-full">
-            <tr>
-                @foreach ($resource->getOnlyFieldsStack() as $field)
-                    <td class="py-2 px-4 bg-red-800 text-red-100 font-bold">
-                        {{ $field->getLabel() }}
-                    </td>
-                @endforeach
-                <td class="py-2 px-4 bg-red-800 text-red-100 font-bold" colspan="3"></td>
-            </tr>
-            @foreach ($items as $item)
+        @if ($items->isNotEmpty())
+            <table class="w-full">
                 <tr>
                     @foreach ($resource->getOnlyFieldsStack() as $field)
-                        <td class="py-2 px-4 border-t">
-                            {{ $field->item($item)->renderShow() }}
+                        <td class="py-2 px-4 bg-red-800 text-red-100 font-bold">
+                            {{ $field->getLabel() }}
                         </td>
                     @endforeach
-                    <td class="w-10 border-t">
-                        <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}">
-                            <i class="py-2 px-4 far fa-eye"></i>
-                        </a>
-                    </td>
-                    <td class="w-10 border-t">
-                        <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/edit">
-                            <i class="py-2 px-4 far fa-edit"></i>
-                        </a>
-                    </td>
-                    <td class="w-10 border-t">
-                        <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/delete">
-                            <i class="py-2 px-4 far fa-trash-alt"></i>
-                        </a>
-                    </td>
+                    <td class="py-2 px-4 bg-red-800 text-red-100 font-bold" colspan="3"></td>
                 </tr>
-            @endforeach
-        </table>
+                @foreach ($items as $item)
+                    <tr>
+                        @foreach ($resource->getOnlyFieldsStack() as $field)
+                            <td class="py-2 px-4 border-t">
+                                {{ $field->item($item)->renderShow() }}
+                            </td>
+                        @endforeach
+                        <td class="w-10 border-t">
+                            <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}">
+                                <i class="py-2 px-4 far fa-eye"></i>
+                            </a>
+                        </td>
+                        <td class="w-10 border-t">
+                            <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/edit">
+                                <i class="py-2 px-4 far fa-edit"></i>
+                            </a>
+                        </td>
+                        <td class="w-10 border-t">
+                            <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/delete">
+                                <i class="py-2 px-4 far fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        @else
+            <p>No items found.</p>
+        @endif
     </div>
 @endsection

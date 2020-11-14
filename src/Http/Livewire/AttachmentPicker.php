@@ -18,9 +18,10 @@ class AttachmentPicker extends Component
     public $uploading = false;
     public $upload;
 
-    public function mount($name)
+    public function mount($field)
     {
-        $this->name = $name;
+        $this->name = $field->getName();
+        $this->item = optional($field->getValue())->id;
     }
 
     public function openSelectingModal()
@@ -59,6 +60,7 @@ class AttachmentPicker extends Component
     {
         $this->item = null;
         $this->picked = null;
+        $this->chooseAttachment(null);
     }
 
     public function render()

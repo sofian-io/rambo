@@ -79,7 +79,7 @@
 
                 <div class="flex">
                     <div class="w-full">
-                        <input id="{{ $fieldName }}_upload" type="file" wire:model="upload">
+                        <input id="{{ $name }}_upload" type="file" wire:model="upload">
 
                         @if ($upload)
                             <div
