@@ -13,9 +13,11 @@
         <div class="flex">
             {{-- Nav --}}
             <div class="fixed w-1/6 h-screen border-r bg-white">
-                <div class="px-3 py-7 border-b bg-red-200">
-                    <x-logo />
-                </div>
+                <a href="/admin">
+                    <div class="px-3 py-7 border-b bg-red-200">
+                        <x-logo />
+                    </div>
+                </a>
 
                 @foreach (config('rambo.resources', []) as $resource)
                     <a

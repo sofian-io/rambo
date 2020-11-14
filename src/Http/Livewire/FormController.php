@@ -73,7 +73,9 @@ class FormController extends Component
 
     public function updated($field, $value)
     {
-        $this->validateOnly($field, $this->validation);
+        if ($this->validation !== []) {
+            $this->validateOnly($field, $this->validation);
+        }
     }
 
     public function updateField($value, $fieldName)
@@ -83,7 +85,9 @@ class FormController extends Component
 
     public function submit()
     {
-        $this->validate($this->validation);
+        if ($this->validation !== []) {
+            $this->validate($this->validation);
+        }
 
         if ($this->updating !== false) {
             $item = $this->form::$model::find($this->updating);
@@ -91,7 +95,6 @@ class FormController extends Component
         } else {
             $this->form::$model::create($this->fields);
         }
-
 
         return redirect("/admin/{$this->form::$routeBase}/{$this->updating}");
     }

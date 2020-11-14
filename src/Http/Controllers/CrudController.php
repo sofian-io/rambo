@@ -25,9 +25,9 @@ class CrudController extends Controller
     public function index($resource)
     {
         $resource = $this->guessResource($resource);
-        $items = $resource::$model::get();
+        $items = ($resource::$model)::orderBy('id', 'desc')->paginate($resource::$paginate ?? 10);
 
-        return view('rambo::crud.index', [
+        return view($resource::$indexView ?? 'rambo::crud.index', [
             'resource' => $resource,
             'items' => $items,
         ]);
@@ -36,9 +36,9 @@ class CrudController extends Controller
     public function show($resource, $id)
     {
         $resource = $this->guessResource($resource);
-        $item = $resource::$model::find($id);
+        $item = ($resource::$model)::find($id);
 
-        return view('rambo::crud.show', [
+        return view($resource::$showView ?? 'rambo::crud.show', [
             'resource' => $resource,
             'item' => $item,
         ]);
@@ -47,9 +47,9 @@ class CrudController extends Controller
     public function create($resource)
     {
         $resource = $this->guessResource($resource);
-        $items = $resource::$model::get();
+        $items = ($resource::$model)::get();
 
-        return view('rambo::crud.create', [
+        return view($resource::$createView ?? 'rambo::crud.create', [
             'resource' => $resource,
             'items' => $items,
         ]);
@@ -58,9 +58,9 @@ class CrudController extends Controller
     public function edit($resource, $id)
     {
         $resource = $this->guessResource($resource);
-        $item = $resource::$model::find($id);
+        $item = ($resource::$model)::find($id);
 
-        return view('rambo::crud.edit', [
+        return view($resource::$editView ?? 'rambo::crud.edit', [
             'resource' => $resource,
             'item' => $item,
         ]);
@@ -69,9 +69,9 @@ class CrudController extends Controller
     public function delete($resource, $id)
     {
         $resource = $this->guessResource($resource);
-        $item = $resource::$model::find($id);
+        $item = ($resource::$model)::find($id);
 
-        return view('rambo::crud.delete', [
+        return view($resource::$deleteView ?? 'rambo::crud.delete', [
             'resource' => $resource,
             'item' => $item,
         ]);

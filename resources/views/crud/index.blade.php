@@ -1,9 +1,9 @@
-@extends('rambo::layouts.crud')
+@extends('rambo::layouts.admin')
 
 @section('content')
-    <div class="border p-5 pt-2 rounded-lg bg-white">
+    <div class="border p-5 pt-3 rounded-lg bg-white">
         <h2 class="text-4xl mb-4 pb-4 border-b">
-            {{ (new \ReflectionClass($resource))->getShortName() }}
+            {{ $resource::$label }}
         </h2>
 
         <a
@@ -15,6 +15,12 @@
         </a>
 
         @if ($items->isNotEmpty())
+            @if (method_exists($items, 'links'))
+                <div class="m-3">
+                    {{ $items->withQueryString()->links() }}
+                </div>
+            @endif
+
             <table class="w-full">
                 <tr>
                     @foreach ($resource->getOnlyFieldsStack() as $field)
@@ -33,22 +39,28 @@
                         @endforeach
                         <td class="w-10 border-t">
                             <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}">
-                                <i class="py-2 px-4 far fa-eye"></i>
+                                <i class="py-2 px-4 text-xl text-center hover:opacity-50 far fa-eye"></i>
                             </a>
                         </td>
                         <td class="w-10 border-t">
                             <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/edit">
-                                <i class="py-2 px-4 far fa-edit"></i>
+                                <i class="py-2 px-4 text-xl text-center hover:opacity-50 far fa-edit"></i>
                             </a>
                         </td>
                         <td class="w-10 border-t">
                             <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/delete">
-                                <i class="py-2 px-4 far fa-trash-alt"></i>
+                                <i class="py-2 px-4 text-xl text-center hover:opacity-50 far fa-trash-alt"></i>
                             </a>
                         </td>
                     </tr>
                 @endforeach
             </table>
+
+            @if (method_exists($items, 'links'))
+                <div class="m-3">
+                    {{ $items->withQueryString()->links() }}
+                </div>
+            @endif
         @else
             <p>No items found.</p>
         @endif

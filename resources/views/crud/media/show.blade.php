@@ -8,6 +8,12 @@
         </h2>
 
         <div class="flex flex-wrap">
+            <div class="w-full border-b p-4 border-opacity-25">
+                <a target="_blank" class="inline-block w-1/2" href="{{ $item->path() }}">
+                    <img class="w-full" src="{{ $item->path() }}">
+                </a>
+            </div>
+
             @foreach ($resource->getOnlyFieldsStack() as $field)
                 <div class="w-1/6 @if(!$loop->last) border-b @endif p-4 border-opacity-25">
                     {{ $field->getLabel() }}
