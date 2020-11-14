@@ -37,6 +37,14 @@ class FormController extends Component
      */
     public $validation = [];
 
+    /**
+     * Rambo field listeners
+     * @var array
+     */
+    protected $listeners = [
+        'field:update' => 'updateField',
+    ];
+
     public function mount()
     {
         $this->validation = (new $this->form)->getValidationRules();
@@ -55,8 +63,15 @@ class FormController extends Component
         $this->validateOnly($field, $this->validation);
     }
 
+    public function updateField($value, $fieldName)
+    {
+        $this->fields[$fieldName] = $value;
+    }
+
     public function submit()
     {
-        dd(Inquiry::create($this->fields));
+        $form = (new $this->form);
+        $this->validate($this->validation);
+        $form->model::create($this->fields);
     }
 }

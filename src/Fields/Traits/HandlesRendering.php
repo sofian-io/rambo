@@ -5,6 +5,18 @@ namespace AngryMoustache\Rambo\Fields\Traits;
 trait HandlesRendering
 {
     /**
+     * The fields blade component
+     * @var string
+     */
+    public $component;
+
+    /**
+     * The fields blade component for index/show
+     * @var string
+     */
+    public $showComponent = 'rambo::fields.show.text';
+
+    /**
      * Default field tailwind styles
      * @var string
      */
@@ -29,6 +41,17 @@ trait HandlesRendering
     }
 
     /**
+     * Render the field component on index/show
+     * @return void
+     */
+    public function renderShow()
+    {
+        return view($this->showComponent, [
+            'field' => $this
+        ]);
+    }
+
+    /**
      * Get the current fields name
      * @return string|null
      */
@@ -44,5 +67,14 @@ trait HandlesRendering
     public function getLabel()
     {
         return $this->label ?? $this->getName();
+    }
+
+    /**
+     * Get the current fields label
+     * @return string|null
+     */
+    public function getValue()
+    {
+        return optional($this->item)[$this->getName()];
     }
 }

@@ -49,6 +49,16 @@ abstract class Form
     }
 
     /**
+     * Get all the fields of the form
+     * @return Collection
+     */
+    public function getOnlyFieldsStack()
+    {
+        return $this->getFullFieldStack()
+            ->filter(fn ($field) => $field->isField);
+    }
+
+    /**
      * Get all the validation rules
      * @return Collection
      */

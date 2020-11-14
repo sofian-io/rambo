@@ -10,10 +10,10 @@ class Field
     use HandlesRendering;
 
     /**
-     * The fields blade component
-     * @var string
+     * This is, in fact, a field
+     * @var boolean
      */
-    public $component;
+    public $isField = true;
 
     /**
      * The fields name
