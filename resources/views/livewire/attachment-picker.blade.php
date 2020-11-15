@@ -47,18 +47,42 @@
                     </a>
                 </div>
 
-                <div style="height: 75vh" class="w-full scrolling-touch overflow-auto">
-                    <div class="grid grid-cols-5 gap-5">
-                        @foreach ($attachments as $attachment)
-                            <img
-                                class="cursor-pointer hover:opacity-75"
-                                src="{{ $attachment->format('thumb') }}"
-                                title="{{ $attachment->alt_name }}"
-                                alt="{{ $attachment->alt_name }}"
-                                wire:click="chooseAttachment({{ $attachment->id }})"
-                            >
-                        @endforeach
-                    </div>
+                <input
+                    type="text"
+                    wire:model="search"
+                    class="w-1/2 px-2 py-1 border rounded mb-4"
+                    placeholder="Search"
+                >
+
+                @if ($search !== '' && $attachments->isNotEmpty())
+                    <p class="w-full pl-1 mb-4">
+                        Results for <b>"{{ $search }}"</b>:
+                    </p>
+                @endif
+
+                <div style="height: 60vh" class="w-full scrolling-touch overflow-auto">
+
+                    @if ($attachments->isNotEmpty())
+                        <div class="grid grid-cols-5 gap-5">
+                            @foreach ($attachments as $attachment)
+                                <img
+                                    class="cursor-pointer hover:opacity-75"
+                                    src="{{ $attachment->format('thumb') }}"
+                                    title="{{ $attachment->alt_name }}"
+                                    alt="{{ $attachment->alt_name }}"
+                                    wire:click="chooseAttachment({{ $attachment->id }})"
+                                >
+                            @endforeach
+                        </div>
+                    @else
+                        @if ($search !== '')
+                            <p class="w-full pl-1 mb-4">
+                                No attachments found with name <b>"{{ $search }}"</b>.
+                            </p>
+                        @else
+                            <p class="w-full pl-1 mb-4">No attachments found.</p>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

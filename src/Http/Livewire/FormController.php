@@ -58,7 +58,8 @@ class FormController extends Component
         if ($this->item) {
             $form = (new $this->form);
             $form->getFullFieldStack()->each(function ($field) {
-                $this->fields[$field->getName()] = $this->item[$field->getName()];
+                $value = $field->item($this->item)->getValue();
+                $this->fields[$field->getName()] = $value;
             });
         }
     }

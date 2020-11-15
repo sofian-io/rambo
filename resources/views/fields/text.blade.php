@@ -9,6 +9,7 @@
             name="{{ $field->getName() }}"
             placeholder="{{ $field->getLabel() }}"
             wire:model="fields.{{ $field->getName() }}"
+            @if ($field->readonly || $field->disabled) disabled @endif
         >
 
         <x-rambo::error :field="$field" />

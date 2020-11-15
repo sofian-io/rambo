@@ -2,10 +2,12 @@
 
 @section('content')
     <div class="border p-5 pt-3 rounded-lg bg-white">
-        <h2 class="text-4xl mb-4 pb-4 border-b">
+        <h2 class="text-4xl pb-4 border-b">
            {{ $resource::$labelSingular }}:
            {{ $item[$resource::$nameField] }}
         </h2>
+
+        <x-rambo::crud.show-buttons :resource="$resource" :item="$item" />
 
         <div class="flex flex-wrap">
             @foreach ($resource->getOnlyFieldsStack() as $field)
@@ -18,12 +20,5 @@
                 </div>
             @endforeach
         </div>
-
-        <a
-            href="/admin/{{ $resource::$routeBase }}"
-            class="inline-block mt-4 cursor-pointer rounded bg-red-800 px-10 py-2 font-bold text-red-100 hover:bg-red-900"
-        >
-            Return to index
-        </a>
     </div>
 @endsection

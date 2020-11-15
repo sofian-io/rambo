@@ -3,7 +3,6 @@
 namespace AngryMoustache\Rambo\Http\Livewire;
 
 use AngryMoustache\Media\Models\Attachment;
-use AngryMoustache\Rambo\Fields\Field;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -16,6 +15,7 @@ class AttachmentPicker extends Component
     public $name = null;
     public $selecting = false;
     public $uploading = false;
+    public $search = '';
     public $upload;
 
     public function mount($field)
@@ -50,7 +50,7 @@ class AttachmentPicker extends Component
 
     public function uploadFile()
     {
-        $attachment = Attachment::lubeUpload($this->upload);
+        $attachment = Attachment::livewireUpload($this->upload);
         if (optional($attachment)->id) {
             $this->chooseAttachment($attachment->id);
         }
@@ -73,7 +73,10 @@ class AttachmentPicker extends Component
         }
 
         if ($this->selecting) {
-            $attachments = Attachment::get();
+            $attachments = Attachment::where('alt_name', 'LIKE', "%{$this->search}%")
+                ->orWhere('original_name', 'LIKE', "%{$this->search}%")
+                ->get();
+
             return view('rambo::livewire.attachment-picker', [
                 'attachments' => $attachments
             ]);

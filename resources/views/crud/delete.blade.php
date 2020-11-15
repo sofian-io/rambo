@@ -12,14 +12,14 @@
 
         <a
             href="/admin/{{ $resource::$routeBase }}"
-            class="inline-block mr-4 cursor-pointer rounded bg-red-800 px-10 py-2 font-bold text-red-100 hover:bg-red-900"
+            class="mr-4 rambo-button"
         >
             Cancel
         </a>
 
         <a
             href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/delete-confirm"
-            class="inline-block cursor-pointer rounded bg-green-500 px-10 py-2 font-bold text-green-100 hover:bg-green-700"
+            class="rambo-button-green"
         >
             Confirm
         </a>

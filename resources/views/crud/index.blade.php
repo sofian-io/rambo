@@ -6,13 +6,12 @@
             {{ $resource::$label }}
         </h2>
 
-        <a
-            href="/admin/{{ $resource::$routeBase }}/create"
-            class="inline-block mb-4 cursor-pointer rounded bg-red-800 px-10 py-2 font-bold text-red-100 hover:bg-red-900"
-        >
-            <i class="mr-1 fa fa-plus"></i>
-            Create
-        </a>
+        <div class="w-full my-4 flex justify-end">
+            <x-rambo::button
+                link="/admin/{{ $resource::$routeBase }}/create"
+                text="Create"
+            />
+        </div>
 
         @if ($items->isNotEmpty())
             @if (method_exists($items, 'links'))

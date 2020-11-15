@@ -1,8 +1,7 @@
 @if ($field->getValue())
     <a
         class="inline-block"
-        href="{{ optional($field->getValue())->path() }}"
-        target="_blank"
+        href="/admin/attachments/{{ optional($field->getValue())->id }}"
     >
         <img
             class="h-24 w-24"

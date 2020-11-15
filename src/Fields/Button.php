@@ -15,6 +15,5 @@ class Button extends NonField
      * @var string
      */
     public $wrapperClass = 'w-2/3';
-    public $inputClass = 'cursor-pointer rounded bg-red-800 px-10 py-2 '
-                       . ' font-bold text-red-100 hover:bg-red-900';
+    public $inputClass = 'rambo-button';
 }

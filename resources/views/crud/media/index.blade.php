@@ -7,11 +7,18 @@
         </h2>
 
         @if ($items->isNotEmpty())
-            <div class="grid grid-cols-5 gap-5">
+            @if (method_exists($items, 'links'))
+                <div class="m-3">
+                    {{ $items->withQueryString()->links() }}
+                </div>
+            @endif
+
+            <div class="grid grid-cols-6 gap-5">
                 @foreach ($items as $item)
                     <div class="border">
                         <div class="group relative hover:opacity-100">
-                            <div class="absolute bottom-0 w-full p-2 bg-white opacity-0 group-hover:opacity-75">
+                            <div class="transition duration-500 break-words absolute bottom-0
+                                w-full p-2 bg-white opacity-0 group-hover:opacity-75">
                                 {{ $item->alt_name }}
                             </div>
                             <img src="{{ $item->format('thumb') }}">
@@ -41,6 +48,12 @@
                     </div>
                 @endforeach
             </div>
+
+            @if (method_exists($items, 'links'))
+                <div class="m-3">
+                    {{ $items->withQueryString()->links() }}
+                </div>
+            @endif
         @else
             <p>No items found.</p>
         @endif

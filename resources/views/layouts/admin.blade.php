@@ -14,7 +14,7 @@
             {{-- Nav --}}
             <div class="fixed w-1/6 h-screen border-r bg-white">
                 <a href="/admin">
-                    <div class="px-3 py-7 border-b bg-red-200">
+                    <div class="px-3 py-7 border-b">
                         <x-logo />
                     </div>
                 </a>
@@ -23,8 +23,8 @@
                     <a
                         href="/admin/{{ $resource::$routeBase }}"
                         class="
-                            block p-5 border-b
-                            @if (request()->is("admin/{$resource::$routeBase}*")) bg-red-100 @endif
+                            block p-5 border-b hover:bg-red-100
+                            @if (request()->is("admin/{$resource::$routeBase}*")) bg-red-200 @endif
                         "
                     >
                         {{ $resource::$label }}
