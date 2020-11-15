@@ -5,11 +5,13 @@
   "license": "MIT",
   "require": {
     "php": ">=7.4.0",
-    "livewire/livewire": "^2.0"
+    "livewire/livewire": "^2.0",
+    "angry-moustache/media": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "AngryMoustache\\Rambo\\": "src/"
+      "AngryMoustache\\Rambo\\": "src/",
+      "AngryMoustache\\Rambo\\Seeders": "database/seeders/"
     }
   },
   "extra": {

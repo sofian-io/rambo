@@ -10,7 +10,7 @@ class RamboAuth
 
     public static function user()
     {
-        return session(self::$session, null);
+        return Administrator::find(optional(session(self::$session))->id);
     }
 
     public static function hash($password)
