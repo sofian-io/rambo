@@ -40,9 +40,10 @@ abstract class Form
      * Get all the fields of the form
      * @return Collection
      */
-    public function getFullFieldStack()
+    public function getFullFieldStack($page = null)
     {
         return collect($this->fields)
+            ->filter(fn ($field) => (! $page || ! in_array($page, $field->hideFrom)))
             ->each(function($field) {
                 $field->binding = $this->getBinding();
             });
@@ -52,9 +53,9 @@ abstract class Form
      * Get all the fields of the form
      * @return Collection
      */
-    public function getOnlyFieldsStack()
+    public function getOnlyFieldsStack($page = null)
     {
-        return $this->getFullFieldStack()
+        return $this->getFullFieldStack($page)
             ->filter(fn ($field) => $field->isField);
     }
 

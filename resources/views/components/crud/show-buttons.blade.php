@@ -1,4 +1,4 @@
-<div class="w-full my-4 flex justify-end">
+<div class="w-auto mt-4 ml-auto flex justify-end inline">
     <x-rambo::button
         link="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/edit"
         text="Edit"

@@ -12,6 +12,13 @@ class AttachmentField extends Field
 
     public function getValue()
     {
-        return Attachment::find(parent::getValue());
+        return Attachment::find(parent::getValue()['id'] ?? parent::getValue());
+    }
+
+    public function getParsedValue()
+    {
+        return $this->getValue()['id']
+            ?? optional($this->getValue())->id
+            ?? null;
     }
 }

@@ -8,7 +8,8 @@ class FileSizeField extends Field
 
     public function getValue()
     {
-        if ($value = parent::getValue()) {
+        $value = parent::getValue();
+        if ($value && gettype($value) === 'integer') {
             $value = ($value / 1000) . ' Mb';
         }
 

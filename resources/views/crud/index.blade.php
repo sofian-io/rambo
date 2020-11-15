@@ -1,16 +1,18 @@
 @extends('rambo::layouts.admin')
 
 @section('content')
-    <div class="border p-5 pt-3 rounded-lg bg-white">
-        <h2 class="text-4xl mb-4 pb-4 border-b">
-            {{ $resource::$label }}
-        </h2>
+    <div class="border p-5 pt-3 rounded-lg bg-white shadow">
+        <div class="flex mb-4 pb-4 border-b">
+            <h2 class="text-4xl">
+                {{ $resource::$label }}
+            </h2>
 
-        <div class="w-full my-4 flex justify-end">
-            <x-rambo::button
-                link="/admin/{{ $resource::$routeBase }}/create"
-                text="Create"
-            />
+            <div class="w-auto mt-4 ml-auto flex justify-end inline">
+                <x-rambo::button
+                    link="/admin/{{ $resource::$routeBase }}/create"
+                    text="Create"
+                />
+            </div>
         </div>
 
         @if ($items->isNotEmpty())
@@ -22,7 +24,7 @@
 
             <table class="w-full">
                 <tr>
-                    @foreach ($resource->getOnlyFieldsStack() as $field)
+                    @foreach ($resource->getOnlyFieldsStack('index') as $field)
                         <td class="py-2 px-4 bg-red-800 text-red-100 font-bold">
                             {{ $field->getLabel() }}
                         </td>
@@ -31,7 +33,7 @@
                 </tr>
                 @foreach ($items as $item)
                     <tr>
-                        @foreach ($resource->getOnlyFieldsStack() as $field)
+                        @foreach ($resource->getOnlyFieldsStack('index') as $field)
                             <td class="py-2 px-4 border-t">
                                 {{ $field->item($item)->renderShow() }}
                             </td>

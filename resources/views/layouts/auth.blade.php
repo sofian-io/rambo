@@ -7,31 +7,13 @@
         <title>Rambo</title>
         <link href="{{ asset('vendor/rambo/css/app.css') }}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/989b502037.js" crossorigin="anonymous"></script>
-        <livewire:styles>
     </head>
     <body class="bg-gray-100">
         <div class="flex">
-            {{-- Nav --}}
-            <div class="fixed w-1/6 h-screen border-r bg-white">
-                <a href="/admin">
-                    <div class="px-3 py-7 border-b">
-                        <x-rambo::logo />
-                    </div>
-                </a>
-
-                <x-rambo::navigation />
-            </div>
-
-            {{-- Content --}}
-            <div class="w-full pl-1/6">
-                <x-rambo::header />
-
-                <div class="m-5">
-                    @yield('content')
-                </div>
+            <div class="w-full">
+                @yield('content')
             </div>
         </div>
-
-        <livewire:scripts>
+        @livewireScripts
     </body>
 </html>

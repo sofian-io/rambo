@@ -31,23 +31,28 @@ class Attachment extends Form
 
             TextField::make('extension')
                 ->label('File extension')
-                ->readonly(),
+                ->readonly()
+                ->hideFrom(['edit']),
 
             TextField::make('mime_type')
                 ->label('File mime type')
-                ->readonly(),
+                ->readonly()
+                ->hideFrom(['edit']),
 
             FileSizeField::make('size')
                 ->label('File size')
-                ->readonly(),
+                ->readonly()
+                ->hideFrom(['edit']),
 
             TextField::make('width')
                 ->label('File width')
-                ->readonly(),
+                ->readonly()
+                ->hideFrom(['edit']),
 
             TextField::make('height')
                 ->label('File height')
-                ->readonly(),
+                ->readonly()
+                ->hideFrom(['edit']),
 
             Button::make('submit')
                 ->label('Submit'),

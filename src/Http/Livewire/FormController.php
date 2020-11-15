@@ -32,6 +32,12 @@ class FormController extends Component
     public $blade = 'rambo::form';
 
     /**
+     * Edit or create page
+     * @var string
+     */
+    public $page;
+
+    /**
      * The validation rules of the form
      * @var array
      */
@@ -57,7 +63,7 @@ class FormController extends Component
 
         if ($this->item) {
             $form = (new $this->form);
-            $form->getFullFieldStack()->each(function ($field) {
+            $form->getFullFieldStack($this->page)->each(function ($field) {
                 $value = $field->item($this->item)->getValue();
                 $this->fields[$field->getName()] = $value;
             });
@@ -67,7 +73,7 @@ class FormController extends Component
     public function render()
     {
         $form = (new $this->form);
-        $this->formFields = $form->getFullFieldStack();
+        $this->formFields = $form->getFullFieldStack($this->page);
 
         return view($this->blade);
     }
@@ -89,6 +95,17 @@ class FormController extends Component
         if ($this->validation !== []) {
             $this->validate($this->validation);
         }
+
+        (new $this->form)->getOnlyFieldsStack($this->page)->each(function ($field) {
+            $field = $field->item($this->fields);
+            $parsed = $field->getParsedValue();
+
+            if ($parsed === '__unset__') {
+                unset($this->fields[$field->getName()]);
+            } else {
+                $this->fields[$field->getName()] = $parsed;
+            }
+        });
 
         if ($this->updating !== false) {
             $item = $this->form::$model::find($this->updating);

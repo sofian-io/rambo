@@ -11,6 +11,18 @@ trait HandlesRendering
     public $component;
 
     /**
+     * The CRUD page that is being viewed
+     * @var string
+     */
+    public $page;
+
+    /**
+     * The CRUD pages the item is hidden from
+     * @var array
+     */
+    public $hideFrom = [];
+
+    /**
      * The fields blade component for index/show
      * @var string
      */
@@ -35,9 +47,11 @@ trait HandlesRendering
      */
     public function render()
     {
-        return view($this->component, [
-            'field' => $this
-        ]);
+        if (! in_array($this->page, $this->hideFrom)) {
+            return view($this->component, [
+                'field' => $this
+            ]);
+        }
     }
 
     /**
@@ -46,9 +60,11 @@ trait HandlesRendering
      */
     public function renderShow()
     {
-        return view($this->showComponent, [
-            'field' => $this
-        ]);
+        if (! in_array($this->page, $this->hideFrom)) {
+            return view($this->showComponent, [
+                'field' => $this
+            ]);
+        }
     }
 
     /**

@@ -63,4 +63,13 @@ class Field
     {
         return new static($name);
     }
+
+    /**
+     * Return parsed field value when saving/updating
+     * @return string|null
+     */
+    public function getParsedValue()
+    {
+        return $this->getValue();
+    }
 }
