@@ -4,6 +4,7 @@ namespace AngryMoustache\Rambo;
 
 use AngryMoustache\Rambo\Http\Livewire\AttachmentPicker;
 use AngryMoustache\Rambo\Http\Livewire\FormController;
+use AngryMoustache\Rambo\Http\Livewire\HabtmPicker;
 use AngryMoustache\Rambo\Http\Livewire\Login;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
@@ -32,6 +33,7 @@ class RamboServiceProvider extends ServiceProvider
 
         Livewire::component('rambo-login', Login::class);
         Livewire::component('rambo-attachment-picker', AttachmentPicker::class);
+        Livewire::component('rambo-habtm-picker', HabtmPicker::class);
         Livewire::component('rambo-form', FormController::class);
     }
 

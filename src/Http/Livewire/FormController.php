@@ -2,6 +2,7 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire;
 
+use AngryMoustache\Rambo\Fields\HabtmField;
 use Livewire\Component;
 
 class FormController extends Component
@@ -96,22 +97,33 @@ class FormController extends Component
             $this->validate($this->validation);
         }
 
-        (new $this->form)->getOnlyFieldsStack($this->page)->each(function ($field) {
+        $relations = [];
+        (new $this->form)->getOnlyFieldsStack($this->page)->each(function ($field) use (&$relations) {
             $field = $field->item($this->fields);
             $parsed = $field->getParsedValue();
+            $name = $field->getName();
 
             if ($parsed === '__unset__') {
-                unset($this->fields[$field->getName()]);
+                unset($this->fields[$name]);
             } else {
-                $this->fields[$field->getName()] = $parsed;
+                $this->fields[$name] = $parsed;
+            }
+
+            if (get_class($field) === HabtmField::class) {
+                $relations[$name] = $this->fields[$name];
             }
         });
 
         if ($this->updating !== false) {
             $item = $this->form::$model::find($this->updating);
             $item->update($this->fields);
+            $item = $this->form::$model::find($this->updating);
         } else {
-            $this->form::$model::create($this->fields);
+            $item = $this->form::$model::create($this->fields);
+        }
+
+        foreach ($relations as $relation => $values) {
+            $item->{$relation}()->sync($values);
         }
 
         return redirect("/admin/{$this->form::$routeBase}/{$this->updating}");

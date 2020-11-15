@@ -22,6 +22,12 @@ abstract class Form
      */
     abstract public function fields();
 
+    /**
+     * Blade component to use when called by HABTM field
+     * @return array
+     */
+    public static $habtmComponent = 'rambo::components.habtm.item';
+
     public function __construct()
     {
         $this->fields = $this->fields();
