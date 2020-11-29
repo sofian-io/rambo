@@ -11,7 +11,7 @@
   "autoload": {
     "psr-4": {
       "AngryMoustache\\Rambo\\": "src/",
-      "AngryMoustache\\Rambo\\Seeders": "database/seeders/"
+      "AngryMoustache\\Rambo\\Seeders\\": "database/seeders/"
     }
   },
   "extra": {
