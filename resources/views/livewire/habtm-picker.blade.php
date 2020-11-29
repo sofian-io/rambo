@@ -1,17 +1,25 @@
 <div>
     @if ($selections !== [])
-        <ul class="mb-4">
+        <ul wire:sortable="sortSelections" class="mb-4">
             @foreach ($selections ?? [] as $key => $value)
-                @if ($value === true)
-                    <li class="font-bold text-red-500 mb-1">
-                        {{
-                            optional($items->where('id', $key)
-                                ->first())
-                                ->{$targetResource::$nameField}
-                                ?? $selection
-                        }}
-                    </li>
-                @endif
+                <li
+                    class="font-bold mb-1 py-1"
+                    @if ($sortable)
+                        wire:sortable.item="{{ $value }}"
+                        wire:key="task-{{ $value }}"
+                        wire:sortable.handle
+                    @endif
+                >
+                    @if ($sortable)
+                        <i class="fas fa-arrows-alt mr-2 text-md opacity-50"></i>
+                    @endif
+
+                    {{
+                        optional($items->where('id', $value)
+                            ->first())
+                            ->{$targetResource::$nameField}
+                    }}
+                </li>
             @endforeach
         </ul>
     @endif
@@ -24,7 +32,7 @@
         <div class="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50">
             <div class="relative p-5 bg-gray-100 rounder-lg border mt-10 mx-auto w-1/2">
                 <div class="w-full">
-                    <h2 class="text-xl border-b pb-4 mb-4">Select the related items</h2>
+                    <h2 class="text-xl border-b pb-4 mb-4">Select related items</h2>
                     <a
                         class="cursor-pointer p-4 absolute top-0 right-2 text-2xl"
                         wire:click.prevent="closeModal"
@@ -46,11 +54,15 @@
                     </p>
                 @endif
 
-                <div style="height: 60vh" class="w-full scrolling-touch overflow-auto border rounded-lg overflow-hidden">
+                <div style="height: 60vh" class="w-full scrolling-touch overflow-auto border rounded-lg">
                     @if ($items->isNotEmpty())
                         <div class="flex flex-wrap">
-                            @foreach ($items as $item)
-                                @include($habtmComponent, ['item' => $item])
+                            @foreach ($items as $key => $item)
+                                @include($habtmComponent, [
+                                    'key' => $key,
+                                    'item' => $item,
+                                    'selections' => $selections
+                                ])
                             @endforeach
                         </div>
                     @else

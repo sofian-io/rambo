@@ -84,13 +84,4 @@ trait HandlesRendering
     {
         return $this->label ?? $this->getName();
     }
-
-    /**
-     * Get the current fields label
-     * @return string|null
-     */
-    public function getValue()
-    {
-        return optional($this->item)[$this->getName()];
-    }
 }

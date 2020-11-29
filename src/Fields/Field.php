@@ -72,4 +72,15 @@ class Field
     {
         return $this->getValue();
     }
+
+    /**
+     * Get the current fields label
+     * @return string|null
+     */
+    public function getValue()
+    {
+        return optional($this->item)[$this->getName()]
+            ?? $this->fallbackValue
+            ?? null;
+    }
 }

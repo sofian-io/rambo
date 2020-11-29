@@ -15,20 +15,22 @@ class HabtmPicker extends Component
     public $selecting = false;
     public $habtmComponent = 'rambo::habtm.item';
     public $selections = [];
+    public $sortable;
 
     public function mount($field)
     {
         $this->name = $field->getName();
+        $this->sortable = $field->sortable;
         $this->targetResource = $field->targetResource;
         $this->targetModel = $field->targetResource::$model;
         $this->habtmComponent = $field->targetResource::$habtmComponent;
         $this->searchFields = $field->targetResource::$searchFields;
         $this->items = $this->targetModel::orderBy('id', 'desc')->get();
 
-        $this->selections = optional($field->getValue())
-            ->mapWithKeys(fn ($value) => [$value->id => true]);
-
-        $this->selections = optional($this->selections)->toArray() ?? [];
+        $this->selections = $field->getValue() ?? [];
+        if ($this->selections !== []) {
+            $this->selections = $this->selections->pluck('id')->toArray();
+        }
     }
 
     public function render()
@@ -40,14 +42,7 @@ class HabtmPicker extends Component
 
         $this->items = $this->items->get();
 
-        $this->emit(
-            'field:update',
-            collect($this->selections)
-                ->filter()
-                ->map(fn ($value, $key) => $key)
-                ->toArray(),
-            $this->name
-        );
+        $this->emit('field:update', $this->selections, $this->name);
 
         return view('rambo::livewire.habtm-picker');
     }
@@ -60,5 +55,21 @@ class HabtmPicker extends Component
     public function closeModal()
     {
         $this->selecting = false;
+    }
+
+    public function sortSelections($items)
+    {
+        $this->selections = collect($items)
+            ->pluck('value')
+            ->toArray();
+    }
+
+    public function addToSelections($key)
+    {
+        if (in_array($key, $this->selections)) {
+            unset($this->selections[array_search($key, $this->selections)]);
+        } else {
+            $this->selections[] = $key;
+        }
     }
 }

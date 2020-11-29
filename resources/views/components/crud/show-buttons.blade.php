@@ -6,7 +6,7 @@
 
     <x-rambo::button
         class="ml-4"
-        link="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/edit"
+        link="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/delete"
         text="Delete"
     />
 

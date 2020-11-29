@@ -25,7 +25,8 @@ class CrudController extends Controller
     public function index($resource)
     {
         $resource = $this->guessResource($resource);
-        $items = ($resource::$model)::orderBy('id', 'desc')->paginate($resource::$paginate ?? 10);
+        $items = ($resource::$model)::orderBy('id', 'desc')
+            ->paginate($resource::$paginate ?? 10);
 
         return view($resource::$indexView ?? 'rambo::crud.index', [
             'resource' => $resource,
@@ -36,7 +37,7 @@ class CrudController extends Controller
     public function show($resource, $id)
     {
         $resource = $this->guessResource($resource);
-        $item = ($resource::$model)::find($id);
+        $item = ($resource::$model)::findOrFail($id);
 
         return view($resource::$showView ?? 'rambo::crud.show', [
             'resource' => $resource,
@@ -47,18 +48,16 @@ class CrudController extends Controller
     public function create($resource)
     {
         $resource = $this->guessResource($resource);
-        $items = ($resource::$model)::get();
 
         return view($resource::$createView ?? 'rambo::crud.create', [
             'resource' => $resource,
-            'items' => $items,
         ]);
     }
 
     public function edit($resource, $id)
     {
         $resource = $this->guessResource($resource);
-        $item = ($resource::$model)::find($id);
+        $item = ($resource::$model)::findOrFail($id);
 
         return view($resource::$editView ?? 'rambo::crud.edit', [
             'resource' => $resource,
@@ -69,7 +68,7 @@ class CrudController extends Controller
     public function delete($resource, $id)
     {
         $resource = $this->guessResource($resource);
-        $item = ($resource::$model)::find($id);
+        $item = ($resource::$model)::findOrFail($id);
 
         return view($resource::$deleteView ?? 'rambo::crud.delete', [
             'resource' => $resource,
@@ -79,8 +78,8 @@ class CrudController extends Controller
 
     public function deleteConfirm($resource, $id)
     {
-        $item = $this->guessResource($resource)::$model::find($id);
-        $item->delete();
+        $this->guessResource($resource)::$model::findOrFail($id)
+            ->delete();
 
         return redirect("/admin/{$resource}");
     }

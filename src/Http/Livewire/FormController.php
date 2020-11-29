@@ -105,6 +105,8 @@ class FormController extends Component
 
             if ($parsed === '__unset__') {
                 unset($this->fields[$name]);
+            } elseif ($parsed === '') {
+                $this->fields[$name] = null;
             } else {
                 $this->fields[$name] = $parsed;
             }
@@ -123,9 +125,18 @@ class FormController extends Component
         }
 
         foreach ($relations as $relation => $values) {
+            $values = $this->checkRelationData($values);
+            $item->{$relation}()->detach();
             $item->{$relation}()->sync($values);
         }
 
         return redirect("/admin/{$this->form::$routeBase}/{$this->updating}");
+    }
+
+    public function checkRelationData($values)
+    {
+        return collect($values)->map(function ($value) {
+            return (is_array($value) ? ($value['id'] ?? null) : $value);
+        });
     }
 }

@@ -29,6 +29,7 @@ class RamboServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../public/css' => public_path('vendor/rambo/css'),
+            __DIR__ . '/../public/js' => public_path('vendor/rambo/js'),
         ], 'rambo-required-assets');
 
         Livewire::component('rambo-login', Login::class);
