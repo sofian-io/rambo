@@ -17,6 +17,12 @@ abstract class Form
     public $binding = 'livewire';
 
     /**
+     * The searchable fields
+     * @var array
+     */
+    public static $searchFields = ['id'];
+
+    /**
      * Defined fields
      * @return array
      */
@@ -80,5 +86,16 @@ abstract class Form
             });
 
         return $rules;
+    }
+
+    /**
+     * Do custom things just before saving
+     * @param array $fields The fields array from the form controller
+     * @param integer|null $id The id of the current item if there is one
+     * @return array
+     */
+    public function beforeSave($fields, $id = null)
+    {
+        return $fields;
     }
 }

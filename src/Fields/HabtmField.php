@@ -8,5 +8,5 @@ class HabtmField extends Field
 
     public $showComponent = 'rambo::fields.show.habtm';
 
-    public $sortable = true;
+    public $sortable = false;
 }

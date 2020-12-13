@@ -1,27 +1,36 @@
 <div>
     @if ($selections !== [])
-        <ul wire:sortable="sortSelections" class="mb-4">
+        <table wire:sortable="sortSelections" class="mb-4">
             @foreach ($selections ?? [] as $key => $value)
-                <li
-                    class="font-bold mb-1 py-1"
+                <tr
+                    class="font-semibold mb-1 py-1"
                     @if ($sortable)
                         wire:sortable.item="{{ $value }}"
                         wire:key="task-{{ $value }}"
                         wire:sortable.handle
                     @endif
                 >
+                    @php $item = optional($items->where('id', $value)->first()) @endphp
+
                     @if ($sortable)
-                        <i class="fas fa-arrows-alt mr-2 text-md opacity-50"></i>
+                        <td class="py-2">
+                            <i class="fas fa-arrows-alt mr-2 text-md opacity-50"></i>
+                        </td>
                     @endif
 
-                    {{
-                        optional($items->where('id', $value)
-                            ->first())
-                            ->{$targetResource::$nameField}
-                    }}
-                </li>
+                    <td class="px-2 py-2">
+                        {{ $item->{$targetResource::$nameField} }}
+                    </td>
+
+                    <td class="pl-2 py-2">
+                        <i
+                            class="fas fa-trash-alt ml-2 text-md opacity-50 cursor-pointer"
+                            wire:click="addToSelections({{ $item->id }})"
+                        ></i>
+                    </td>
+                </tr>
             @endforeach
-        </ul>
+        </table>
     @endif
 
     <button class="rambo-button" wire:click="openModal">

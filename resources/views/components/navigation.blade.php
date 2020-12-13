@@ -6,7 +6,12 @@
             @if (request()->is("admin/{$resource::$routeBase}*")) bg-red-200 @endif
         "
     >
-        {!! config('rambo.icons', [])[$resource::$routeBase] ?? '' !!}
-        {{ $resource::$label }}
+        <span class="inline-block w-4 text-center">
+            {!! config('rambo.icons', [])[$resource::$routeBase] ?? '' !!}
+        </span>
+
+        <span class="ml-4">
+            {{ $resource::$label }}
+        </span>
     </a>
 @endforeach

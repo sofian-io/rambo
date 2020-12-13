@@ -98,7 +98,9 @@ class FormController extends Component
         }
 
         $relations = [];
-        (new $this->form)->getOnlyFieldsStack($this->page)->each(function ($field) use (&$relations) {
+        $form = (new $this->form);
+
+        $form->getOnlyFieldsStack($this->page)->each(function ($field) use (&$relations) {
             $field = $field->item($this->fields);
             $parsed = $field->getParsedValue();
             $name = $field->getName();
@@ -115,6 +117,8 @@ class FormController extends Component
                 $relations[$name] = $this->fields[$name];
             }
         });
+
+        $this->fields = $form->beforeSave($this->fields, $this->updating);
 
         if ($this->updating !== false) {
             $item = $this->form::$model::find($this->updating);

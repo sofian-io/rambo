@@ -9,6 +9,9 @@
     "angry-moustache/media": "dev-master"
   },
   "autoload": {
+    "files": [
+        "src/helpers.php"
+    ],
     "psr-4": {
       "AngryMoustache\\Rambo\\": "src/",
       "AngryMoustache\\Rambo\\Seeders\\": "database/seeders/"
