@@ -38,7 +38,7 @@
     </button>
 
     @if ($selecting)
-        <div class="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50">
+        <div class="fixed z-50 top-0 left-0 w-full h-screen bg-black bg-opacity-50">
             <div class="relative p-5 bg-gray-100 rounder-lg border mt-10 mx-auto w-1/2">
                 <div class="w-full">
                     <h2 class="text-xl border-b pb-4 mb-4">Select related items</h2>
