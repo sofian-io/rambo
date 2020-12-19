@@ -6,6 +6,7 @@ use AngryMoustache\Rambo\Http\Livewire\AttachmentPicker;
 use AngryMoustache\Rambo\Http\Livewire\FormController;
 use AngryMoustache\Rambo\Http\Livewire\HabtmPicker;
 use AngryMoustache\Rambo\Http\Livewire\Login;
+use AngryMoustache\Rambo\Http\Livewire\MassUpload;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -36,6 +37,7 @@ class RamboServiceProvider extends ServiceProvider
         Livewire::component('rambo-attachment-picker', AttachmentPicker::class);
         Livewire::component('rambo-habtm-picker', HabtmPicker::class);
         Livewire::component('rambo-form', FormController::class);
+        Livewire::component('rambo-mass-upload', MassUpload::class);
     }
 
     public function register()

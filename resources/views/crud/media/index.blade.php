@@ -6,6 +6,13 @@
             <h2 class="text-4xl">
                 {{ $resource::$label }}
             </h2>
+
+            <div class="w-auto mt-4 ml-auto flex justify-end inline">
+                <x-rambo::button
+                    link="/admin/attachments/mass-upload"
+                    text="Mass upload"
+                />
+            </div>
         </div>
 
         @if ($items->isNotEmpty())
