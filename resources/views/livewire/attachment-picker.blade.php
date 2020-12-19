@@ -1,36 +1,39 @@
 <div>
     @if (!$item)
-        <div class="mb-4">
-            <a
-                class="cursor-pointer rounded bg-red-800 px-4 py-2 font-bold text-red-100 hover:bg-red-900 mr-4"
-                wire:click.prevent="openSelectingModal"
-            >
-                Select image
-            </a>
+        <a
+            class="inline-block cursor-pointer rounded bg-red-800 px-4 py-2 font-bold text-red-100 hover:bg-red-900 mr-4"
+            wire:click.prevent="openSelectingModal"
+        >
+            Select image
+        </a>
 
-            <a
-                class="cursor-pointer rounded bg-red-800 px-4 py-2 font-bold text-red-100 hover:bg-red-900"
-                wire:click.prevent="openUploadingModal"
-            >
-                Upload image
-            </a>
-        </div>
+        <a
+            class="inline-block cursor-pointer rounded bg-red-800 px-4 py-2 font-bold text-red-100 hover:bg-red-900"
+            wire:click.prevent="openUploadingModal"
+        >
+            Upload image
+        </a>
     @endif
 
-    <div>
+    <div class="@if ($compact) flex w-full items-center @endif">
         @if ($item)
             <img
-                class="mb-4 w-48"
+                class="@if ($compact) mr-4 w-24 @else mb-4 w-48 @endif"
                 src="{{ $item }}"
             >
-            <button
-                class="cursor-pointer rounded bg-red-800 px-4 py-2 font-bold text-red-100 hover:bg-red-900 mr-4"
-                wire:click.prevent="resetImage"
-            >
-                <i class="fas fa-times"></i> Remove
-            </button>
-        @else
-            <p>No attachment selected</p>
+
+            <div>
+                <button
+                    class="
+                        cursor-pointer rounded bg-red-800 px-4 py-2 font-bold
+                        text-red-100 hover:bg-red-900 mr-4
+                    "
+                    wire:click.prevent="resetImage"
+                >
+                    <i class="fas fa-times"></i>
+                    @if (! $compact) Remove @endif
+                </button>
+            </div>
         @endif
     </div>
 

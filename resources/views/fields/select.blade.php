@@ -4,7 +4,6 @@
     <div class="{{ $field->inputWrapperClass }}">
         <select
             class="{{ $field->inputClass }}"
-            type="{{ $field->type ?? 'text' }}"
             id="{{ $field->getName() }}"
             name="{{ $field->getName() }}"
             wire:model="fields.{{ $field->getName() }}"

@@ -6,15 +6,12 @@ use Illuminate\Support\Str;
 
 trait Sluggable
 {
-    public $slugNameField = 'name';
-    public $slugField = 'slug';
-
     public function beforeSave($fields, $id = null)
     {
-        $slug = Str::slug($fields[$this->slugNameField]);
+        $slug = Str::slug($fields[self::$slugNameField ?? 'name']);
 
         if ($id !== null) {
-            $check = self::$model::where($this->slugNameField, $slug)
+            $check = self::$model::where(self::$slugNameField ?? 'name', $slug)
                 ->where('id', '!=', $id)
                 ->count();
 
@@ -23,12 +20,12 @@ trait Sluggable
             }
         }
 
-        $fields[$this->slugField] = $slug;
+        $fields[self::$slugField ?? 'slug'] = $slug;
         return parent::beforeSave($fields);
     }
 
     public function getRouteKeyName()
     {
-        return $this->slugField;
+        return self::$slugField ?? 'slug';
     }
 }

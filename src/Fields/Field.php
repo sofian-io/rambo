@@ -21,9 +21,10 @@ class Field
      */
     public $name;
 
-    public function __construct($name = null)
+    public function __construct($name = null, $label = null)
     {
         $this->name = $name;
+        $this->label = $label ?? ucfirst(str_replace('_', ' ', $name));
     }
 
     /**
