@@ -7,7 +7,7 @@
                 {{ $resource::$label }}
             </h2>
 
-            <div class="w-auto mt-4 ml-auto flex justify-end inline">
+            <div class="w-auto mt-4 ml-auto justify-end inline">
                 <x-rambo::button
                     link="/admin/attachments/mass-upload"
                     text="Mass upload"

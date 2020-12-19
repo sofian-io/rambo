@@ -5,10 +5,12 @@ namespace AngryMoustache\Rambo\Http\Livewire;
 use AngryMoustache\Media\Models\Attachment;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class AttachmentPicker extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public $item = null;
     public $picked = null;
@@ -19,6 +21,7 @@ class AttachmentPicker extends Component
     public $upload;
     public $emit;
     public $compact = false;
+    public $page = 1;
 
     public function mount(
         $field = null,
@@ -87,7 +90,7 @@ class AttachmentPicker extends Component
         if ($this->selecting) {
             $attachments = Attachment::where('alt_name', 'LIKE', "%{$this->search}%")
                 ->orWhere('original_name', 'LIKE', "%{$this->search}%")
-                ->get();
+                ->paginate(15);
 
             return view('rambo::livewire.attachment-picker', [
                 'attachments' => $attachments
@@ -95,5 +98,25 @@ class AttachmentPicker extends Component
         }
 
         return view('rambo::livewire.attachment-picker');
+    }
+
+    public function nextPage()
+    {
+        $this->page++;
+    }
+
+    public function previousPage()
+    {
+        $this->page--;
+    }
+
+    public function gotoPage($page)
+    {
+        $this->page = $page;
+    }
+
+    public function getQueryString()
+    {
+        return $this->queryString;
     }
 }

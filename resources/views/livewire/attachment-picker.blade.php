@@ -64,7 +64,6 @@
                 @endif
 
                 <div style="height: 60vh" class="w-full scrolling-touch overflow-auto">
-
                     @if ($attachments->isNotEmpty())
                         <div class="grid grid-cols-5 gap-5">
                             @foreach ($attachments as $attachment)
@@ -86,6 +85,10 @@
                             <p class="w-full pl-1 mb-4">No attachments found.</p>
                         @endif
                     @endif
+                </div>
+
+                <div class="w-full px-2">
+                    {{ $attachments->links('rambo::components.livewire-pagination') }}
                 </div>
             </div>
         </div>
