@@ -4,14 +4,11 @@
             <input type="file" wire:model="new" multiple>
 
             @if ($uploads !== [])
-                <div class="grid grid-cols-6 gap-2 my-4">
+                <ul class="my-2">
                     @foreach ($uploads as $upload)
-                        <div
-                            class="bg-cover bg-center border rounded"
-                            style="padding-top: 100%; background-image: url({{ $upload->temporaryUrl() }})"
-                        ></div>
+                        <li class="mb-2">{{ $upload->getClientOriginalName() }}</li>
                     @endforeach
-                </div>
+                </ul>
 
                 <a wire:click="upload" class="rambo-button">
                     Upload
