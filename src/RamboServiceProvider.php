@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo;
 
 use AngryMoustache\Rambo\Http\Livewire\AttachmentPicker;
+use AngryMoustache\Rambo\Http\Livewire\ColorPicker;
 use AngryMoustache\Rambo\Http\Livewire\FormController;
 use AngryMoustache\Rambo\Http\Livewire\HabtmPicker;
 use AngryMoustache\Rambo\Http\Livewire\Login;
@@ -33,10 +34,11 @@ class RamboServiceProvider extends ServiceProvider
             __DIR__ . '/../public/js' => public_path('vendor/rambo/js'),
         ], 'rambo-required-assets');
 
-        Livewire::component('rambo-login', Login::class);
         Livewire::component('rambo-attachment-picker', AttachmentPicker::class);
-        Livewire::component('rambo-habtm-picker', HabtmPicker::class);
+        Livewire::component('rambo-color-picker', ColorPicker::class);
         Livewire::component('rambo-form', FormController::class);
+        Livewire::component('rambo-habtm-picker', HabtmPicker::class);
+        Livewire::component('rambo-login', Login::class);
         Livewire::component('rambo-mass-upload', MassUpload::class);
     }
 
