@@ -19,7 +19,7 @@
                     @endif
 
                     <td class="px-2 py-2">
-                        {{ $item->{$targetResource::$nameField} }}
+                        {{ $item->{$targetResource::getNameField()} }}
                     </td>
 
                     <td class="pl-2 py-2">

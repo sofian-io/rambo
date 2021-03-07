@@ -3,8 +3,8 @@
 @section('content')
     <div class="border p-5 pt-3 rounded-lg bg-white shadow">
         <h2 class="text-4xl mb-4 pb-4 border-b">
-           {{ $resource::$labelSingular }}:
-           {{ $item[$resource::$nameField] }}
+           {{ $resource::getLabelSingular() }}:
+           {{ $item[$resource::getNameField()] }}
         </h2>
 
         <livewire:rambo-form

@@ -121,11 +121,11 @@ class FormController extends Component
         $this->fields = $form->beforeSave($this->fields, $this->updating);
 
         if ($this->updating !== false) {
-            $item = $this->form::$model::find($this->updating);
+            $item = $this->form::getModel()::find($this->updating);
             $item->update($this->fields);
-            $item = $this->form::$model::find($this->updating);
+            $item = $this->form::getModel()::find($this->updating);
         } else {
-            $item = $this->form::$model::create($this->fields);
+            $item = $this->form::getModel()::create($this->fields);
         }
 
         foreach ($relations as $relation => $values) {
@@ -134,7 +134,7 @@ class FormController extends Component
             $item->{$relation}()->sync($values);
         }
 
-        return redirect("/admin/{$this->form::$routeBase}/{$this->updating}");
+        return redirect("/admin/{$this->form::getRouteBase()}/{$this->updating}");
     }
 
     public function checkRelationData($values)

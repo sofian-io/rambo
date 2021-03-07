@@ -22,7 +22,7 @@ class HabtmPicker extends Component
         $this->name = $field->getName();
         $this->sortable = $field->sortable;
         $this->targetResource = $field->targetResource;
-        $this->targetModel = $field->targetResource::$model;
+        $this->targetModel = $field->targetResource::getModel();
         $this->habtmComponent = $field->targetResource::$habtmComponent;
         $this->searchFields = $field->targetResource::$searchFields;
         $this->items = $this->targetModel::orderBy('id', 'desc')->get();

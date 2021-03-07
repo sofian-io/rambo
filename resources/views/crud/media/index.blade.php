@@ -4,7 +4,7 @@
     <div class="border p-5 pt-3 rounded-lg bg-white shadow">
         <div class="flex mb-4 pb-4 border-b">
             <h2 class="text-4xl">
-                {{ $resource::$label }}
+                {{ $resource::getLabel() }}
             </h2>
 
             <div class="w-auto mt-4 ml-auto justify-end inline">
@@ -35,21 +35,21 @@
                         <div class="flex border-t">
                             <a
                                 class="w-1/3 p-2 inline-block text-xl text-center hover:opacity-50"
-                                href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}"
+                                href="/admin/{{ $resource::getRouteBase() }}/{{ $item->id }}"
                             >
                                 <i class="py-2 px-4 far fa-eye"></i>
                             </a>
 
                             <a
                                 class="w-1/3 p-2 inline-block text-xl text-center hover:opacity-50"
-                                href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/edit"
+                                href="/admin/{{ $resource::getRouteBase() }}/{{ $item->id }}/edit"
                             >
                                 <i class="py-2 px-4 far fa-edit"></i>
                             </a>
 
                             <a
                                 class="w-1/3 p-2 inline-block text-xl text-center hover:opacity-50"
-                                href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/delete"
+                                href="/admin/{{ $resource::getRouteBase() }}/{{ $item->id }}/delete"
                             >
                                 <i class="py-2 px-4 far fa-trash-alt"></i>
                             </a>

@@ -9,12 +9,7 @@ use AngryMoustache\Rambo\Form;
 
 class Attachment extends Form
 {
-    public static $routeBase = 'attachments';
-
     public static $nameField = 'original_name';
-
-    public static $label = 'Attachments';
-    public static $labelSingular = 'Attachment';
 
     public static $model = 'AngryMoustache\Media\Models\Attachment';
 

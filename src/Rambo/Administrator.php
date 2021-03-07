@@ -10,12 +10,7 @@ use AngryMoustache\Rambo\Form;
 
 class Administrator extends Form
 {
-    public static $routeBase = 'administrators';
-
     public static $nameField = 'username';
-
-    public static $label = 'Administrators';
-    public static $labelSingular = 'Administrator';
 
     public static $model = 'AngryMoustache\Rambo\Models\Administrator';
 

@@ -2,56 +2,77 @@
 
 namespace AngryMoustache\Rambo;
 
+use Illuminate\Support\Str;
+
 abstract class Form
 {
-    /**
-     * The fields of the form
-     * @var Collection
-     */
     public $fields = null;
 
-    /**
-     * The binding method of the form
-     * @var string
-     */
     public $binding = 'livewire';
 
-    /**
-     * The searchable fields
-     * @var array
-     */
     public static $searchFields = ['id'];
 
-    /**
-     * Defined fields
-     * @return array
-     */
-    abstract public function fields();
+    public static $routeBase = null;
 
-    /**
-     * Blade component to use when called by HABTM field
-     * @return array
-     */
+    public static $nameField = null;
+
+    public static $label = null;
+    public static $labelSingular = null;
+
+    public static $model = null;
+
     public static $habtmComponent = 'rambo::components.habtm.item';
+
+    abstract public function fields();
 
     public function __construct()
     {
         $this->fields = $this->fields();
     }
 
-    /**
-     * Get the forms binding method
-     * @return string
-     */
     public function getBinding()
     {
         return $this->binding;
     }
 
-    /**
-     * Get all the fields of the form
-     * @return Collection
-     */
+    public static function getRouteBase()
+    {
+        return static::$routeBase ?? Str::of(get_called_class())
+            ->afterLast('\\')
+            ->title()
+            ->plural()
+            ->slug()
+            ->__toString();
+    }
+
+    public static function getNameField()
+    {
+        return static::$nameField ?? 'name';
+    }
+
+    public static function getLabel()
+    {
+        return static::$label ?? Str::of(get_called_class())
+            ->afterLast('\\')
+            ->title()
+            ->plural();
+    }
+
+    public static function getLabelSingular()
+    {
+        return static::$label ?? Str::of(get_called_class())
+            ->afterLast('\\')
+            ->title();
+    }
+
+    public static function getModel()
+    {
+        return static::$model ?? Str::of(get_called_class())
+            ->afterLast('\\')
+            ->prepend('App\\Models\\')
+            ->__toString();
+    }
+
     public function getFullFieldStack($page = null)
     {
         return collect($this->fields)
@@ -61,20 +82,12 @@ abstract class Form
             });
     }
 
-    /**
-     * Get all the fields of the form
-     * @return Collection
-     */
     public function getOnlyFieldsStack($page = null)
     {
         return $this->getFullFieldStack($page)
             ->filter(fn ($field) => $field->isField);
     }
 
-    /**
-     * Get all the validation rules
-     * @return Collection
-     */
     public function getValidationRules()
     {
         $rules = [];
@@ -88,12 +101,6 @@ abstract class Form
         return $rules;
     }
 
-    /**
-     * Do custom things just before saving
-     * @param array $fields The fields array from the form controller
-     * @param integer|null $id The id of the current item if there is one
-     * @return array
-     */
     public function beforeSave($fields, $id = null)
     {
         return $fields;

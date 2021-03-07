@@ -4,8 +4,8 @@
     <div class="border p-5 pt-3 rounded-lg bg-white shadow">
         <div class="flex mb-4 pb-4 border-b">
             <h2 class="text-4xl">
-                {{ $resource::$labelSingular }}:
-                {{ $item[$resource::$nameField] }}
+                {{ $resource::getLabelSingular() }}:
+                {{ $item[$resource::getNameField()] }}
             </h2>
 
             <x-rambo::crud.show-buttons :resource="$resource" :item="$item" />

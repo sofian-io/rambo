@@ -19,7 +19,7 @@ class BelongsToField extends SelectField
     public function resource($resource)
     {
         $this->resource = $resource;
-        $this->options = $resource::$model::pluck($resource::$nameField ?? 'id', 'id');
+        $this->options = $resource::getModel()::pluck($resource::getNameField() ?? 'id', 'id');
         return $this;
     }
 }

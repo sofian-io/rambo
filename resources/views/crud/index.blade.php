@@ -4,12 +4,12 @@
     <div class="border p-5 pt-3 rounded-lg bg-white shadow">
         <div class="flex mb-4 pb-4 border-b">
             <h2 class="text-4xl">
-                {{ $resource::$label }}
+                {{ $resource::getLabel() }}
             </h2>
 
             <div class="w-auto mt-4 ml-auto justify-end inline">
                 <x-rambo::button
-                    link="/admin/{{ $resource::$routeBase }}/create"
+                    link="/admin/{{ $resource::getRouteBase() }}/create"
                     text="Create"
                 />
             </div>
@@ -39,17 +39,17 @@
                             </td>
                         @endforeach
                         <td class="w-10 border-t">
-                            <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}">
+                            <a href="/admin/{{ $resource::getRouteBase() }}/{{ $item->id }}">
                                 <i class="py-2 px-4 text-xl text-center hover:opacity-50 far fa-eye"></i>
                             </a>
                         </td>
                         <td class="w-10 border-t">
-                            <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/edit">
+                            <a href="/admin/{{ $resource::getRouteBase() }}/{{ $item->id }}/edit">
                                 <i class="py-2 px-4 text-xl text-center hover:opacity-50 far fa-edit"></i>
                             </a>
                         </td>
                         <td class="w-10 border-t">
-                            <a href="/admin/{{ $resource::$routeBase }}/{{ $item->id }}/delete">
+                            <a href="/admin/{{ $resource::getRouteBase() }}/{{ $item->id }}/delete">
                                 <i class="py-2 px-4 text-xl text-center hover:opacity-50 far fa-trash-alt"></i>
                             </a>
                         </td>

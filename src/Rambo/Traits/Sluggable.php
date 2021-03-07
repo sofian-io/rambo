@@ -11,7 +11,7 @@ trait Sluggable
         $slug = Str::slug($fields[self::$slugNameField ?? 'name']);
 
         if ($id !== null) {
-            $check = self::$model::where(self::$slugNameField ?? 'name', $slug)
+            $check = self::getModel()::where(self::$slugNameField ?? 'name', $slug)
                 ->where('id', '!=', $id)
                 ->count();
 
