@@ -8,6 +8,7 @@ use AngryMoustache\Rambo\Http\Livewire\FormController;
 use AngryMoustache\Rambo\Http\Livewire\HabtmPicker;
 use AngryMoustache\Rambo\Http\Livewire\Login;
 use AngryMoustache\Rambo\Http\Livewire\MassUpload;
+use AngryMoustache\Rambo\Http\Livewire\YoutubeField;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -40,6 +41,7 @@ class RamboServiceProvider extends ServiceProvider
         Livewire::component('rambo-habtm-picker', HabtmPicker::class);
         Livewire::component('rambo-login', Login::class);
         Livewire::component('rambo-mass-upload', MassUpload::class);
+        Livewire::component('rambo-youtube-field', YoutubeField::class);
     }
 
     public function register()
