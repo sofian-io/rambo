@@ -7,8 +7,9 @@ use AngryMoustache\Rambo\Http\Livewire\ColorPicker;
 use AngryMoustache\Rambo\Http\Livewire\FormController;
 use AngryMoustache\Rambo\Http\Livewire\HabtmPicker;
 use AngryMoustache\Rambo\Http\Livewire\Login;
+use AngryMoustache\Rambo\Http\Livewire\ManyAttachmentPicker;
 use AngryMoustache\Rambo\Http\Livewire\MassUpload;
-use AngryMoustache\Rambo\Http\Livewire\YoutubeField;
+use AngryMoustache\Rambo\Http\Livewire\YoutubePicker;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -40,8 +41,9 @@ class RamboServiceProvider extends ServiceProvider
         Livewire::component('rambo-form', FormController::class);
         Livewire::component('rambo-habtm-picker', HabtmPicker::class);
         Livewire::component('rambo-login', Login::class);
+        Livewire::component('rambo-many-attachment-picker', ManyAttachmentPicker::class);
         Livewire::component('rambo-mass-upload', MassUpload::class);
-        Livewire::component('rambo-youtube-field', YoutubeField::class);
+        Livewire::component('rambo-youtube-picker', YoutubePicker::class);
     }
 
     public function register()

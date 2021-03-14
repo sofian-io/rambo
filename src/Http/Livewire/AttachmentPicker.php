@@ -21,17 +21,20 @@ class AttachmentPicker extends Component
     public $upload;
     public $emit;
     public $compact = false;
+    public $clearOnUpdate = false;
     public $page = 1;
 
     public function mount(
         $field = null,
         $name = null,
         $emit = 'field:update',
-        $item = null
+        $item = null,
+        $clearOnUpdate = false
     ) {
         $this->name = $name;
         $this->emit = $emit;
         $this->item = $item;
+        $this->clearOnUpdate = $clearOnUpdate;
 
         if ($field) {
             $this->name = $field->getName();
@@ -61,6 +64,11 @@ class AttachmentPicker extends Component
         $this->picked = $attachment;
         $this->closeModal();
         $this->emit($this->emit, $attachment, $this->name);
+
+        if ($this->clearOnUpdate) {
+            $this->item = null;
+            $this->picked = null;
+        }
     }
 
     public function uploadFile()

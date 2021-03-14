@@ -2,6 +2,7 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire;
 
+use AngryMoustache\Rambo\Fields\Field;
 use AngryMoustache\Rambo\Fields\HabtmField;
 use Livewire\Component;
 
@@ -100,7 +101,7 @@ class FormController extends Component
         $relations = [];
         $form = (new $this->form);
 
-        $form->getOnlyFieldsStack($this->page)->each(function ($field) use (&$relations) {
+        $form->getOnlyFieldsStack($this->page)->each(function (Field $field) use (&$relations) {
             $field = $field->item($this->fields);
             $parsed = $field->getParsedValue();
             $name = $field->getName();
@@ -113,7 +114,7 @@ class FormController extends Component
                 $this->fields[$name] = $parsed;
             }
 
-            if (get_class($field) === HabtmField::class) {
+            if ($field->hasManyRelation) {
                 $relations[$name] = $this->fields[$name];
             }
         });

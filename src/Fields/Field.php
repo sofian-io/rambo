@@ -16,6 +16,12 @@ class Field
     public $isField = true;
 
     /**
+     * Set to true if there are relations to be saved
+     * @var boolean
+     */
+    public $hasManyRelation = false;
+
+    /**
      * The fields name
      * @var string
      */
