@@ -2,6 +2,8 @@
 
 namespace AngryMoustache\Rambo;
 
+use AngryMoustache\Rambo\Actions\DeleteMany;
+use AngryMoustache\Rambo\Actions\MassToggle;
 use Illuminate\Support\Str;
 
 abstract class Form
@@ -104,5 +106,13 @@ abstract class Form
     public function beforeSave($fields, $id = null)
     {
         return $fields;
+    }
+
+    public function actions()
+    {
+        return [
+            new DeleteMany(),
+            new MassToggle(),
+        ];
     }
 }
