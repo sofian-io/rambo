@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo\Rambo;
 
 use AngryMoustache\Rambo\Fields\Button;
+use AngryMoustache\Rambo\Fields\TextareaField;
 use AngryMoustache\Rambo\Fields\TextField;
 use AngryMoustache\Rambo\Form;
 
@@ -28,7 +29,7 @@ class StaticString extends Form
                 ->label('Key')
                 ->rules('required'),
 
-            TextField::make('value')
+            TextareaField::make('value')
                 ->label('Value')
                 ->rules('required'),
 
