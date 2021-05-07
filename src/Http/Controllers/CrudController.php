@@ -25,12 +25,9 @@ class CrudController extends Controller
     public function index($resource)
     {
         $resource = $this->guessResource($resource);
-        $items = ($resource::getModel())::orderBy('id', 'desc')
-            ->paginate($resource::$paginate ?? 10);
 
         return view($resource::$indexView ?? 'rambo::crud.index', [
             'resource' => $resource,
-            'items' => $items,
         ]);
     }
 
