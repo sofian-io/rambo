@@ -12,6 +12,8 @@ class HabtmPicker extends Component
     public $items;
     public $search = '';
     public $searchFields = [];
+    public $defaultSort;
+    public $defaultSortDir = 'asc';
     public $selecting = false;
     public $habtmComponent = 'rambo::habtm.item';
     public $selections = [];
@@ -25,7 +27,8 @@ class HabtmPicker extends Component
         $this->targetModel = $field->targetResource::getModel();
         $this->habtmComponent = $field->targetResource::$habtmComponent;
         $this->searchFields = $field->targetResource::$searchFields;
-        $this->items = $this->targetModel::orderBy('id', 'desc')->get();
+        $this->defaultSort = $field->targetResource::$defaultSort;
+        $this->defaultSortDir = $field->targetResource::$defaultSortDir;
 
         $this->selections = $field->getValue() ?? [];
         if ($this->selections !== []) {
@@ -35,9 +38,9 @@ class HabtmPicker extends Component
 
     public function render()
     {
-        $this->items = $this->targetModel::orderBy('id', 'desc');
+        $this->items = $this->targetModel::orderBy($this->defaultSort, $this->defaultSortDir);
         foreach ($this->searchFields as $field) {
-            $this->items = $this->items->where($field, 'LIKE', "%{$this->search}%");
+            $this->items = $this->items->orWhere($field, 'LIKE', "%{$this->search}%");
         }
 
         $this->items = $this->items->get();

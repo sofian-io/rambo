@@ -17,6 +17,7 @@ class Attachment extends Form
     public static $showView = 'rambo::crud.media.show';
 
     public static $paginate = 24;
+    public static $defaultSortDir = 'desc';
 
     public function fields()
     {

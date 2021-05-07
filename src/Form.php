@@ -11,6 +11,8 @@ abstract class Form
     public $binding = 'livewire';
 
     public static $searchFields = ['id'];
+    public static $defaultSort = 'id';
+    public static $defaultSortDir = 'asc';
 
     public static $routeBase = null;
 

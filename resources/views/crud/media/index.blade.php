@@ -30,7 +30,11 @@
                                 w-full p-2 bg-white opacity-0 group-hover:opacity-75">
                                 {{ $item->alt_name }}
                             </div>
-                            <img src="{{ $item->format('thumb') }}">
+
+                            <div
+                                class="w-full bg-cover bg-center"
+                                style="padding-top: 100%; background-image: url('{{ $item->format('thumb') }}')"
+                            ></div>
                         </div>
                         <div class="flex border-t">
                             <a
