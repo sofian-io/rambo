@@ -33,9 +33,18 @@
         </table>
     @endif
 
-    <button class="rambo-button" wire:click="openModal">
+    <button class="rambo-button mr-4" wire:click="openModal">
         Choose items
     </button>
+
+    <a
+        href="{{ route('rambo.create', ['resource' => $targetResource::getRouteBase()]) }}"
+        target="_blank"
+        class="rambo-button"
+    >
+        Create new
+        <i class="ml-2 fas fa-external-link-alt"></i>
+    </a>
 
     @if ($selecting)
         <div class="fixed z-50 top-0 left-0 w-full h-screen bg-black bg-opacity-50">
