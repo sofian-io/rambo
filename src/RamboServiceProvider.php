@@ -4,6 +4,7 @@ namespace AngryMoustache\Rambo;
 
 use AngryMoustache\Rambo\Http\Livewire\AttachmentPicker;
 use AngryMoustache\Rambo\Http\Livewire\ColorPicker;
+use AngryMoustache\Rambo\Http\Livewire\CrudMediaTable;
 use AngryMoustache\Rambo\Http\Livewire\CrudTable;
 use AngryMoustache\Rambo\Http\Livewire\FormController;
 use AngryMoustache\Rambo\Http\Livewire\HabtmPicker;
@@ -39,6 +40,7 @@ class RamboServiceProvider extends ServiceProvider
 
         Livewire::component('rambo-attachment-picker', AttachmentPicker::class);
         Livewire::component('rambo-color-picker', ColorPicker::class);
+        Livewire::component('rambo-crud-media-table', CrudMediaTable::class);
         Livewire::component('rambo-crud-table', CrudTable::class);
         Livewire::component('rambo-form', FormController::class);
         Livewire::component('rambo-habtm-picker', HabtmPicker::class);

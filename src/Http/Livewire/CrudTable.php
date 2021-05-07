@@ -8,6 +8,7 @@ class CrudTable extends Component
 {
     public $resourceClass;
     public $checkboxes = [];
+    public $tableView = 'rambo::livewire.crud-table';
 
     public function mount($resource)
     {
@@ -30,7 +31,7 @@ class CrudTable extends Component
 
         $this->checkboxes = collect($this->checkboxes)->filter()->toArray();
 
-        return view('rambo::livewire.crud-table', [
+        return view($this->tableView, [
             'resource' => $resource,
             'actions' => $resource->actions(),
             'items' => $items,
