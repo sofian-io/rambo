@@ -1,0 +1,23 @@
+.crud-delete {
+    &-text {
+        padding: 2rem;
+        padding-bottom: 0;
+    }
+
+    &-buttons {
+        padding: 2rem;
+
+        .button {
+            margin-right: 1rem;
+            padding: .5rem 2rem;
+        }
+
+        .red-button {
+            background: $c-secondary;
+
+            &:hover {
+                background: $c-secondary-dark;
+            }
+        }
+    }
+}

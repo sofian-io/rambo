@@ -1,0 +1,52 @@
+.crud-form {
+    &-field,
+    &-button {
+        padding: 2rem;
+        display: flex;
+
+        border-bottom: $border;
+        border-color: rgba($c-border, .5);
+
+        &-label {
+            padding: .75rem 0;
+            width: 20%;
+        }
+
+        &-input {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &-error {
+            color: red;
+            padding-top: 1rem;
+        }
+
+        &-checkbox {
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 1.2rem;
+                height: 1.2rem;
+            }
+
+            label {
+                margin-left: 1rem;
+            }
+        }
+    }
+
+    &-button {
+        justify-content: flex-start;
+
+        &-input {
+            width: auto;
+
+            .button {
+                padding: .25rem 2rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.attachment-picker {
+    &-selection {
+        margin-bottom: 1rem;
+
+        img {
+            width: 15rem;
+        }
+    }
+
+    &-buttons {
+        .button {
+            margin-right: 1rem;
+        }
+    }
+
+    &-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-gap: 1rem;
+        gap: 1rem;
+
+        div {
+            padding-top: 100%;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+
+            &:hover {
+                opacity: .5;
+            }
+        }
+    }
+}

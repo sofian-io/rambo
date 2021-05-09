@@ -15,4 +15,5 @@ return [
         'attachments' => '<i class="fas fa-images"></i>',
         'static-strings' => '<i class="fas fa-font"></i>',
     ],
+    'admin-route' => 'admin',
 ];

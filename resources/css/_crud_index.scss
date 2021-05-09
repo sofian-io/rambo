@@ -1,0 +1,62 @@
+.crud-index {
+    &-table {
+        width: 100%;
+
+        thead {
+            background: $gradient-flat;
+
+            span {
+                color: $c-white;
+                font-family: $f-button;
+                font-weight: bold;
+            }
+        }
+
+        tr {
+            border-bottom: $border;
+
+            &:last-of-type {
+                border: none;
+            }
+
+            td {
+                vertical-align: middle;
+                word-break: break-all;
+
+                img {
+                    width: 6rem;
+                }
+
+                & > span.crud-index-table-content {
+                    display: inline-block;
+                    padding: .75rem 1rem;
+                }
+
+                &.crud-index-table-action {
+                    width: 3rem;
+
+                    a {
+                        opacity: .9;
+                        font-size: 1.25rem;
+                        padding: .25rem 1rem;
+                        text-align: center;
+
+                        &:hover {
+                            i {
+                                color: $c-secondary;
+                            }
+                        }
+                    }
+                }
+
+                &:first-of-type {
+                    padding-left: 1.5rem;
+                }
+
+                &:last-of-type {
+                    padding-right: 1.5rem;
+                }
+            }
+        }
+    }
+}

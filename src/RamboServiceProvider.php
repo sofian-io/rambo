@@ -2,60 +2,64 @@
 
 namespace AngryMoustache\Rambo;
 
-use AngryMoustache\Rambo\Http\Livewire\AttachmentPicker;
-use AngryMoustache\Rambo\Http\Livewire\ColorPicker;
-use AngryMoustache\Rambo\Http\Livewire\CrudMediaTable;
-use AngryMoustache\Rambo\Http\Livewire\CrudTable;
-use AngryMoustache\Rambo\Http\Livewire\FormController;
-use AngryMoustache\Rambo\Http\Livewire\HabtmPicker;
-use AngryMoustache\Rambo\Http\Livewire\Login;
-use AngryMoustache\Rambo\Http\Livewire\ManyAttachmentPicker;
-use AngryMoustache\Rambo\Http\Livewire\MassUpload;
-use AngryMoustache\Rambo\Http\Livewire\YoutubePicker;
+use AngryMoustache\Rambo\Facades\Rambo as FacadeRambo;
+use AngryMoustache\Rambo\Http\Livewire\Auth\Login;
+use AngryMoustache\Rambo\Http\Livewire\Crud\IndexTable;
+use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceCreate;
+use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceDelete;
+use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceEdit;
+use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceShow;
+use AngryMoustache\Rambo\Http\Livewire\Fields\AttachmentPicker;
+use AngryMoustache\Rambo\Rambo;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
 class RamboServiceProvider extends ServiceProvider
 {
+    public $singletons = [
+        Rambo::class => Rambo::class
+    ];
+
     public function boot()
     {
         $this->config();
         $this->views();
         $this->routes();
         $this->migrations();
+        $this->publishing();
+        $this->livewire();
 
-        $this->publishes([
-            __DIR__ . '/../config/rambo.php' => config_path('rambo.php'),
-        ], 'rambo-config');
-
-        $this->publishes([
-            __DIR__ . '/../resources/views' => base_path('resources/views/vendor/rambo'),
-        ], 'rambo-views');
-
-        $this->publishes([
-            __DIR__ . '/../public/css' => public_path('vendor/rambo/css'),
-            __DIR__ . '/../public/js' => public_path('vendor/rambo/js'),
-        ], 'rambo-required-assets');
-
-        Livewire::component('rambo-attachment-picker', AttachmentPicker::class);
-        Livewire::component('rambo-color-picker', ColorPicker::class);
-        Livewire::component('rambo-crud-media-table', CrudMediaTable::class);
-        Livewire::component('rambo-crud-table', CrudTable::class);
-        Livewire::component('rambo-form', FormController::class);
-        Livewire::component('rambo-habtm-picker', HabtmPicker::class);
-        Livewire::component('rambo-login', Login::class);
-        Livewire::component('rambo-many-attachment-picker', ManyAttachmentPicker::class);
-        Livewire::component('rambo-mass-upload', MassUpload::class);
-        Livewire::component('rambo-youtube-picker', YoutubePicker::class);
+        Route::bind('resource', function ($value) {
+            return FacadeRambo::resource($value);
+        });
     }
 
     public function register()
     {
         $this->app->booting(function() {
             $loader = AliasLoader::getInstance();
-            $loader->alias('RamboAuth', RamboAuth::class);
+            $loader->alias('Rambo', FacadeRambo::class);
         });
+
+        $this->app->alias(Rambo::class, 'rambo');
+    }
+
+    private function livewire()
+    {
+        /** AUTH */
+        Livewire::component('rambo-auth-login', Login::class);
+
+        /** CRUD */
+        Livewire::component('rambo-crud-index-table', IndexTable::class);
+        Livewire::component('rambo-crud-resource-create', ResourceCreate::class);
+        Livewire::component('rambo-crud-resource-delete', ResourceDelete::class);
+        Livewire::component('rambo-crud-resource-edit', ResourceEdit::class);
+        Livewire::component('rambo-crud-resource-show', ResourceShow::class);
+
+        /** FIELDS */
+        Livewire::component('rambo-fields-attachment-picker', AttachmentPicker::class);
     }
 
     private function config()
@@ -76,5 +80,21 @@ class RamboServiceProvider extends ServiceProvider
     private function migrations()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
+    private function publishing()
+    {
+        $this->publishes([
+            __DIR__ . '/../config/rambo.php' => config_path('rambo.php'),
+        ], 'rambo-config');
+
+        $this->publishes([
+            __DIR__ . '/../resources/views' => base_path('resources/views/vendor/rambo'),
+        ], 'rambo-views');
+
+        $this->publishes([
+            __DIR__ . '/../public/css' => public_path('vendor/rambo/css'),
+            __DIR__ . '/../public/js' => public_path('vendor/rambo/js'),
+        ], 'rambo-required-assets');
     }
 }

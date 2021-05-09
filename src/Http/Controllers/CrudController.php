@@ -6,78 +6,97 @@ use App\Http\Controllers\Controller;
 
 class CrudController extends Controller
 {
-    public $resource;
-
-    public function guessResource($resource)
-    {
-        $resources = config('rambo.resources', []);
-
-        foreach ($resources as $item) {
-            if ($item::getRouteBase() === $resource) {
-                return new $item;
-                break;
-            }
-        }
-
-        return null;
-    }
-
     public function index($resource)
     {
-        $resource = $this->guessResource($resource);
-
-        return view($resource::$indexView ?? 'rambo::crud.index', [
+        return view('rambo::crud.index', [
             'resource' => $resource,
+            'breadcrumbs' => [[
+                'route' => route('rambo.dashboard'),
+                'label' => 'Dashboard',
+            ], [
+                'route' => $resource->index(),
+                'label' => $resource->label(),
+            ]],
         ]);
     }
 
     public function show($resource, $id)
     {
-        $resource = $this->guessResource($resource);
-        $item = ($resource::getModel())::findOrFail($id);
+        $resource = $resource->item($id);
+        $item = $resource->item;
 
-        return view($resource::$showView ?? 'rambo::crud.show', [
+        return view('rambo::crud.show', [
             'resource' => $resource,
             'item' => $item,
+            'breadcrumbs' => [[
+                'route' => route('rambo.dashboard'),
+                'label' => 'Dashboard',
+            ], [
+                'route' => $resource->index(),
+                'label' => $resource->label(),
+            ], [
+                'route' => $resource->show($id),
+                'label' => optional($item)->{$resource->displayName()} ?? $id,
+            ]],
         ]);
     }
 
     public function create($resource)
     {
-        $resource = $this->guessResource($resource);
-
-        return view($resource::$createView ?? 'rambo::crud.create', [
+        return view('rambo::crud.create', [
             'resource' => $resource,
+            'breadcrumbs' => [[
+                'route' => route('rambo.dashboard'),
+                'label' => 'Dashboard',
+            ], [
+                'route' => $resource->index(),
+                'label' => $resource->label(),
+            ], [
+                'route' => $resource->create(),
+                'label' => 'Create',
+            ]],
         ]);
     }
 
     public function edit($resource, $id)
     {
-        $resource = $this->guessResource($resource);
-        $item = ($resource::getModel())::findOrFail($id);
+        $resource = $resource->item($id);
+        $item = $resource->item;
 
-        return view($resource::$editView ?? 'rambo::crud.edit', [
+        return view('rambo::crud.edit', [
             'resource' => $resource,
             'item' => $item,
+            'breadcrumbs' => [[
+                'route' => route('rambo.dashboard'),
+                'label' => 'Dashboard',
+            ], [
+                'route' => $resource->index(),
+                'label' => $resource->label(),
+            ], [
+                'route' => $resource->show($id),
+                'label' => 'Edit: ' . optional($item)->{$resource->displayName()} ?? $id,
+            ]],
         ]);
     }
 
     public function delete($resource, $id)
     {
-        $resource = $this->guessResource($resource);
-        $item = ($resource::getModel())::findOrFail($id);
+        $resource = $resource->item($id);
+        $item = $resource->item;
 
-        return view($resource::$deleteView ?? 'rambo::crud.delete', [
+        return view('rambo::crud.delete', [
             'resource' => $resource,
             'item' => $item,
+            'breadcrumbs' => [[
+                'route' => route('rambo.dashboard'),
+                'label' => 'Dashboard',
+            ], [
+                'route' => $resource->index(),
+                'label' => $resource->label(),
+            ], [
+                'route' => $resource->show($id),
+                'label' => 'Delete: ' . optional($item)->{$resource->displayName()} ?? $id,
+            ]],
         ]);
-    }
-
-    public function deleteConfirm($resource, $id)
-    {
-        $this->guessResource($resource)::getModel()::findOrFail($id)
-            ->delete();
-
-        return redirect("/admin/{$resource}");
     }
 }

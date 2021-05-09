@@ -8,6 +8,13 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
-        return view('rambo::dashboard.show');
+        return view('rambo::dashboard', [
+            'breadcrumbs' => [
+                [
+                    'route' => route('rambo.dashboard'),
+                    'label' => 'Dashboard',
+                ],
+            ],
+        ]);
     }
 }

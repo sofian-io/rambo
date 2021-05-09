@@ -1,0 +1,33 @@
+@import 'crud_delete';
+@import 'crud_form';
+@import 'crud_index';
+@import 'crud_show';
+
+.crud {
+    &-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: $border;
+        padding: 1.5rem;
+
+        &-buttons {
+            ul {
+                display: flex;
+
+                li {
+                    display: flex;
+
+                    a {
+                        margin-left: 1rem;
+                        width: 100%;
+
+                        i {
+                            color: $c-white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

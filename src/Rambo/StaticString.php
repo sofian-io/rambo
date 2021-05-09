@@ -2,21 +2,18 @@
 
 namespace AngryMoustache\Rambo\Rambo;
 
-use AngryMoustache\Rambo\Fields\Button;
-use AngryMoustache\Rambo\Fields\TextareaField;
-use AngryMoustache\Rambo\Fields\TextField;
-use AngryMoustache\Rambo\Form;
+use AngryMoustache\Rambo\Resource\Fields\Button;
+use AngryMoustache\Rambo\Resource\Fields\TextareaField;
+use AngryMoustache\Rambo\Resource\Fields\TextField;
+use AngryMoustache\Rambo\Resource\Resource;
 
-class StaticString extends Form
+class StaticString extends Resource
 {
-    public static $routeBase = 'static-strings';
+    public $routebase = 'static-strings';
 
-    public static $nameField = 'name';
+    public $displayName = 'name';
 
-    public static $label = 'Static Strings';
-    public static $labelSingular = 'Static String';
-
-    public static $model = 'AngryMoustache\Rambo\Models\StaticString';
+    public $model = 'AngryMoustache\Rambo\Models\StaticString';
 
     public function fields()
     {

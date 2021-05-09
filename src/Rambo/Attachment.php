@@ -2,22 +2,21 @@
 
 namespace AngryMoustache\Rambo\Rambo;
 
-use AngryMoustache\Rambo\Fields\Button;
-use AngryMoustache\Rambo\Fields\FileSizeField;
-use AngryMoustache\Rambo\Fields\TextField;
-use AngryMoustache\Rambo\Form;
+use AngryMoustache\Rambo\Resource\Fields\Button;
+use AngryMoustache\Rambo\Resource\Fields\TextField;
+use AngryMoustache\Rambo\Resource\Resource;
 
-class Attachment extends Form
+class Attachment extends Resource
 {
-    public static $nameField = 'original_name';
+    public $displayName = 'original_name';
 
-    public static $model = 'AngryMoustache\Media\Models\Attachment';
+    public $model = 'AngryMoustache\Media\Models\Attachment';
 
-    public static $indexView = 'rambo::crud.media.index';
-    public static $showView = 'rambo::crud.media.show';
+    // public static $indexView = 'rambo::crud.media.index';
+    // public static $showView = 'rambo::crud.media.show';
 
-    public static $paginate = 24;
-    public static $defaultSortDir = 'desc';
+    // public static $paginate = 24;
+    // public static $defaultSortDir = 'desc';
 
     public function fields()
     {
@@ -35,10 +34,10 @@ class Attachment extends Form
                 ->readonly()
                 ->hideFrom(['edit']),
 
-            FileSizeField::make('size')
-                ->label('File size')
-                ->readonly()
-                ->hideFrom(['edit']),
+            // FileSizeField::make('size')
+            //     ->label('File size')
+            //     ->readonly()
+            //     ->hideFrom(['edit']),
 
             TextField::make('width')
                 ->label('File width')

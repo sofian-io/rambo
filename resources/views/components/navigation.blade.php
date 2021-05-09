@@ -1,17 +1,53 @@
-@foreach (config('rambo.resources', []) as $resource)
+<div class="nav">
     <a
-        href="/admin/{{ $resource::getRouteBase() }}"
-        class="
-            block px-5 py-3 border-b hover:bg-red-100
-            @if (request()->is("admin/{$resource::getRouteBase()}*")) bg-red-200 @endif
-        "
+        class="nav-logo"
+        href="{{ route('rambo.dashboard') }}"
     >
-        <span class="inline-block w-4 text-center">
-            {!! config('rambo.icons', [])[$resource::getRouteBase()] ?? '' !!}
-        </span>
-
-        <span class="ml-4">
-            {{ $resource::getLabel() }}
-        </span>
+        <x-rambo::logo />
     </a>
-@endforeach
+
+    <div class="nav-main">
+        <div class="nav-main-logo">
+            <a href="{{ route('rambo.dashboard') }}">
+                R
+            </a>
+        </div>
+
+        {{-- ICONS --}}
+        <ul class="nav-main-list">
+            <li>
+                <a href="{{ route('rambo.dashboard') }}">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="/" target="_blank">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('rambo.auth.logout') }}">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="nav-sub">
+        {{-- RESOURCES --}}
+        <ul class="nav-sub-list">
+            @foreach (Rambo::resources() as $resource)
+                <li>
+                    <a
+                        href="{{ $resource->index() }}"
+                        @if ($resource->isActive()) class="active" @endif
+                    >
+                        {{ $resource->label() }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>

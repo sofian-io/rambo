@@ -1,5 +1,9 @@
 @if ($field->getValue() === 1)
-    <i class="text-xl text-green-500 fas fa-check"></i>
+    <span class="crud-show-boolean-green">
+        Yes
+    </span>
 @else
-    <i class="text-xl text-red-500 fas fa-times"></i>
+    <span class="crud-show-boolean-red">
+        No
+    </span>
 @endif

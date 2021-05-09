@@ -1,0 +1,52 @@
+input,
+textarea {
+    width: 100%;
+    color: $c-text;
+    font-size: 1rem;
+    padding: .2rem .5rem .2rem;
+    border: $border;
+    border-radius: .2rem;
+    background: white;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+textarea {
+    min-height: 250px;
+}
+
+input[type="submit"],
+.button,
+.button-link,
+.crud-title-buttons a {
+    background: $c-main;
+    color: $c-white;
+    font-family: $f-button;
+    font-size: 1.1rem;
+    padding: .75rem 2rem;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    border-radius: 0.2rem;
+
+    &:hover {
+        background: $c-main-dark;
+    }
+}
+
+.button-link {
+    color: $c-text;
+    background: none;
+    border: none;
+
+    &:hover {
+        background: none;
+        opacity: .8;
+    }
+}

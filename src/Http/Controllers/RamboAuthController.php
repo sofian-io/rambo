@@ -2,7 +2,7 @@
 
 namespace AngryMoustache\Rambo\Http\Controllers;
 
-use AngryMoustache\Rambo\RamboAuth;
+use AngryMoustache\Rambo\Facades\Rambo;
 use App\Http\Controllers\Controller;
 
 class RamboAuthController extends Controller
@@ -14,7 +14,7 @@ class RamboAuthController extends Controller
 
     public function logout()
     {
-        RamboAuth::logout();
+        Rambo::logout();
         return redirect('/admin');
     }
 }

@@ -11,14 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix
+mix.disableSuccessNotifications()
   .js('resources/js/index.js', 'public/js')
-  .postCss('resources/css/app.css', '/public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('postcss-nested'),
-    require('autoprefixer'),
-  ]);
+  .sass('resources/css/app.scss', '../../../public/vendor/rambo/css');
 
 if (mix.inProduction()) {
   mix.version();

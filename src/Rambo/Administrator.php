@@ -2,17 +2,15 @@
 
 namespace AngryMoustache\Rambo\Rambo;
 
-use AngryMoustache\Rambo\Fields\AttachmentField;
-use AngryMoustache\Rambo\Fields\Button;
-use AngryMoustache\Rambo\Fields\TextField;
-use AngryMoustache\Rambo\Fields\PasswordField;
-use AngryMoustache\Rambo\Form;
+use AngryMoustache\Rambo\Resource\Fields\Button;
+use AngryMoustache\Rambo\Resource\Fields\TextField;
+use AngryMoustache\Rambo\Resource\Resource;
 
-class Administrator extends Form
+class Administrator extends Resource
 {
-    public static $nameField = 'username';
+    public $displayName = 'username';
 
-    public static $model = 'AngryMoustache\Rambo\Models\Administrator';
+    public $model = 'AngryMoustache\Rambo\Models\Administrator';
 
     public function fields()
     {
@@ -25,12 +23,12 @@ class Administrator extends Form
                 ->label('E-Mail')
                 ->rules('required'),
 
-            PasswordField::make('password')
-                ->label('Password')
-                ->hideFrom(['index', 'show']),
+            // PasswordField::make('password')
+            //     ->label('Password')
+            //     ->hideFrom(['index', 'show']),
 
-            AttachmentField::make('avatar_id')
-                ->label('Avatar'),
+            // AttachmentField::make('avatar_id')
+            //     ->label('Avatar'),
 
             Button::make('submit')
                 ->label('Submit'),

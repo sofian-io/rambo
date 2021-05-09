@@ -8,12 +8,11 @@
         <link href="{{ asset('vendor/rambo/css/app.css') }}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/989b502037.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-gray-100">
-        <div class="flex">
-            <div class="w-full">
-                @yield('content')
-            </div>
+    <body>
+        <div class="content">
+            @yield('content')
         </div>
+
         @livewireScripts
     </body>
 </html>

@@ -1,1 +1,0 @@
-{{ $field->options[$field->getValue()] ?? '-' }}
