@@ -6,8 +6,7 @@
     <div class="crud-form-field-input w-80">
         <livewire:rambo-fields-many-attachment-picker
             :key="$field->getName()"
-            :value="$field->getValue()"
-            :name="$field->getName()"
+            :field="$field"
         />
 
         <x-rambo::crud.form.error :field="$field" />

@@ -16,7 +16,6 @@
     <livewire:rambo-fields-attachment-picker
         emit="picker:update"
         :clearOnUpdate="true"
-        :value="null"
-        :name="'$field->getName()'"
+        :field="null"
     />
 </div>

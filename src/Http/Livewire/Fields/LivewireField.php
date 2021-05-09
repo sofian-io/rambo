@@ -8,15 +8,20 @@ class LivewireField extends Component
 {
     public $clearOnUpdate;
     public $emit;
+
     public $name;
     public $value;
+    public $label;
+    public $readonly;
 
-    public function mount($name, $value, $emit = null, $clearOnUpdate = null)
+    public function mount($field, $emit = null, $clearOnUpdate = null)
     {
         $this->clearOnUpdate = $clearOnUpdate ?? false;
         $this->emit = $emit ?? 'field:update';
-        $this->name = $name;
-        $this->value = $value;
+
+        $this->name = optional($field)->getName();
+        $this->value = optional($field)->getValue();
+        $this->readonly = optional($field)->readonly;
     }
 
     public function emitValue($value = null)

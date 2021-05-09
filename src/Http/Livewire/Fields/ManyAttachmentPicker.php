@@ -10,10 +10,10 @@ class ManyAttachmentPicker extends LivewireField
         'picker:update' => 'addAttachment',
     ];
 
-    public function mount($name, $value, $emit = null, $clearOnUpdate = null)
+    public function mount($field, $emit = null, $clearOnUpdate = null)
     {
-        parent::mount($name, $value, $emit, $clearOnUpdate);
-        $this->value = Attachment::whereIn('id', $value)->get();
+        parent::mount($field, $emit, $clearOnUpdate);
+        $this->value = Attachment::whereIn('id', $this->value)->get();
     }
 
     public function render()

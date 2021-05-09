@@ -2,19 +2,17 @@
 
 namespace AngryMoustache\Rambo\Resource;
 
-use AngryMoustache\Rambo\Resource\Actions\DeleteAction;
-use AngryMoustache\Rambo\Resource\Actions\EditAction;
-use AngryMoustache\Rambo\Resource\Actions\ShowAction;
 use AngryMoustache\Rambo\Resource\Traits\Fields;
 use AngryMoustache\Rambo\Resource\Traits\Labels;
 use AngryMoustache\Rambo\Resource\Traits\Queries;
 use AngryMoustache\Rambo\Resource\Traits\Routing;
 use AngryMoustache\Rambo\Resource\Traits\Searching;
-use AngryMoustache\Rambo\Resource\IndexActions\CreateAction;
+use AngryMoustache\Rambo\Resource\Traits\Actions;
 use Illuminate\Support\Str;
 
 abstract class Resource
 {
+    use Actions;
     use Fields;
     use Labels;
     use Queries;
@@ -35,21 +33,5 @@ abstract class Resource
     public function model()
     {
         return $this->model;
-    }
-
-    public function indexActions()
-    {
-        return [
-            CreateAction::class,
-        ];
-    }
-
-    public function actions()
-    {
-        return [
-            ShowAction::class,
-            EditAction::class,
-            DeleteAction::class,
-        ];
     }
 }

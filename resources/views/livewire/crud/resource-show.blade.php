@@ -4,7 +4,7 @@
 
         <div class="crud-title-buttons">
             <ul>
-                @foreach ($resource->actions() as $action)
+                @foreach ($resource->showActions() as $action)
                     <li>
                         {{ (new $action($resource, $item))->render() }}
                     </li>

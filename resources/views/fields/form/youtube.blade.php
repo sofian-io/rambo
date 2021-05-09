@@ -4,7 +4,7 @@
     </div>
 
     <div class="crud-form-field-input">
-        <livewire:rambo-fields-attachment-picker
+        <livewire:rambo-fields-youtube-link
             :key="$field->getName()"
             :field="$field"
         />

@@ -7,6 +7,7 @@ class IndexAction
     public $component = 'rambo::components.crud.action';
     public $icon;
     public $resource;
+    public $label;
 
     public function __construct($resource)
     {
@@ -16,9 +17,20 @@ class IndexAction
     public function render()
     {
         return view($this->component, [
-            'icon' => $this->icon,
+            'label' => $this->label(),
+            'icon' => $this->icon(),
             'link' => $this->link(),
         ]);
+    }
+
+    public function label()
+    {
+        return $this->label;
+    }
+
+    public function icon()
+    {
+        return $this->icon;
     }
 
     public function link()
