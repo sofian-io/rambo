@@ -2,7 +2,7 @@
     <div class="crud-title">
         <h1 class="h3">Deleting "{{ $resource->getItemName() }}" ({{ $resource->item->id }})</h1>
 
-        <div class="crud-title-buttons">
+        <div class="crud-title-actions">
             <ul>
                 @foreach ($resource->deleteActions() as $action)
                     <li>
@@ -19,7 +19,7 @@
         </p>
     </div>
 
-    <div class="crud-delete-buttons">
+    <div class="crud-delete-actions">
         <a class="button red-button" wire:click.prevent="cancel">
             Cancel
         </a>

@@ -2,7 +2,7 @@
     <div class="crud-title">
         <h1 class="h3">Creating {{ $resource->singularLabel() }}</h1>
 
-        <div class="crud-title-buttons">
+        <div class="crud-title-actions">
             <ul>
                 @foreach ($resource->createActions() as $action)
                     <li>

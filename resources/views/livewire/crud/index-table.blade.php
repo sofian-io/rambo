@@ -2,7 +2,7 @@
     <div class="crud-title">
         <h1 class="h3">{{ $resource->label() }}</h1>
 
-        <div class="crud-title-buttons">
+        <div class="crud-title-actions">
             <ul>
                 @foreach ($resource->indexActions() as $action)
                     <li>

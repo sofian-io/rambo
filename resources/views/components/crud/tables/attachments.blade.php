@@ -6,7 +6,7 @@
                 style="background-image: url('{{ $item->format('thumb') }}')"
             ></div>
 
-            <div class="crud-index-attachments-item-buttons">
+            <div class="crud-index-attachments-item-actions">
                 @foreach ($resource->actions() as $action)
                     {{ (new $action($resource, $currentUrl, $item))->render() }}
                 @endforeach

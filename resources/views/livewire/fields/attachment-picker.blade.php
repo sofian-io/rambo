@@ -4,13 +4,13 @@
             <img src="{{ $value->format('thumb') }}">
         </div>
 
-        <div class="attachment-picker-buttons">
+        <div class="attachment-picker-actions">
             <a class="button" wire:click.prevent="clearSelection">
                 Clear selection
             </a>
         </div>
     @else
-        <div class="attachment-picker-buttons">
+        <div class="attachment-picker-actions">
             <a class="button" wire:click.prevent="openSelectModal">
                 Select attachment
             </a>

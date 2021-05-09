@@ -2,7 +2,7 @@
     <div class="crud-title">
         <h1 class="h3">Updating: {{ $resource->getItemName() }}</h1>
 
-        <div class="crud-title-buttons">
+        <div class="crud-title-actions">
             <ul>
                 @foreach ($resource->editActions() as $action)
                     <li>
