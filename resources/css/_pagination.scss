@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background: $c-grey;
+    background: $c-white;
     padding: 1rem;
     border-top: $border;
 
@@ -30,11 +30,11 @@
                 &.pagination-links-item-active {
                     background: $c-main;
                     border-color: $c-main;
-                    color: $c-white;
+                    color: $c-grey;
                 }
 
                 &.pagination-links-item-inactive {
-                    background: $c-white;
+                    background: $c-grey;
                     &:hover {
                         color: black;
                         border-color: $c-border;

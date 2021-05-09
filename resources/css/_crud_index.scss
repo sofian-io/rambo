@@ -1,12 +1,38 @@
 .crud-index {
+    &-search {
+        padding: 1rem;
+        background: $c-white;
+        border-bottom: $border;
+
+        input {
+            width: 25%;
+        }
+    }
+
     &-table {
         width: 100%;
+
+        &-sortable {
+            cursor: pointer;
+
+            i {
+                color: $c-white;
+                margin-left: .25rem;
+                opacity: .5;
+            }
+
+            &:hover {
+                i {
+                    opacity: .7;
+                }
+            }
+        }
 
         thead {
             background: $gradient-flat;
 
             span {
-                color: $c-white;
+                color: $c-grey;
                 font-family: $f-button;
                 font-weight: bold;
             }

@@ -12,7 +12,11 @@
             >
         </div>
 
-        <div class="modal-card-content-fixed">
+        <div wire:loading class="w-100">
+            <x-rambo::loading />
+        </div>
+
+        <div wire:loading.remove class="modal-card-content-fixed">
             @if ($attachments->isNotEmpty())
                 <div class="attachment-picker-grid">
                     @foreach ($attachments as $attachment)

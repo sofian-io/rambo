@@ -1,4 +1,4 @@
-@if ($field->getValue() === 1)
+@if ($field->getViewValue() === 1)
     <span class="crud-show-boolean-green">
         Yes
     </span>

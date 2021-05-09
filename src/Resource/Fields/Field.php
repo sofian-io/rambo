@@ -74,4 +74,9 @@ class Field
             ?? $this->fallbackValue
             ?? null;
     }
+
+    public function getViewValue()
+    {
+        return $this->getValue();
+    }
 }

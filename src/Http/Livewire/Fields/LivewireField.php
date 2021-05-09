@@ -6,11 +6,15 @@ use Livewire\Component;
 
 class LivewireField extends Component
 {
+    public $clearOnUpdate;
+    public $emit;
     public $name;
     public $value;
 
-    public function mount($name, $value)
+    public function mount($name, $value, $emit = null, $clearOnUpdate = null)
     {
+        $this->clearOnUpdate = $clearOnUpdate ?? false;
+        $this->emit = $emit ?? 'field:update';
         $this->name = $name;
         $this->value = $value;
     }
@@ -18,9 +22,18 @@ class LivewireField extends Component
     public function emitValue($value = null)
     {
         $this->emit(
-            'field:update',
+            $this->emit,
             $value ?? $this->value,
             $this->name
         );
+
+        if ($this->clearOnUpdate) {
+            $this->clearValue();
+        }
+    }
+
+    public function clearValue()
+    {
+        $this->value = null;
     }
 }

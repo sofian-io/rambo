@@ -8,7 +8,7 @@ trait Fields
 
     abstract public function fields();
 
-    public function fieldStack($stack)
+    public function fieldStack($stack = '')
     {
         return collect($this->fields())
             ->reject(fn ($field) => in_array($stack, $field->hideFrom ?? []))
@@ -16,7 +16,7 @@ trait Fields
             ->toArray();
     }
 
-    public function formFieldStack($stack)
+    public function formFieldStack($stack = '')
     {
         return collect($this->fields())
             ->reject(fn ($field) => in_array($stack, $field->hideFrom ?? []))

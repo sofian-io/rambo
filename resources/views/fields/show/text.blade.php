@@ -1,1 +1,1 @@
-{{ $field->getValue() }}
+{{ $field->getViewValue() }}

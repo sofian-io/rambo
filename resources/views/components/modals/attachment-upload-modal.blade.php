@@ -12,8 +12,8 @@
             @endif
         </div>
 
-        <div class="modal-card-content" wire:loading>
-            <p>Loading ...</p>
+        <div wire:loading class="modal-card-content">
+            <x-rambo::loading />
         </div>
 
         <div class="modal-card-footer" wire:loading.remove>

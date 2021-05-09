@@ -2,15 +2,16 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
-class ResourceEdit extends ResourceCreate
+class ResourceEdit extends FormController
 {
     public $component = 'rambo::livewire.crud.resource-edit';
+
     public $item;
 
     public function mount($resource, $item = null)
     {
-        $this->resourceName = $resource->routebase;
-        $this->rules = $resource->validationFieldStack();
+        parent::mount($resource, $item);
+
         $this->item = $item;
 
         collect($resource->formFieldStack('edit'))->each(function ($field) {
@@ -29,17 +30,15 @@ class ResourceEdit extends ResourceCreate
         ]);
     }
 
-    public function submit()
+    public function saveData()
     {
-        $this->validate();
-
         $resource = $this->resource();
-
-        if (method_exists($resource, 'sluggify')) {
-            $this->fields = $resource->sluggify($this->fields);
-        }
-
         $this->item->update($this->fields);
+
+        foreach ($this->habtmRelations() as $relation => $values) {
+            $this->item->{$relation}()->detach();
+            $this->item->{$relation}()->sync($values);
+        }
 
         return redirect($resource->show($this->item->id));
     }
