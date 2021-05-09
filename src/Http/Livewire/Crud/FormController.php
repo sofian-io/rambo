@@ -15,12 +15,16 @@ class FormController extends Component
 
     public $pageType;
 
+    public $currentUrl;
+
     protected $listeners = [
         'field:update' => 'updateField',
+        'field:unset' => 'unsetField',
     ];
 
     public function mount($resource)
     {
+        $this->currentUrl = request()->url();
         $this->resourceName = $resource->routebase;
         $this->rules = $resource->validationFieldStack();
     }
@@ -45,6 +49,12 @@ class FormController extends Component
         $this->updated($fieldName);
     }
 
+    public function unsetField($fieldName)
+    {
+        unset($this->fields[$fieldName]);
+        $this->updated($fieldName);
+    }
+
     public function updated($field)
     {
         $this->validateOnly($field);
@@ -59,6 +69,14 @@ class FormController extends Component
         if (method_exists($resource, 'sluggify')) {
             $this->fields = $resource->sluggify($this->fields);
         }
+
+        // BeforeSave methods
+        collect($resource->formFieldStack())->each(function ($field) {
+            $name = $field->getName();
+            if (isset($this->fields[$name])) {
+                $this->fields[$name] = $field->beforeSave($this->fields[$name]);
+            }
+        });
 
         $this->saveData();
     }

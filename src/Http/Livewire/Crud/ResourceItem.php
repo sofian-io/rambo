@@ -10,9 +10,11 @@ class ResourceItem extends Component
     public $component;
     public $resourceName;
     public $item;
+    public $currentUrl;
 
     public function mount($resource, $item)
     {
+        $this->currentUrl = request()->url();
         $this->resourceName = $resource->routebase;
         $this->item = $item;
     }

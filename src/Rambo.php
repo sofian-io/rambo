@@ -25,7 +25,7 @@ class Rambo
         return $this->user;
     }
 
-    public function hash($password)
+    public function passwordHash($password)
     {
         return password_hash($password, PASSWORD_BCRYPT);
     }

@@ -9,11 +9,13 @@ class Action
     public $item;
     public $label;
     public $resource;
+    public $currentUrl;
 
-    public function __construct($resource, $item = null)
+    public function __construct($resource, $currentUrl = null, $item = null)
     {
         $this->resource = $resource;
         $this->item = $item ?? $resource->item;
+        $this->currentUrl = $currentUrl;
     }
 
     public function render()
@@ -22,7 +24,13 @@ class Action
             'label' => $this->label(),
             'icon' => $this->icon(),
             'link' => $this->link(),
+            'currentUrl' => $this->currentUrl(),
         ]);
+    }
+
+    public function link()
+    {
+        return '/';
     }
 
     public function label()
@@ -35,8 +43,8 @@ class Action
         return $this->icon;
     }
 
-    public function link()
+    public function currentUrl()
     {
-        return '/';
+        return $this->currentUrl;
     }
 }

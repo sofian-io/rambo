@@ -15,6 +15,12 @@ class StaticString extends Resource
 
     public $model = 'AngryMoustache\Rambo\Models\StaticString';
 
+    public $searchableFields = [
+        'scope',
+        'key',
+        'value',
+    ];
+
     public function fields()
     {
         return [

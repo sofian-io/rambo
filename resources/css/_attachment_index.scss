@@ -1,0 +1,40 @@
+.crud-index-attachments {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-gap: 1.5rem;
+    gap: 1.5rem;
+
+    &-item {
+        border: $border;
+
+        &-image {
+            width: 100%;
+            padding-top: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        &-buttons {
+            display: flex;
+            border-top: $border;
+
+            a {
+                width: 100%;
+                padding: 1rem 0;
+                font-size: 1.2rem;
+                text-align: center;
+
+                &:hover {
+                    i {
+                        color: $c-secondary;
+                    }
+                }
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}

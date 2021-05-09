@@ -8,10 +8,12 @@ class IndexAction
     public $icon;
     public $resource;
     public $label;
+    public $currentUrl;
 
-    public function __construct($resource)
+    public function __construct($resource, $currentUrl)
     {
         $this->resource = $resource;
+        $this->currentUrl = $currentUrl;
     }
 
     public function render()
@@ -20,7 +22,13 @@ class IndexAction
             'label' => $this->label(),
             'icon' => $this->icon(),
             'link' => $this->link(),
+            'currentUrl' => $this->currentUrl(),
         ]);
+    }
+
+    public function link()
+    {
+        return '/';
     }
 
     public function label()
@@ -33,8 +41,8 @@ class IndexAction
         return $this->icon;
     }
 
-    public function link()
+    public function currentUrl()
     {
-        return '/';
+        return $this->currentUrl;
     }
 }

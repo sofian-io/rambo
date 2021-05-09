@@ -6,7 +6,7 @@
             <ul>
                 @foreach ($resource->deleteActions() as $action)
                     <li>
-                        {{ (new $action($resource, $item))->render() }}
+                        {{ (new $action($resource, $currentUrl, $item))->render() }}
                     </li>
                 @endforeach
             </ul>

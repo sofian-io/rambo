@@ -13,6 +13,8 @@ class IndexTable extends Component
 
     public $resourceName;
 
+    public $currentUrl;
+
     public $search = '';
 
     public $sortCol = '';
@@ -25,6 +27,7 @@ class IndexTable extends Component
 
     public function mount(Resource $resource)
     {
+        $this->currentUrl = request()->url();
         $this->resourceName = $resource->routebase;
 
         $this->sortCol = request()->get('sortCol') ?? $resource->defaultSortCol();

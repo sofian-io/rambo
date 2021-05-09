@@ -16,7 +16,9 @@ class ResourceEdit extends FormController
 
         collect($resource->formFieldStack('edit'))->each(function ($field) {
             $value = $field->item($this->item)->getValue();
-            $this->fields[$field->getName()] = $value;
+            if (! $field->dontAutoFillEdit) {
+                $this->fields[$field->getName()] = $value;
+            }
         });
     }
 

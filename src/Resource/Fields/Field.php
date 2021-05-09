@@ -79,4 +79,9 @@ class Field
     {
         return $this->getValue();
     }
+
+    public function beforeSave($value)
+    {
+        return $value;
+    }
 }

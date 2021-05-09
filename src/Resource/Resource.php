@@ -21,6 +21,8 @@ abstract class Resource
 
     public $model;
 
+    public $indexTableView = 'rambo::components.crud.tables.index';
+
     public function __construct()
     {
         $this->fields = $this->fields();
@@ -33,5 +35,10 @@ abstract class Resource
     public function model()
     {
         return $this->model;
+    }
+
+    public function indexTableView()
+    {
+        return $this->indexTableView;
     }
 }

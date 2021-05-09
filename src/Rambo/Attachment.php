@@ -3,6 +3,8 @@
 namespace AngryMoustache\Rambo\Rambo;
 
 use AngryMoustache\Rambo\Resource\Fields\Button;
+use AngryMoustache\Rambo\Resource\Fields\FileSizeField;
+use AngryMoustache\Rambo\Resource\Fields\ImageField;
 use AngryMoustache\Rambo\Resource\Fields\TextField;
 use AngryMoustache\Rambo\Resource\Resource;
 
@@ -12,11 +14,19 @@ class Attachment extends Resource
 
     public $model = 'AngryMoustache\Media\Models\Attachment';
 
-    // public static $indexView = 'rambo::crud.media.index';
-    // public static $showView = 'rambo::crud.media.show';
+    public $indexTableView = 'rambo::components.crud.tables.attachments';
 
-    // public static $paginate = 24;
-    // public static $defaultSortDir = 'desc';
+    public $paginate = 18;
+
+    public $searchableFields = [
+        'original_name',
+        'alt_name',
+    ];
+
+    public function indexActions()
+    {
+        return [];
+    }
 
     public function fields()
     {
@@ -34,10 +44,10 @@ class Attachment extends Resource
                 ->readonly()
                 ->hideFrom(['edit']),
 
-            // FileSizeField::make('size')
-            //     ->label('File size')
-            //     ->readonly()
-            //     ->hideFrom(['edit']),
+            FileSizeField::make('size')
+                ->label('File size')
+                ->readonly()
+                ->hideFrom(['edit']),
 
             TextField::make('width')
                 ->label('File width')
@@ -47,6 +57,10 @@ class Attachment extends Resource
             TextField::make('height')
                 ->label('File height')
                 ->readonly()
+                ->hideFrom(['edit']),
+
+            ImageField::make('id')
+                ->label('Image')
                 ->hideFrom(['edit']),
 
             Button::make('submit')

@@ -8,10 +8,12 @@ class LivewireField extends Component
 {
     public $clearOnUpdate;
     public $emit;
+    public $unsetEmit = 'field:unset';
 
     public $name;
     public $value;
     public $label;
+    public $placeholder;
     public $readonly;
 
     public function mount($field, $emit = null, $clearOnUpdate = null)
@@ -21,6 +23,8 @@ class LivewireField extends Component
 
         $this->name = optional($field)->getName();
         $this->value = optional($field)->getValue();
+        $this->label = optional($field)->getLabel();
+        $this->placeholder = optional($field)->placeholder ?? $this->label;
         $this->readonly = optional($field)->readonly;
     }
 
@@ -40,5 +44,13 @@ class LivewireField extends Component
     public function clearValue()
     {
         $this->value = null;
+    }
+
+    public function unsetField()
+    {
+        $this->emit(
+            $this->unsetEmit,
+            $this->name
+        );
     }
 }
