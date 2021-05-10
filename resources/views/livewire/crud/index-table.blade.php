@@ -20,10 +20,6 @@
                 :resource="$resource"
             />
 
-            <x-rambo::crud.index.filters
-                :resource="$resource"
-            />
-
             {{-- {{ $items->withQueryString()->links('rambo::components.crud.index.pagination-small') }} --}}
         </div>
     @endif
