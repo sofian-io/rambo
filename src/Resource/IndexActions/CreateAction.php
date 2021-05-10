@@ -4,7 +4,7 @@ namespace AngryMoustache\Rambo\Resource\IndexActions;
 
 class CreateAction extends IndexAction
 {
-    public $icon = 'go-plus-16';
+    public $icon = 'fas fa-plus';
 
     public $label = 'Create';
 

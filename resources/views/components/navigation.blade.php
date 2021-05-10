@@ -17,19 +17,19 @@
         <ul class="nav-main-list">
             <li>
                 <a href="{{ route('rambo.dashboard') }}">
-                    <x-go-home-16 />
+                    <i class="fas fa-home"></i>
                 </a>
             </li>
 
             <li>
                 <a href="/" target="_blank">
-                    <x-go-globe-16 />
+                    <i class="fas fa-globe"></i>
                 </a>
             </li>
 
             <li>
                 <a href="{{ route('rambo.auth.logout') }}">
-                    <x-go-sign-out-16 />
+                    <i class="fas fa-sign-out-alt"></i>
                 </a>
             </li>
         </ul>

@@ -4,7 +4,7 @@ namespace AngryMoustache\Rambo\Resource\Actions;
 
 class ShowAction extends Action
 {
-    public $icon = '<x-go-eye-16 />';
+    public $icon = 'far fa-eye';
 
     public $label = 'Show';
 

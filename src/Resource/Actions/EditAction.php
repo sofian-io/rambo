@@ -4,7 +4,7 @@ namespace AngryMoustache\Rambo\Resource\Actions;
 
 class EditAction extends Action
 {
-    public $icon = 'go-eye-16';
+    public $icon = 'far fa-edit';
 
     public $label = 'Edit';
 

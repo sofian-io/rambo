@@ -31,8 +31,6 @@
         }
 
         &-list {
-            width: 100%;
-
             li {
                 opacity: .8;
                 transition: opacity .2s;
@@ -43,12 +41,11 @@
 
                 a {
                     display: inline-block;
-                    width: 100%;
                     padding: 1rem;
                     font-size: 1.5rem;
 
-                    svg {
-                        fill: $c-grey;
+                    i {
+                        color: white;
                     }
                 }
             }
