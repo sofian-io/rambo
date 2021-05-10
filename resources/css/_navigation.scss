@@ -31,6 +31,8 @@
         }
 
         &-list {
+            width: 100%;
+
             li {
                 opacity: .8;
                 transition: opacity .2s;
@@ -41,11 +43,12 @@
 
                 a {
                     display: inline-block;
+                    width: 100%;
                     padding: 1rem;
                     font-size: 1.5rem;
 
-                    i {
-                        color: white;
+                    svg {
+                        fill: $c-grey;
                     }
                 }
             }
@@ -71,7 +74,7 @@
                     &:hover,
                     &.active {
                         color: $c-grey;
-                        background: $gradient-flat;
+                        background: $c-main;
                     }
                 }
             }

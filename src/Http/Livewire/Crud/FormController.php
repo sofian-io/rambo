@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
 use AngryMoustache\Rambo\Facades\Rambo;
+use AngryMoustache\Rambo\Resource\Resource;
 use Livewire\Component;
 
 class FormController extends Component
@@ -22,10 +23,10 @@ class FormController extends Component
         'field:unset' => 'unsetField',
     ];
 
-    public function mount($resource)
+    public function mount(Resource $resource)
     {
         $this->currentUrl = request()->url();
-        $this->resourceName = $resource->routebase;
+        $this->resourceName = $resource->routebase();
         $this->rules = $resource->validationFieldStack();
     }
 

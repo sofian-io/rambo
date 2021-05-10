@@ -21,14 +21,16 @@ class Administrator extends Resource
 
     public function fields()
     {
+        $id = optional($this->item)->id;
+
         return [
             TextField::make('username')
                 ->label('Username')
-                ->rules('required'),
+                ->rules(['required', "unique:administrators,username,${id}"]),
 
             TextField::make('email')
                 ->label('E-Mail')
-                ->rules('required'),
+                ->rules(['required', "unique:administrators,email,${id}", 'email']),
 
             PasswordField::make('password')
                 ->label('Password')

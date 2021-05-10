@@ -58,4 +58,9 @@ class Rambo
     {
         return $this->resources->where($key, $value)->first();
     }
+
+    public function cards()
+    {
+        return config('rambo.cards', []);
+    }
 }

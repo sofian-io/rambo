@@ -4,7 +4,7 @@ namespace AngryMoustache\Rambo\Resource\IndexActions;
 
 class OverviewAction extends IndexAction
 {
-    public $icon = 'fas fa-table';
+    public $icon = 'go-list-unordered-16';
 
     public $label = 'Overview';
 

@@ -15,4 +15,12 @@
             @endforeach
         </ul>
     @endisset
+
+    {{-- PROFILE --}}
+    <div class="header-profile">
+        <a href="{{ Rambo::user()->link() }}">
+            <img src="{{ optional(Rambo::user()->avatar)->format('thumb') }}">
+            <p>{{ Rambo::user()->username }}</p>
+        </a>
+    </div>
 </div>

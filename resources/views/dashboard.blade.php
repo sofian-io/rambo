@@ -1,7 +1,7 @@
 @extends('rambo::layouts.admin')
 
 @section('content')
-    <div class="card">
-
-    </div>
+    @foreach ($cards as $card)
+        {{ (new $card())->render() }}
+    @endforeach
 @endsection

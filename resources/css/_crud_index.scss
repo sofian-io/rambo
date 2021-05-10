@@ -1,11 +1,17 @@
 .crud-index {
     &-search {
+        display: flex;
+        justify-content: space-between;
         padding: 1rem;
         background: $c-white;
         border-bottom: $border;
 
         input {
             width: 25%;
+        }
+
+        .pagination-links {
+            margin-left: auto;
         }
     }
 
@@ -50,7 +56,8 @@
                 word-break: break-all;
 
                 img {
-                    width: 6rem;
+                    width: 4rem;
+                    border: $border-light;
                 }
 
                 & > span.crud-index-table-content {

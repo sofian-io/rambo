@@ -25,4 +25,9 @@ class PasswordInput extends LivewireField
             $this->unsetField();
         }
     }
+
+    public function changeFieldType($to)
+    {
+        $this->fieldType = $to;
+    }
 }

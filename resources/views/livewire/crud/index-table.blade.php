@@ -15,12 +15,12 @@
 
     @if ($resource->searchableFields())
         <div class="crud-index-search">
-            <input
-                type="text"
-                wire:key="seach_{{ $resource->routebase() }}"
-                wire:model.100ms="search"
-                placeholder="Search for {{ $resource->label() }}"
-            >
+            <x-rambo::crud.index.search
+                :items="$items"
+                :resource="$resource"
+            />
+
+            {{-- {{ $items->withQueryString()->links('rambo::components.crud.index.pagination-small') }} --}}
         </div>
     @endif
 
@@ -39,6 +39,10 @@
             @include($resource->indexTableView())
         @endif
 
-        {{ $items->withQueryString()->links('rambo::components.crud.pagination') }}
+        @if ($items->hasPages())
+            <div class="pagination">
+                {{ $items->withQueryString()->links('rambo::components.crud.index.pagination') }}
+            </div>
+        @endif
     </div>
 </div>

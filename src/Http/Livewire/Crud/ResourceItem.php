@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
 use AngryMoustache\Rambo\Facades\Rambo;
+use AngryMoustache\Rambo\Resource\Resource;
 use Livewire\Component;
 
 class ResourceItem extends Component
@@ -28,7 +29,7 @@ class ResourceItem extends Component
         ]);
     }
 
-    public function resource()
+    public function resource(): Resource
     {
         return Rambo::resource($this->resourceName);
     }
