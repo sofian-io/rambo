@@ -57,13 +57,14 @@
     }
 
     &-button {
-        justify-content: flex-start;
+        justify-content: flex-end;
 
         &-input {
             width: auto;
 
             .button {
                 padding: .25rem 2rem;
+                font-size: 1.3rem;
             }
         }
     }

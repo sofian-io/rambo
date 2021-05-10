@@ -8,6 +8,7 @@ use AngryMoustache\Rambo\Resource\Traits\Queries;
 use AngryMoustache\Rambo\Resource\Traits\Routing;
 use AngryMoustache\Rambo\Resource\Traits\Searching;
 use AngryMoustache\Rambo\Resource\Traits\Actions;
+use AngryMoustache\Rambo\Resource\Traits\Rendering;
 use Illuminate\Support\Str;
 
 abstract class Resource
@@ -16,12 +17,11 @@ abstract class Resource
     use Fields;
     use Labels;
     use Queries;
+    use Rendering;
     use Routing;
     use Searching;
 
     public $model;
-
-    public $indexTableView = 'rambo::components.crud.tables.index';
 
     public function __construct()
     {
@@ -35,10 +35,5 @@ abstract class Resource
     public function model()
     {
         return $this->model;
-    }
-
-    public function indexTableView()
-    {
-        return $this->indexTableView;
     }
 }

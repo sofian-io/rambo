@@ -23,6 +23,7 @@
 
         &-content,
         &-content-fixed {
+            position: relative;
             width: 100%;
             max-height: 50vh;
             overflow-y: auto;
@@ -34,6 +35,16 @@
                 max-height: 20vh;
                 margin-top: 1rem;
             }
+
+            &-cover {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                top: 0; bottom: 0;
+                left: 0; right: 0;
+                z-index: 100;
+                background: rgba($c-white, .5);
+            }
         }
 
         &-content-fixed {
@@ -42,6 +53,8 @@
         }
 
         &-footer {
+            display: flex;
+            justify-content: flex-end;
             width: 100%;
             padding: 1.5rem;
             border-top: $border;

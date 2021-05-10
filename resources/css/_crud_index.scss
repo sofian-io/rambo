@@ -34,16 +34,6 @@
             }
         }
 
-        thead {
-            background: $gradient-flat;
-
-            span {
-                color: $c-grey;
-                font-family: $f-button;
-                font-weight: bold;
-            }
-        }
-
         tr {
             border-bottom: $border;
 
@@ -94,6 +84,21 @@
 
                 &:last-of-type {
                     padding-right: 1.5rem;
+                }
+            }
+        }
+
+        thead {
+            background: $gradient-flat;
+
+            tr {
+                td {
+                    span.crud-index-table-content {
+                        padding: 1rem;
+                        color: $c-grey;
+                        font-family: $f-button;
+                        font-weight: bold;
+                    }
                 }
             }
         }

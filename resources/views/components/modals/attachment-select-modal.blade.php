@@ -31,7 +31,9 @@
             @endif
         </div>
 
-        {{ $attachments->links('rambo::components.crud.pagination') }}
+        <div class="pagination">
+            {{ $attachments->withQueryString()->links('rambo::components.crud.index.pagination') }}
+        </div>
 
         <div class="modal-card-footer">
             <a wire:click.prevent="closeModal" class="button-link">

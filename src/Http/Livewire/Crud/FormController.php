@@ -90,7 +90,7 @@ class FormController extends Component
         $fields->each(function ($field) use (&$relations) {
             $name = $field->getName();
 
-            if ($field->hasManyRelation) {
+            if ($field->hasManyRelation && isset($this->fields[$name])) {
                 $relations[$name] = $this->fields[$name];
             }
         });

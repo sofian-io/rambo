@@ -20,6 +20,14 @@ trait Queries
         return $this->query();
     }
 
+    public function sortedQuery()
+    {
+        return $this->query()->orderBy(
+            $this->defaultSortCol,
+            $this->defaultSortDir
+        );
+    }
+
     public function item($id)
     {
         $this->item = $this->model()::withoutGlobalScopes()->find($id);
