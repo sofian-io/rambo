@@ -1,6 +1,6 @@
 <div class="crud crud-delete">
     <div class="crud-title">
-        <h1 class="h3">Deleting "{{ $resource->getItemName() }}" ({{ $resource->item->id }})</h1>
+        <h1 class="h3">Deleting: {{ $resource->getItemName() }}</h1>
 
         <div class="crud-title-actions">
             <ul>

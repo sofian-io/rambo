@@ -2,13 +2,14 @@
 
 namespace AngryMoustache\Rambo\Http\Controllers;
 
+use AngryMoustache\Rambo\Resource\Resource;
 use App\Http\Controllers\Controller;
 
 class CrudController extends Controller
 {
-    public function index($resource)
+    public function index(Resource $resource)
     {
-        return view('rambo::crud.index', [
+        return view($resource->indexView(), [
             'resource' => $resource,
             'breadcrumbs' => [[
                 'route' => route('rambo.dashboard'),
@@ -20,12 +21,12 @@ class CrudController extends Controller
         ]);
     }
 
-    public function show($resource, $id)
+    public function show(Resource $resource, $id)
     {
         $resource = $resource->item($id);
         $item = $resource->item;
 
-        return view('rambo::crud.show', [
+        return view($resource->showView(), [
             'resource' => $resource,
             'item' => $item,
             'breadcrumbs' => [[
@@ -41,9 +42,9 @@ class CrudController extends Controller
         ]);
     }
 
-    public function create($resource)
+    public function create(Resource $resource)
     {
-        return view('rambo::crud.create', [
+        return view($resource->createView(), [
             'resource' => $resource,
             'breadcrumbs' => [[
                 'route' => route('rambo.dashboard'),
@@ -53,17 +54,17 @@ class CrudController extends Controller
                 'label' => $resource->label(),
             ], [
                 'route' => $resource->create(),
-                'label' => 'Create',
+                'label' => 'Creating ' . $resource->singularLabel(),
             ]],
         ]);
     }
 
-    public function edit($resource, $id)
+    public function edit(Resource $resource, $id)
     {
         $resource = $resource->item($id);
         $item = $resource->item;
 
-        return view('rambo::crud.edit', [
+        return view($resource->editView(), [
             'resource' => $resource,
             'item' => $item,
             'breadcrumbs' => [[
@@ -74,17 +75,17 @@ class CrudController extends Controller
                 'label' => $resource->label(),
             ], [
                 'route' => $resource->show($id),
-                'label' => 'Edit: ' . optional($item)->{$resource->displayName()} ?? $id,
+                'label' => 'Updating: ' . optional($item)->{$resource->displayName()} ?? $id,
             ]],
         ]);
     }
 
-    public function delete($resource, $id)
+    public function delete(Resource $resource, $id)
     {
         $resource = $resource->item($id);
         $item = $resource->item;
 
-        return view('rambo::crud.delete', [
+        return view($resource->deleteView(), [
             'resource' => $resource,
             'item' => $item,
             'breadcrumbs' => [[
@@ -95,7 +96,7 @@ class CrudController extends Controller
                 'label' => $resource->label(),
             ], [
                 'route' => $resource->show($id),
-                'label' => 'Delete: ' . optional($item)->{$resource->displayName()} ?? $id,
+                'label' => 'Deleting: ' . optional($item)->{$resource->displayName()} ?? $id,
             ]],
         ]);
     }

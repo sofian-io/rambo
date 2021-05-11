@@ -40,7 +40,8 @@
             border-radius: .2rem;
 
             &-item {
-                display: block;
+                display: flex;
+                align-items: center;
                 padding: 1rem;
                 cursor: pointer;
                 border-bottom: $border-light;
@@ -51,6 +52,13 @@
 
                 &:hover {
                     background: $c-grey;
+                }
+
+                img {
+                    width: 3rem;
+                    margin: 0 1rem 0 0;
+                    border: $border;
+                    border-radius: .2rem;
                 }
             }
 

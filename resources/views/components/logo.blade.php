@@ -2,7 +2,7 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      viewBox="0 0 740.97 250.84" style="enable-background:new 0 0 740.97 250.84;" xml:space="preserve">
 <style type="text/css">
-    .st0{fill:#B41B1A;}
+    .st0{fill:#667eea;}
     .st1{fill:#303031;}
 </style>
 <g id="Layer_2">

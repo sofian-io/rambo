@@ -1,12 +1,8 @@
 @extends('rambo::layouts.auth')
 
 @section('content')
-    <div class="auth">
-        <div class="auth-logo">
-            <x-rambo::logo />
-        </div>
-
-        <div class="auth-form">
+    <div class="auth-card">
+        <div class="auth-card-form">
             <livewire:rambo-auth-login />
         </div>
     </div>

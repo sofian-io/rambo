@@ -42,6 +42,5 @@ Route::middleware('web')->group(function () use ($adminRoute) {
 
         Route::get("/${adminRoute}/{resource}/{id}/delete-confirm", [CrudController::class, 'deleteConfirm'])
             ->name('rambo.crud.delete-confirm');
-
     });
 });

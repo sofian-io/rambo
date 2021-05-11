@@ -6,7 +6,9 @@
             @endforeach
         </ul>
     @else
-        <p>Nothing selected</p>
+        <ul class="habtm-picker-list">
+            <li>Nothing selected</li>
+        </ul>
     @endif
 
     <a wire:click.prevent="openModal" class="button">
@@ -17,6 +19,7 @@
         <x-rambo::modals.habtm-select-modal
             :search="$search"
             :resource="$resource"
+            :displayName="$displayName"
             :unselectedItems="$unselectedItems"
             :selectedItems="$selectedItems"
             :itemComponent="$itemComponent"

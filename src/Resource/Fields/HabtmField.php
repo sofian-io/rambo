@@ -19,4 +19,17 @@ class HabtmField extends Field
     {
         return parent::getValue();
     }
+
+    public function getDisplayNameResource()
+    {
+        return (new $this->resource)->displayName();
+    }
+
+    public function getShowRouteItem($item)
+    {
+        return route('rambo.crud.show', [
+            'resource' => (new $this->resource)->routebase(),
+            'id' => $item->id,
+        ]);
+    }
 }

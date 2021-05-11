@@ -1,6 +1,10 @@
 <div class="card">
+    <div class="auth-card-form-logo">
+        <x-rambo::logo />
+    </div>
+
     <form wire:submit.prevent="attemptLogin">
-        <p class="auth-form-error">{{ $error }}</p>
+        <p class="auth-card-form-error">{{ $error }}</p>
 
         <input
             type="text"
