@@ -1,6 +1,6 @@
 <div class="crud crud-index">
     <div class="crud-title">
-        <h1 class="h3">{{ $resource->label() }}</h1>
+        <h1 class="h3">{{ $resource->getLabel() }}</h1>
 
         <div class="crud-title-actions">
             <ul>
@@ -29,7 +29,7 @@
     <div wire:loading.remove>
         @if ($items->isEmpty())
             <div class="crud-index-search">
-                <p>No <strong>{{ $resource->label() }}</strong> found using the current filters.</p>
+                <p>No <strong>{{ $resource->getLabel() }}</strong> found using the current filters.</p>
             </div>
         @endif
 

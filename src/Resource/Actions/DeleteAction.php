@@ -8,7 +8,7 @@ class DeleteAction extends Action
 
     public $label = 'Delete';
 
-    public function link()
+    public function getLink()
     {
         return $this->resource->delete($this->item->id);
     }

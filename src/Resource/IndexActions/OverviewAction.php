@@ -8,7 +8,7 @@ class OverviewAction extends IndexAction
 
     public $label = 'Overview';
 
-    public function link()
+    public function getLink()
     {
         return $this->resource->index();
     }

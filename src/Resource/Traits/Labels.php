@@ -7,23 +7,29 @@ trait Labels
     public $label;
     public $singularLabel;
     public $displayName = 'id';
+    public $primaryField = 'id';
 
-    public function displayName()
+    public function getDisplayName()
     {
         return $this->displayName;
     }
 
-    public function getItemName()
+    public function getPrimaryField()
     {
-        return $this->item->{$this->displayName()};
+        return $this->primaryField;
     }
 
-    public function label()
+    public function getItemName()
+    {
+        return $this->item->{$this->getDisplayName()};
+    }
+
+    public function getLabel()
     {
         return $this->label;
     }
 
-    public function singularLabel()
+    public function getSingularLabel()
     {
         return $this->singularLabel;
     }

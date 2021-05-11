@@ -21,7 +21,7 @@ class HabtmPicker extends LivewireField
         $resource = $this->resource();
 
         $this->model = $resource->model();
-        $this->displayName = $resource->displayName();
+        $this->displayName = $resource->getDisplayName();
         $this->itemComponent = $resource->habtmComponent();
         $this->value = $this->model::whereIn('id', $this->value)->get();
     }

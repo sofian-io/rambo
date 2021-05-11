@@ -8,7 +8,7 @@ class EditAction extends Action
 
     public $label = 'Edit';
 
-    public function link()
+    public function getLink()
     {
         return $this->resource->edit($this->item->id);
     }

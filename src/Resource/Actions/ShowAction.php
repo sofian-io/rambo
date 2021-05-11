@@ -8,7 +8,7 @@ class ShowAction extends Action
 
     public $label = 'Show';
 
-    public function link()
+    public function getLink()
     {
         return $this->resource->show($this->item->id);
     }

@@ -41,6 +41,15 @@
                 border: none;
             }
 
+            a {
+                color: $c-secondary;
+                font-weight: bold;
+
+                &:hover {
+                    color: $c-secondary-dark;
+                }
+            }
+
             td {
                 vertical-align: middle;
                 word-break: break-all;

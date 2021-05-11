@@ -1,6 +1,6 @@
 <div class="crud crud-create">
     <div class="crud-title">
-        <h1 class="h3">Creating {{ $resource->singularLabel() }}</h1>
+        <h1 class="h3">Creating {{ $resource->getSingularLabel() }}</h1>
 
         <div class="crud-title-actions">
             <ul>

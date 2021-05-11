@@ -44,7 +44,7 @@
                         href="{{ $resource->index() }}"
                         @if ($resource->isActive()) class="active" @endif
                     >
-                        {{ $resource->label() }}
+                        {{ $resource->getLabel() }}
                     </a>
                 </li>
             @endforeach

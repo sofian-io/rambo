@@ -16,7 +16,7 @@ class CrudController extends Controller
                 'label' => 'Dashboard',
             ], [
                 'route' => $resource->index(),
-                'label' => $resource->label(),
+                'label' => $resource->getLabel(),
             ]],
         ]);
     }
@@ -34,10 +34,10 @@ class CrudController extends Controller
                 'label' => 'Dashboard',
             ], [
                 'route' => $resource->index(),
-                'label' => $resource->label(),
+                'label' => $resource->getLabel(),
             ], [
                 'route' => $resource->show($id),
-                'label' => optional($item)->{$resource->displayName()} ?? $id,
+                'label' => optional($item)->{$resource->getDisplayName()} ?? $id,
             ]],
         ]);
     }
@@ -51,10 +51,10 @@ class CrudController extends Controller
                 'label' => 'Dashboard',
             ], [
                 'route' => $resource->index(),
-                'label' => $resource->label(),
+                'label' => $resource->getLabel(),
             ], [
                 'route' => $resource->create(),
-                'label' => 'Creating ' . $resource->singularLabel(),
+                'label' => 'Creating ' . $resource->getSingularLabel(),
             ]],
         ]);
     }
@@ -72,10 +72,10 @@ class CrudController extends Controller
                 'label' => 'Dashboard',
             ], [
                 'route' => $resource->index(),
-                'label' => $resource->label(),
+                'label' => $resource->getLabel(),
             ], [
                 'route' => $resource->show($id),
-                'label' => 'Updating: ' . optional($item)->{$resource->displayName()} ?? $id,
+                'label' => 'Updating: ' . optional($item)->{$resource->getDisplayName()} ?? $id,
             ]],
         ]);
     }
@@ -93,10 +93,10 @@ class CrudController extends Controller
                 'label' => 'Dashboard',
             ], [
                 'route' => $resource->index(),
-                'label' => $resource->label(),
+                'label' => $resource->getLabel(),
             ], [
                 'route' => $resource->show($id),
-                'label' => 'Deleting: ' . optional($item)->{$resource->displayName()} ?? $id,
+                'label' => 'Deleting: ' . optional($item)->{$resource->getDisplayName()} ?? $id,
             ]],
         ]);
     }

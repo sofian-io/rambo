@@ -21,29 +21,29 @@ class Action
     public function render()
     {
         return view($this->component, [
-            'label' => $this->label(),
-            'icon' => $this->icon(),
-            'link' => $this->link(),
-            'currentUrl' => $this->currentUrl(),
+            'label' => $this->getLabel(),
+            'icon' => $this->getIcon(),
+            'link' => $this->getLink(),
+            'currentUrl' => $this->getCurrentUrl(),
         ]);
     }
 
-    public function link()
+    public function getLink()
     {
         return '/';
     }
 
-    public function label()
+    public function getLabel()
     {
         return $this->label;
     }
 
-    public function icon()
+    public function getIcon()
     {
         return $this->icon;
     }
 
-    public function currentUrl()
+    public function getCurrentUrl()
     {
         return $this->currentUrl;
     }

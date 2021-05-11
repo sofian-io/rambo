@@ -22,7 +22,7 @@ class HabtmField extends Field
 
     public function getDisplayNameResource()
     {
-        return (new $this->resource)->displayName();
+        return (new $this->resource)->getDisplayName();
     }
 
     public function getShowRouteItem($item)

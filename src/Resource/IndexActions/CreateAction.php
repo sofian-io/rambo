@@ -8,7 +8,7 @@ class CreateAction extends IndexAction
 
     public $label = 'Create';
 
-    public function link()
+    public function getLink()
     {
         return $this->resource->create();
     }
