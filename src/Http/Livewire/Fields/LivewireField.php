@@ -28,12 +28,12 @@ class LivewireField extends Component
         $this->readonly = optional($field)->readonly;
     }
 
-    public function emitValue($value = null)
+    public function emitValue($value = null, $emit = null, $name = null)
     {
         $this->emit(
-            $this->emit,
+            $emit ?? $this->emit,
             $value ?? $this->value,
-            $this->name
+            $name ?? $this->name
         );
 
         if ($this->clearOnUpdate) {
@@ -48,9 +48,6 @@ class LivewireField extends Component
 
     public function unsetField()
     {
-        $this->emit(
-            $this->unsetEmit,
-            $this->name
-        );
+        $this->emit($this->unsetEmit, $this->name);
     }
 }

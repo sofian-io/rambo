@@ -18,6 +18,18 @@ strong {
     font-weight: bold;
 }
 
+em, i {
+    font-style: italic;
+}
+
+s {
+    text-decoration: line-through;
+}
+
+u {
+    text-decoration: underline;
+}
+
 .container {
     width: 1280px;
     margin: 0 auto;

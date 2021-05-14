@@ -1,0 +1,10 @@
+.wysiwyg-editor {
+    button {
+        outline: none;
+        background: none;
+        cursor: pointer;
+        padding: .3rem .5rem .1rem;
+        border: $border;
+        border-radius: .2rem;
+    }
+}
