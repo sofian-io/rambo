@@ -1,10 +1,46 @@
-.wysiwyg-editor {
-    button {
-        outline: none;
-        background: none;
-        cursor: pointer;
-        padding: .3rem .5rem .1rem;
+.wysiwyg {
+    &-editor {
+        button {
+            outline: none;
+            background: none;
+            cursor: pointer;
+            padding: .3rem .5rem .1rem;
+            margin-bottom: .5rem;
+            border: $border;
+            border-radius: .2rem;
+            min-width: 2.5rem;
+
+            &:hover,
+            &.is-active {
+                background: $c-main;
+                color: $c-white;
+
+                i {
+                    color: $c-white;
+                }
+            }
+        }
+    }
+
+    &-preview {
+        padding: .5rem .75rem;
         border: $border;
         border-radius: .2rem;
+
+        div:focus {
+            outline: none;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+
+        &-show {
+            width: 75%;
+
+            p {
+                margin-bottom: 1rem;
+            }
+        }
     }
 }

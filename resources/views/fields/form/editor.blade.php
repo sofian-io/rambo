@@ -1,10 +1,9 @@
-
 <div class="crud-form-field" wire:ignore>
     <div class="crud-form-field-label">
         <x-rambo::crud.form.label :field="$field" />
     </div>
 
-    <div class="crud-form-field-input">
+    <div class="crud-form-field-input w-60">
         <div
             x-data="setupEditor{{ $field->getName() }}('{{ nl2br($field->getValue()) }}')"
             x-init="() => init($refs.element)"
@@ -15,37 +14,37 @@
                         @click="editor.chain().toggleHeading({ level: 1 }).focus().run()"
                         :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
                     >
-                        <i class="fas fa-heading"></i>1
+                        H1
                     </button>
                     <button
                         @click="editor.chain().toggleHeading({ level: 2 }).focus().run()"
                         :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
                     >
-                        <i class="fas fa-heading"></i>2
+                        H2
                     </button>
                     <button
                         @click="editor.chain().toggleHeading({ level: 3 }).focus().run()"
                         :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }"
                     >
-                        <i class="fas fa-heading"></i>3
+                        H3
                     </button>
                     <button
                         @click="editor.chain().toggleHeading({ level: 4 }).focus().run()"
                         :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }"
                     >
-                        <i class="fas fa-heading"></i>4
+                        H4
                     </button>
                     <button
                         @click="editor.chain().toggleHeading({ level: 5 }).focus().run()"
                         :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }"
                     >
-                        <i class="fas fa-heading"></i>5
+                        H5
                     </button>
                     <button
                         @click="editor.chain().toggleHeading({ level: 6 }).focus().run()"
                         :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }"
                     >
-                        <i class="fas fa-heading"></i>6
+                        H6
                     </button>
 
                     <button
@@ -60,23 +59,35 @@
                     >
                         <i class="fas fa-italic"></i>
                     </button>
-                    <button @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
+                    <button
+                        @click="editor.chain().focus().toggleStrike().run()"
+                        :class="{ 'is-active': editor.isActive('strike') }"
+                    >
                         <i class="fas fa-strikethrough"></i>
                     </button>
-                    <button @click="editor.chain().focus().toggleUnderline().run()" :class="{ 'is-active': editor.isActive('underline') }">
+                    <button
+                        @click="editor.chain().focus().toggleUnderline().run()"
+                        :class="{ 'is-active': editor.isActive('underline') }"
+                    >
                         <i class="fas fa-underline"></i>
                     </button>
 
-                    <button @click="setLink" :class="{ 'is-active': editor.isActive('link') }">
+                    <button
+                        @click="setLink"
+                        :class="{ 'is-active': editor.isActive('link') }"
+                    >
                         <i class="fas fa-link"></i>
                     </button>
-                    <button @click="editor.chain().focus().unsetLink().run()" v-if="editor.isActive('link')">
+                    <button
+                        @click="editor.chain().focus().unsetLink().run()"
+                        v-if="editor.isActive('link')"
+                    >
                         <i class="fas fa-unlink"></i>
                     </button>
                 </div>
             </template>
 
-            <div x-ref="element"></div>
+            <div class="wysiwyg-preview" x-ref="element"></div>
         </div>
 
         <x-rambo::crud.form.error :field="$field" />
