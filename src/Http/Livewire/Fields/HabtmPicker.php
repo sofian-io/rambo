@@ -31,7 +31,7 @@ class HabtmPicker extends LivewireField
         $items = collect();
         if ($this->selecting) {
             $items = $this->resource()
-                ->sortedQuery()
+                ->relationIndexQuery()
                 ->when($this->search !== '', function ($query) {
                     foreach ($this->resource()->searchableFields() as $field) {
                         $query->orWhere($field, 'LIKE', "%{$this->search}%");

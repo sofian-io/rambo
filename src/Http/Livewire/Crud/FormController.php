@@ -10,7 +10,7 @@ class FormController extends Component
 {
     public $resourceName;
 
-    public $rules;
+    public $rules = [];
 
     public $fields = [];
 
@@ -58,12 +58,16 @@ class FormController extends Component
 
     public function updated($field)
     {
-        $this->validateOnly($field);
+        if ($this->rules !== []) {
+            $this->validateOnly($field);
+        }
     }
 
     public function submit()
     {
-        $this->validate();
+        if ($this->rules !== []) {
+            $this->validate();
+        }
 
         $resource = $this->resource();
 
