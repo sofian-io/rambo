@@ -19,7 +19,7 @@ class SelectField extends Field
     public function getOptions()
     {
         if ($this->resource) {
-            return $this->resource->model()::pluck(
+            return $this->resource->relationQuery()->pluck(
                 $this->resource->getDisplayName(),
                 $this->resource->getPrimaryField()
             );

@@ -26,10 +26,12 @@ abstract class Resource
     public function __construct()
     {
         $this->fields = $this->fields();
-        $this->singularLabel ??= Str::afterLast(get_class($this), '\\');
+
+        $label = Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', get_class($this))));
+        $this->singularLabel ??= Str::afterLast($label, '\\');
         $this->label ??= Str::plural($this->singularLabel);
         $this->routebase ??= Str::kebab($this->label);
-        $this->model ??= 'App\\Models\\' . $this->singularLabel;
+        $this->model ??= 'App\\Models\\' . Str::afterLast(get_class($this), '\\');
     }
 
     public function model()

@@ -2098,8 +2098,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\peril-vault\vendor\angry-moustache\rambo\resources\js\index.js */"./resources/js/index.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\peril-vault\vendor\angry-moustache\rambo\resources\css\app.scss */"./resources/css/app.scss");
+__webpack_require__(/*! C:\laragon\www\shibara\vendor\angry-moustache\rambo\resources\js\index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\shibara\vendor\angry-moustache\rambo\resources\css\app.scss */"./resources/css/app.scss");
 
 
 /***/ })

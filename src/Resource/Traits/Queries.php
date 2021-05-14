@@ -20,7 +20,7 @@ trait Queries
         return $this->query();
     }
 
-    public function relationIndexQuery()
+    public function relationQuery()
     {
         return $this->query()->orderBy(
             $this->defaultSortCol,
