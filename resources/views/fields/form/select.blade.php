@@ -10,8 +10,8 @@
             placeholder="{{ $field->getLabel() }}"
             wire:model="fields.{{ $field->getName() }}"
         >
-            @if ($field->nullable)
-                <option value=""></option>
+            @if (! optional($field)->notNullable)
+                <option value="">-</option>
             @endif
 
             @foreach ($field->getOptions() as $key => $value)
