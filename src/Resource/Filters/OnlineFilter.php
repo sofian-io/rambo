@@ -15,6 +15,6 @@ class OnlineFilter extends Filter
 
     public function handle($query, $value = null)
     {
-        return $query->where('online', $value);
+        return $query->where('online', $value['online'] ?? false);
     }
 }

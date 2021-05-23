@@ -20,16 +20,12 @@
                 :resource="$resource"
             />
 
-            {{-- <div wire:click="toggleFilterModal" class="button">
+            <div wire:click="toggleFilterModal" class="button">
+                @if (isset($enabledFilters) && $enabledFilters > 0)
+                    {{ $enabledFilters }}
+                @endif
                 <i class="fas fa-filter"></i>
             </div>
-
-            @if ($filterModal)
-                <x-rambo::modals.index-filters-modal
-                    :resource="$resource"
-                    :filters="$filters"
-                />
-            @endif --}}
         </div>
     @endif
 
@@ -54,4 +50,11 @@
             </div>
         @endif
     </div>
+
+    @if ($filterModal)
+        <x-rambo::modals.index-filters-modal
+            :resource="$resource"
+            :filters="$filters"
+        />
+    @endif
 </div>

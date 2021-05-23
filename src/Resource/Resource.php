@@ -27,7 +27,7 @@ abstract class Resource
 
     public function __construct()
     {
-        $this->fields = $this->fields();
+        // $this->fields = $this->fields();
 
         $label = Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', get_class($this))));
         $this->singularLabel ??= Str::afterLast($label, '\\');

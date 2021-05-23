@@ -7,7 +7,7 @@
             type="checkbox"
             id="{{ $field->getName() }}"
             name="{{ $field->getName() }}"
-            wire:model="fields.{{ $field->getName() }}"
+            wire:model="{{ $field->getBindingName() }}"
             @if ($field->readonly || $field->disabled) disabled @endif
         >
 

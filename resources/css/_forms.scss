@@ -36,6 +36,10 @@ input[type="submit"],
     text-align: center;
     border-radius: 0.2rem;
 
+    i {
+        color: $c-grey;
+    }
+
     &:hover {
         background: $c-main-dark;
     }

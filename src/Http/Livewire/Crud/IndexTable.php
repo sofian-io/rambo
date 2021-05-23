@@ -21,11 +21,13 @@ class IndexTable extends Component
     public $sortDir = '';
 
     public $filterModal = false;
+    public $filterQuery = '';
     public $filters = [];
 
     public $queryString = [
         'search' => ['except' => ''],
         'page' => ['except' => 1],
+        'filterQuery' => ['except' => ''],
     ];
 
     public function mount(Resource $resource)
@@ -37,6 +39,8 @@ class IndexTable extends Component
         $this->sortDir = request()->get('sortDir') ?? $resource->defaultSortDir();
         $this->queryString['sortCol'] = ['except' => $resource->defaultSortCol()];
         $this->queryString['sortDir'] = ['except' => $resource->defaultSortDir()];
+
+        $this->setFilters($resource);
     }
 
     public function render()
@@ -46,24 +50,47 @@ class IndexTable extends Component
         $query = $resource
             ->indexQuery()
             ->orderBy($this->sortCol, $this->sortDir)
-            ->when($this->search !== '', function ($query) use ($resource) {
-                foreach ($resource->searchableFields() as $field) {
-                    $query->orWhere($field, 'LIKE', "%{$this->search}%");
+            ->where(function ($query) use ($resource) {
+                if ($this->search !== '') {
+                    foreach ($resource->searchableFields() as $field) {
+                        $query->orWhere($field, 'LIKE', "%{$this->search}%");
+                    }
                 }
             });
 
-        foreach ($resource->filters() as $filter) {
-            if (! empty($this->filters[$filter])) {
-                $query = (new $filter())->handle($query, $this->filters[$filter]);
+        foreach ($resource->getFilters() as $key => $filter) {
+            if (
+                $this->filters[$key]['enabled'] ?? false &&
+                $this->filters[$key]['fields'] ?? false
+            ) {
+                $query = $filter->handle($query, $this->filters[$key]['fields']);
             }
         }
 
         $items = $query->paginate($resource->paginate ?? 10);
 
+        $enabledFilters = collect($this->filters)
+            ->filter(fn ($filter) => $filter['enabled'] ?? false)
+            ->count();
+
         return view('rambo::livewire.crud.index-table', [
             'resource' => $resource,
             'items' => $items,
+            'enabledFilters' => $enabledFilters,
         ]);
+    }
+
+    public function setFilters(Resource $resource)
+    {
+        foreach (array_keys($resource->getFilters()) as $key) {
+            $this->filters[$key]['enabled'] = false;
+            $this->filters[$key]['fields'] = [];
+        }
+
+        if ($filterQuery = request()->get('filterQuery')) {
+            $this->filters = json_decode(base64_decode($filterQuery), true);
+            $this->filterQuery = $filterQuery;
+        }
     }
 
     public function resource()
@@ -74,6 +101,12 @@ class IndexTable extends Component
     public function updatedSearch()
     {
         $this->page = 1;
+    }
+
+    public function updatedFilters()
+    {
+        $this->page = 1;
+        $this->filterQuery = base64_encode(json_encode($this->filters));
     }
 
     public function changeSort($column)

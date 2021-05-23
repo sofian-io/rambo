@@ -68,6 +68,11 @@ class Field
         return $this->name;
     }
 
+    public function getBindingName()
+    {
+        return ($this->bindingName ?? 'fields') . '.' . $this->getName();
+    }
+
     public function getValue()
     {
         return optional($this->item)[$this->getName()]

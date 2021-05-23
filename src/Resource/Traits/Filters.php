@@ -14,7 +14,10 @@ trait Filters
     public function getFilters()
     {
         return collect($this->filters())
-            ->map(fn ($filter) => new $filter())
+            ->mapWithKeys(function ($filter) {
+                $filter = new $filter();
+                return [$filter->getLivewireKey() => $filter];
+            })
             ->toArray();
     }
 }
