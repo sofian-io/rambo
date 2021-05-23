@@ -20,6 +20,9 @@ class IndexTable extends Component
     public $sortCol = '';
     public $sortDir = '';
 
+    public $filterModal = false;
+    public $filters = [];
+
     public $queryString = [
         'search' => ['except' => ''],
         'page' => ['except' => 1],
@@ -40,15 +43,22 @@ class IndexTable extends Component
     {
         $resource = $this->resource();
 
-        $items = $resource
+        $query = $resource
             ->indexQuery()
             ->orderBy($this->sortCol, $this->sortDir)
             ->when($this->search !== '', function ($query) use ($resource) {
                 foreach ($resource->searchableFields() as $field) {
                     $query->orWhere($field, 'LIKE', "%{$this->search}%");
                 }
-            })
-            ->paginate($resource->paginate ?? 10);
+            });
+
+        foreach ($resource->filters() as $filter) {
+            if (! empty($this->filters[$filter])) {
+                $query = (new $filter())->handle($query, $this->filters[$filter]);
+            }
+        }
+
+        $items = $query->paginate($resource->paginate ?? 10);
 
         return view('rambo::livewire.crud.index-table', [
             'resource' => $resource,
@@ -74,5 +84,10 @@ class IndexTable extends Component
             $this->sortCol = $column;
             $this->sortDir = 'asc';
         }
+    }
+
+    public function toggleFilterModal()
+    {
+        $this->filterModal = !$this->filterModal;
     }
 }

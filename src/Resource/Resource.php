@@ -8,6 +8,7 @@ use AngryMoustache\Rambo\Resource\Traits\Queries;
 use AngryMoustache\Rambo\Resource\Traits\Routing;
 use AngryMoustache\Rambo\Resource\Traits\Searching;
 use AngryMoustache\Rambo\Resource\Traits\Actions;
+use AngryMoustache\Rambo\Resource\Traits\Filters;
 use AngryMoustache\Rambo\Resource\Traits\Rendering;
 use Illuminate\Support\Str;
 
@@ -15,6 +16,7 @@ abstract class Resource
 {
     use Actions;
     use Fields;
+    use Filters;
     use Labels;
     use Queries;
     use Rendering;

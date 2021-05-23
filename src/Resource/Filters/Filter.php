@@ -2,19 +2,23 @@
 
 namespace AngryMoustache\Rambo\Resource\Filters;
 
-use AngryMoustache\Rambo\Resource\Fields\BooleanField;
+use AngryMoustache\Rambo\Facades\Rambo;
 
-class Filter
+abstract class Filter
 {
-    public function fields()
+    public $name = null;
+
+    public function __construct()
     {
-        return [
-            BooleanField::make('online')->label('Online'),
-        ];
+        $this->name = $this->getName();
     }
 
-    public function handle($query, $value = null)
+    abstract public function fields();
+
+    abstract public function handle($query, $value = null);
+
+    public function getName()
     {
-        return $query;
+        return $this->name ?? Rambo::getNameFromClassName(get_class($this));
     }
 }

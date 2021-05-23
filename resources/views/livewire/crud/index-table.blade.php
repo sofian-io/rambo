@@ -19,14 +19,25 @@
                 :items="$items"
                 :resource="$resource"
             />
+
+            {{-- <div wire:click="toggleFilterModal" class="button">
+                <i class="fas fa-filter"></i>
+            </div>
+
+            @if ($filterModal)
+                <x-rambo::modals.index-filters-modal
+                    :resource="$resource"
+                    :filters="$filters"
+                />
+            @endif --}}
         </div>
     @endif
 
-    <div wire:loading class="w-100">
+    <div wire:loading.delay class="w-100">
         <x-rambo::loading />
     </div>
 
-    <div wire:loading.remove>
+    <div wire:loading.delay.remove>
         @if ($items->isEmpty())
             <div class="crud-index-search">
                 <p>No <strong>{{ $resource->getLabel() }}</strong> found using the current filters.</p>
