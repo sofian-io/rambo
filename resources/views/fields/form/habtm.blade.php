@@ -7,6 +7,7 @@
         <livewire:rambo-fields-habtm-picker
             :key="$field->getName()"
             :field="$field"
+            :emit="$field->emit"
         />
 
         <x-rambo::crud.form.error :field="$field" />

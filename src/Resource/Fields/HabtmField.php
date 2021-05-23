@@ -12,12 +12,26 @@ class HabtmField extends Field
 
     public function getValue()
     {
-        return (parent::getValue() ?? collect())->pluck('id');
+        $value = (parent::getValue() ?? collect());
+
+        // Data is an array of IDs (page architect)
+        if (is_array($value)) {
+            return $value;
+        }
+
+        return $value->pluck('id');
     }
 
     public function getViewValue()
     {
-        return parent::getValue();
+        $value = $this->getValue();
+
+        if (is_array($value)) {
+            $model = (new $this->resource)->model();
+            $value = $model::whereIn('id', $value)->get();
+        }
+
+        return $value;
     }
 
     public function getDisplayNameResource()

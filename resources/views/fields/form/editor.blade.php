@@ -110,7 +110,7 @@
                         content: this.content,
                         onUpdate: ({ editor }) => {
                             Livewire.emit(
-                                'field:update',
+                                "{{ $field->emit ?? 'field:update' }}",
                                 editor.getHTML(),
                                 '{{ $field->getName() }}'
                             )

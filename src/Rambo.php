@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo;
 
 use AngryMoustache\Rambo\Models\Administrator;
+use Illuminate\Support\Str;
 
 class Rambo
 {
@@ -62,5 +63,11 @@ class Rambo
     public function cards()
     {
         return config('rambo.cards', []);
+    }
+
+    public function getNameFromClassName($name)
+    {
+        $name = Str::afterLast($name, '\\');
+        return Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', $name)));
     }
 }
