@@ -19,13 +19,14 @@
                 :items="$items"
                 :resource="$resource"
             />
-
-            <div wire:click="toggleFilterModal" class="button">
-                @if (isset($enabledFilters) && $enabledFilters > 0)
-                    {{ $enabledFilters }}
-                @endif
-                <i class="fas fa-filter"></i>
-            </div>
+            @if (count($filters) > 0)
+                <div wire:click="toggleFilterModal" class="button">
+                    @if (isset($enabledFilters) && $enabledFilters > 0)
+                        {{ $enabledFilters }}
+                    @endif
+                    <i class="fas fa-filter"></i>
+                </div>
+            @endif
         </div>
     @endif
 
