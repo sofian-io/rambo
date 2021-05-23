@@ -104,3 +104,19 @@ h6, .h6 {
 .w-90 { width: 90% !important; }
 .w-95 { width: 95% !important; }
 .w-100 { width: 100% !important; }
+
+.rambo-warning {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    line-height: 1.2rem;
+    border: 1px solid $c-orange;
+    background: rgba($c-orange, 0.05);
+    border-radius: 5px;
+
+    i {
+        padding-right: 1rem;
+        color: $c-orange;
+        font-size: 1.5rem;
+    }
+}
