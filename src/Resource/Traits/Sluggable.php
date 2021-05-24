@@ -6,15 +6,22 @@ use Illuminate\Support\Str;
 
 trait Sluggable
 {
-    public $slugNameField = 'name';
-    public $slugField = 'slug';
+    public function getSlugField()
+    {
+        return optional($this)->slugField ?? 'slug';
+    }
+
+    public function getSlugNameField()
+    {
+        return optional($this)->slugNameField ?? 'name';
+    }
 
     public function sluggify($fields, $id = null)
     {
-        $slug = Str::slug($fields[$this->slugNameField]);
+        $slug = Str::slug($fields[$this->getSlugNameField()]);
 
         if ($id !== null) {
-            $check = self::getModel()::where($this->slugNameField, $slug)
+            $check = self::getModel()::where($this->getSlugNameField(), $slug)
                 ->where('id', '!=', $id)
                 ->count();
 
@@ -23,12 +30,12 @@ trait Sluggable
             }
         }
 
-        $fields[$this->slugField] = $slug;
+        $fields[$this->getSlugField()] = $slug;
         return $fields;
     }
 
     public function getSlugKey()
     {
-        return $this->slugField ?? 'slug';
+        return $this->getSlugField() ?? 'slug';
     }
 }
