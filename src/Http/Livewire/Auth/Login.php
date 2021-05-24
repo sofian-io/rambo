@@ -20,7 +20,7 @@ class Login extends Component
     {
         $this->error = '';
         if (Rambo::login($this->email, $this->password)) {
-            return redirect('/admin');
+            return redirect(session()->pull('intended-redirect'));
         }
 
         $this->error = 'We could not log you in, please try again.';
