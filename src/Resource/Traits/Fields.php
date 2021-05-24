@@ -8,21 +8,30 @@ trait Fields
 
     abstract public function fields();
 
-    public function fieldStack($stack = '')
+    // Index, Show
+    public function fieldStack($stack = '', $flat = false)
     {
         return collect($this->fields())
+            ->when($flat, function($fields) {
+                return $fields->map(fn ($field) => $field->getNestedFields())->flatten();
+            })
             ->reject(fn ($field) => in_array($stack, $field->hideFrom ?? []))
             ->filter(fn ($field) => $field->isField)
             ->toArray();
     }
 
-    public function formFieldStack($stack = '')
+    // Edit, Create
+    public function formFieldStack($stack = '', $flat = false)
     {
         return collect($this->fields())
+            ->when($flat, function($fields) {
+                return $fields->map(fn ($field) => $field->getNestedFields())->flatten();
+            })
             ->reject(fn ($field) => in_array($stack, $field->hideFrom ?? []))
             ->toArray();
     }
 
+    // Edit, Create
     public function validationFieldStack()
     {
         return collect($this->fields())

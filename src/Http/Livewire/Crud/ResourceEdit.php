@@ -16,7 +16,7 @@ class ResourceEdit extends FormController
 
         $this->item = $item;
 
-        collect($resource->formFieldStack('edit'))->each(function ($field) {
+        collect($resource->formFieldStack('edit', true))->each(function ($field) {
             $value = $field->item($this->item)->getValue();
             if (! $field->dontAutoFillEdit) {
                 $this->fields[$field->getName()] = $value;
@@ -26,7 +26,6 @@ class ResourceEdit extends FormController
 
     public function render()
     {
-        View::share('item', $this->item);
         $resource = $this->resource();
         $resource = $resource->item($this->item->id);
 
