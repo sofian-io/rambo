@@ -2,6 +2,8 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
+use Illuminate\Support\Facades\View;
+
 class ResourceEdit extends FormController
 {
     public $component = 'rambo::livewire.crud.resource-edit';
@@ -24,6 +26,7 @@ class ResourceEdit extends FormController
 
     public function render()
     {
+        View::share('item', $this->item);
         $resource = $this->resource();
         $resource = $resource->item($this->item->id);
 

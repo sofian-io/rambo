@@ -89,4 +89,9 @@ class Field
     {
         return $value;
     }
+
+    public function getNestedFields()
+    {
+        return $this->fields ?? $this;
+    }
 }

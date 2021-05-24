@@ -26,6 +26,8 @@ trait Fields
     public function validationFieldStack()
     {
         return collect($this->fields())
+            ->map(fn ($field) => $field->getNestedFields())
+            ->flatten()
             ->whereNotNull('rules')
             ->mapWithKeys(fn ($field) => ["fields.{$field->getName()}" => $field->rules])
             ->toArray();
