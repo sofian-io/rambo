@@ -11,3 +11,5 @@ window.StarterKit = StarterKit
 window.StarterKit = StarterKit
 window.Underline = Underline
 window.Link = Link
+
+window.Livewire = Livewire

@@ -3,50 +3,21 @@
         <x-rambo::crud.form.label :field="$field" />
     </div>
 
-    <div class="crud-form-field-input w-60">
+    <div class="crud-form-field-input w-60" style="display: block;">
         <div
             x-data="setupEditor{{ $field->getName() }}('{{ nl2br($field->getValue()) }}')"
             x-init="() => init($refs.element)"
         >
             <template x-if="editor">
                 <div class="wysiwyg-editor">
-                    <button
-                        @click="editor.chain().toggleHeading({ level: 1 }).focus().run()"
-                        :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
-                    >
-                        H1
-                    </button>
-                    <button
-                        @click="editor.chain().toggleHeading({ level: 2 }).focus().run()"
-                        :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
-                    >
-                        H2
-                    </button>
-                    <button
-                        @click="editor.chain().toggleHeading({ level: 3 }).focus().run()"
-                        :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }"
-                    >
-                        H3
-                    </button>
-                    <button
-                        @click="editor.chain().toggleHeading({ level: 4 }).focus().run()"
-                        :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }"
-                    >
-                        H4
-                    </button>
-                    <button
-                        @click="editor.chain().toggleHeading({ level: 5 }).focus().run()"
-                        :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }"
-                    >
-                        H5
-                    </button>
-                    <button
-                        @click="editor.chain().toggleHeading({ level: 6 }).focus().run()"
-                        :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }"
-                    >
-                        H6
-                    </button>
-
+                    @for ($i = 1; $i <= 6; $i++)
+                        <button
+                            @click="editor.chain().toggleHeading({ level: {{ $i }} }).focus().run()"
+                            :class="{ 'is-active': editor.isActive('heading', { level: {{ $i }} }) }"
+                        >
+                            H{{ $i }}
+                        </button>
+                    @endfor
                     <button
                         @click="editor.chain().toggleBold().focus().run()"
                         :class="{ 'is-active': editor.isActive('bold') }"
@@ -97,6 +68,7 @@
         window.setupEditor{{ $field->getName() }} = function(content) {
             return {
                 editor: null,
+                livewire: window.Livewire,
                 content: content,
                 updatedAt: Date.now(), // force Alpine to rerender on selection change
                 init (element) {
@@ -109,7 +81,7 @@
                         ],
                         content: this.content,
                         onUpdate: ({ editor }) => {
-                            Livewire.emit(
+                            this.livewire.emit(
                                 "{{ $field->emit ?? 'field:update' }}",
                                 editor.getHTML(),
                                 '{{ $field->getName() }}'
