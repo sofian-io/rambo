@@ -30,7 +30,7 @@ class LivewireField extends Component
 
     public function emitValue($value = null, $emit = null, $name = null)
     {
-        $this->emit(
+        $this->emitUp(
             $emit ?? $this->emit,
             $value ?? $this->value,
             $name ?? $this->name

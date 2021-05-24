@@ -16,7 +16,7 @@ class AttachmentPicker extends LivewireField
     public $uploading = false;
     public $selecting = false;
 
-    public function mount($field, $emit = null, $clearOnUpdate = null)
+    public function mount($field, $emit = 'picker:update', $clearOnUpdate = null)
     {
         parent::mount($field, $emit, $clearOnUpdate);
         $this->value = Attachment::find($this->value);

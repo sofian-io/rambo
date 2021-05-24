@@ -19,7 +19,7 @@ class HabtmField extends Field
             return $value;
         }
 
-        return $value->pluck('id');
+        return $value->pluck('id')->toArray();
     }
 
     public function getViewValue()
