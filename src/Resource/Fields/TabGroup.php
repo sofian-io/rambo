@@ -26,4 +26,20 @@ class TabGroup extends Field
     {
         return $this->fields;
     }
+
+    public function tabValidationErrors($key, $errors)
+    {
+        $errorCount = 0;
+        $fields = collect($this->getFields()[$key])
+            ->map(fn ($field) => $field->getBindingName())
+            ->toArray();
+
+        foreach (array_keys($errors->getMessages()) as $error) {
+            if (in_array($error, $fields)) {
+                $errorCount++;
+            }
+        }
+
+        return $errorCount;
+    }
 }

@@ -19,6 +19,8 @@
                 border-radius: .2rem;
                 font-family: $f-title;
                 font-size: 1.1rem;
+                border: $border;
+                border-color: transparent;
 
                 &:hover,
                 &.active {
@@ -28,6 +30,20 @@
 
                     i {
                         color: $c-white;
+                    }
+                }
+
+                &.tab-warning {
+                    color: red;
+
+                    span, i {
+                        color: red;
+                    }
+
+                    &:hover,
+                    &.active {
+                        background: transparent;
+                        border-color: red;
                     }
                 }
             }
