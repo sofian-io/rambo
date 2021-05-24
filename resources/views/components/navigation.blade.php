@@ -38,15 +38,8 @@
     <div class="nav-sub">
         {{-- RESOURCES --}}
         <ul class="nav-sub-list">
-            @foreach (Rambo::resources() as $resource)
-                <li>
-                    <a
-                        href="{{ $resource->index() }}"
-                        @if ($resource->isActive()) class="active" @endif
-                    >
-                        {{ $resource->getLabel() }}
-                    </a>
-                </li>
+            @foreach (Rambo::navigation() as $key => $resource)
+                @include('rambo::components.navigation.navigation-item')
             @endforeach
         </ul>
     </div>

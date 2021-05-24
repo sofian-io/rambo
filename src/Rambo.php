@@ -16,7 +16,8 @@ class Rambo
     public function __construct()
     {
         $this->resources = collect(config('rambo.resources', []))
-            ->map(fn ($resource) => new $resource());
+            ->map(fn ($resource) => $this->fetchResource($resource))
+            ->flatten();
 
         $this->user = Administrator::find(optional(session($this->session))->id);
     }
@@ -60,6 +61,12 @@ class Rambo
         return $this->resources->where($key, $value)->first();
     }
 
+    public function navigation()
+    {
+        return collect(config('rambo.resources', $this->resources))
+            ->map(fn ($resource) => $this->fetchResource($resource));
+    }
+
     public function cards()
     {
         return config('rambo.cards', []);
@@ -69,5 +76,16 @@ class Rambo
     {
         $name = Str::afterLast($name, '\\');
         return Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', $name)));
+    }
+
+    private function fetchResource($resource)
+    {
+        if (is_array($resource)) {
+            return collect($resource)
+                ->map(fn ($item) => $this->fetchResource($item))
+                ->toArray();
+        }
+
+        return (new $resource());
     }
 }

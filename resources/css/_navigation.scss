@@ -59,20 +59,50 @@
         &-list {
             padding: .5rem;
 
+            ul {
+                padding-left: 1rem;
+            }
+
             li {
-                padding: .5rem;
+                padding: .2rem;
                 display: block;
 
-                a {
+                a, label {
                     padding: .75rem;
                     display: block;
                     border-radius: 0.2rem;
+                    cursor: pointer;
+                }
 
-                    &:hover,
-                    &.active {
-                        color: $c-grey;
-                        background: $c-main;
-                    }
+                a:hover,
+                a.active {
+                    color: $c-grey;
+                    background: $c-main;
+                }
+            }
+
+            &-sub {
+                border-left: $border;
+                border-color: transparent;
+
+                ul {
+                    display: none;
+                }
+            }
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            input[type="checkbox"]:checked + &-sub {
+                border-color: $c-main;
+
+                & > ul {
+                    display: block;
+                }
+
+                & > label {
+                    font-weight: bold;
                 }
             }
         }
