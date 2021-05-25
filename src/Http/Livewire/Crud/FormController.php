@@ -76,7 +76,7 @@ class FormController extends Component
         }
 
         // BeforeSave methods
-        collect($resource->formFieldStack())->each(function ($field) {
+        collect($resource->formFieldStack('', true))->each(function ($field) {
             $name = $field->getName();
             if (isset($this->fields[$name])) {
                 $this->fields[$name] = $field->beforeSave($this->fields[$name]);
@@ -89,7 +89,7 @@ class FormController extends Component
     public function habtmRelations()
     {
         $relations = [];
-        $fields = collect($this->resource()->formFieldStack());
+        $fields = collect($this->resource()->formFieldStack('', true));
 
         $fields->each(function ($field) use (&$relations) {
             $name = $field->getName();
