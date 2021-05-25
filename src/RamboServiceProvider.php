@@ -11,6 +11,7 @@ use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceEdit;
 use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceShow;
 use AngryMoustache\Rambo\Http\Livewire\Fields\AttachmentPicker;
 use AngryMoustache\Rambo\Http\Livewire\Fields\HabtmPicker;
+use AngryMoustache\Rambo\Http\Livewire\Fields\LinkPicker;
 use AngryMoustache\Rambo\Http\Livewire\Fields\ManyAttachmentPicker;
 use AngryMoustache\Rambo\Http\Livewire\Fields\PasswordInput;
 use AngryMoustache\Rambo\Http\Livewire\Fields\YoutubeLink;
@@ -65,6 +66,7 @@ class RamboServiceProvider extends ServiceProvider
         /** FIELDS */
         Livewire::component('rambo-fields-attachment-picker', AttachmentPicker::class);
         Livewire::component('rambo-fields-habtm-picker', HabtmPicker::class);
+        Livewire::component('rambo-fields-link-picker', LinkPicker::class);
         Livewire::component('rambo-fields-many-attachment-picker', ManyAttachmentPicker::class);
         Livewire::component('rambo-fields-password-input', PasswordInput::class);
         Livewire::component('rambo-fields-youtube-link', YoutubeLink::class);

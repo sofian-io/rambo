@@ -2,7 +2,9 @@
 
 namespace AngryMoustache\Rambo;
 
+use AngryMoustache\Rambo\Http\Middleware\LinkPickerRoute;
 use AngryMoustache\Rambo\Models\Administrator;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class Rambo
@@ -69,5 +71,15 @@ class Rambo
     {
         $name = Str::afterLast($name, '\\');
         return Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', $name)));
+    }
+
+    public function getRoutes()
+    {
+        return collect(Route::getRoutes())->filter(function ($route){
+            return in_array(
+                LinkPickerRoute::class,
+                $route->getAction()['middleware'] ?? []
+            );
+        })->values()->toArray();
     }
 }
