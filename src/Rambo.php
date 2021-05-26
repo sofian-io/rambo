@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo;
 
 use AngryMoustache\Rambo\Models\Administrator;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class Rambo
@@ -61,12 +62,6 @@ class Rambo
         return $this->resources->where($key, $value)->first();
     }
 
-    public function navigation()
-    {
-        return collect(config('rambo.resources', $this->resources))
-            ->map(fn ($resource) => $this->fetchResource($resource));
-    }
-
     public function cards()
     {
         return config('rambo.cards', []);
@@ -78,6 +73,17 @@ class Rambo
         return Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', $name)));
     }
 
+    public function navigation()
+    {
+        $resources = collect(config('rambo.resources', $this->resources))
+            ->map(fn ($resource) => $this->fetchResource($resource));
+
+        return [
+            'resources' => $resources,
+            'pathToActive' => $this->getPathToActiveResource($resources),
+        ];
+    }
+
     private function fetchResource($resource)
     {
         if (is_array($resource)) {
@@ -86,6 +92,24 @@ class Rambo
                 ->toArray();
         }
 
-        return (new $resource());
+        $resource = (new $resource());
+
+        return [
+            'resource' => $resource,
+            'active' => $resource->isActive(),
+        ];
+    }
+
+    private function getPathToActiveResource($resources)
+    {
+        $path = collect(Arr::dot($resources))
+            ->filter(fn ($item) => $item === true)
+            ->keys()
+            ->first();
+
+        $path = explode('.', $path);
+        array_pop($path);
+
+        return $path;
     }
 }

@@ -89,4 +89,16 @@ class Field
     {
         return $value;
     }
+
+    public function getNestedFields()
+    {
+        return $this->fields ?? $this;
+    }
+
+    // public function passToChildren(array $data = [])
+    // {
+    //     foreach ($data as $key => $value) {
+    //         $this->{$key} = $value;
+    //     }
+    // }
 }

@@ -16,13 +16,18 @@
     <table class="crud-show-table">
         @foreach ($resource->fieldStack('show') as $field)
             <tr>
-                <td class="crud-show-table-label">
-                    <span>
-                        {{ $field->getLabel() }}
-                    </span>
-                </td>
+                @if (! $field->hideLabel)
+                    <td class="crud-show-table-label">
+                        <span>
+                            {{ $field->getLabel() }}
+                        </span>
+                    </td>
+                @endif
 
-                <td class="crud-show-table-value">
+                <td
+                    class="crud-show-table-value"
+                    @if ($field->hideLabel) colspan="2" @endif
+                >
                     <span class="crud-index-table-content">
                         {{ $field->item($item)->renderShow() }}
                     </span>

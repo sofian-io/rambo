@@ -2,7 +2,7 @@
     &-editor {
         button {
             outline: none;
-            background: none;
+            background: white;
             cursor: pointer;
             padding: .3rem .5rem .1rem;
             margin-bottom: .5rem;
@@ -23,9 +23,11 @@
     }
 
     &-preview {
+        width: 100%;
         padding: .5rem .75rem;
         border: $border;
         border-radius: .2rem;
+        background: white;
 
         div:focus {
             outline: none;

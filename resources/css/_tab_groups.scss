@@ -1,0 +1,59 @@
+.crud-form-field-tab-group {
+    margin: 1rem;
+    border-bottom: $border-light;
+
+    &-content {
+        border: $border;
+        border-radius: .2rem;
+        overflow: hidden;
+
+        &-tabs {
+            display: flex;
+            width: 100%;
+            border-bottom: $border;
+            background: $c-grey;
+
+            li {
+                padding: .75rem 1.25rem;
+                margin: .5rem;
+                margin-right: 0;
+                border-radius: .2rem;
+                font-family: $f-title;
+                font-size: 1.1rem;
+                border: $border;
+                border-color: transparent;
+
+                &:hover,
+                &.active {
+                    cursor: pointer;
+                    background: $c-main;
+                    color: $c-white;
+
+                    i {
+                        color: $c-white;
+                    }
+                }
+
+                &.tab-warning {
+                    color: red;
+
+                    span, i {
+                        color: red;
+                    }
+
+                    &:hover,
+                    &.active {
+                        background: transparent;
+                        border-color: red;
+                    }
+                }
+            }
+        }
+
+        &-fields {
+            .crud-form-field:last-of-type {
+                border-bottom: 0;
+            }
+        }
+    }
+}

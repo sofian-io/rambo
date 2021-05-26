@@ -5,6 +5,10 @@
         </div>
 
         <div class="attachment-picker-actions">
+            <a class="button" wire:click.prevent="openSelectModal">
+                Select attachment
+            </a>
+
             <a class="button" wire:click.prevent="clearSelection">
                 Clear selection
             </a>

@@ -1,7 +1,7 @@
 <table class="crud-index-table">
     <thead>
         <tr>
-            @foreach ($resource->fieldStack('index') as $field)
+            @foreach ($resource->fieldStack('index', true) as $field)
                 <td>
                     @if ($field->sortable)
                         <span
@@ -34,7 +34,7 @@
     <tbody wire:key="index_{{ $resource->routebase() }}">
         @foreach ($items as $item)
             <tr>
-                @foreach ($resource->fieldStack('index') as $field)
+                @foreach ($resource->fieldStack('index', true) as $field)
                     <td>
                         <span class="crud-index-table-content">
                             {{ $field->item($item)->renderShow() }}

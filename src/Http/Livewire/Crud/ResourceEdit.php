@@ -2,6 +2,8 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
+use Illuminate\Support\Facades\View;
+
 class ResourceEdit extends FormController
 {
     public $component = 'rambo::livewire.crud.resource-edit';
@@ -14,7 +16,7 @@ class ResourceEdit extends FormController
 
         $this->item = $item;
 
-        collect($resource->formFieldStack('edit'))->each(function ($field) {
+        collect($resource->formFieldStack('edit', true))->each(function ($field) {
             $value = $field->item($this->item)->getValue();
             if (! $field->dontAutoFillEdit) {
                 $this->fields[$field->getName()] = $value;

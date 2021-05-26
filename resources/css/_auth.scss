@@ -1,9 +1,9 @@
 .auth {
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
     background: $gradient;
+    padding-top: 25vh;
 
     &-card {
         margin: 0 auto;
