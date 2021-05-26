@@ -17,7 +17,7 @@
         &-logo {
             width: 3.75rem;
             height: 3.75rem;
-            background-color: $c-main-dark;
+            // background-color: $c-main-dark;
 
             a {
                 display: block;
@@ -54,24 +54,40 @@
 
     &-sub {
         width: calc(100% - 3.75rem);
-        background-color: white;
+        background: $gradient;
 
         &-list {
-            padding: .5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
 
             li {
-                padding: .5rem;
                 display: block;
+                width: 100%;
 
                 a {
-                    padding: .75rem;
+                    padding: 1rem;
                     display: block;
-                    border-radius: 0.2rem;
+                    background: $c-white;
 
-                    &:hover,
                     &.active {
                         color: $c-grey;
-                        background: $c-main;
+                        background: transparent;
+                    }
+
+                    &:hover:not(.active) {
+                        color: $c-main;
+                    }
+                }
+
+                &.nav-sub-list-filler {
+                    display: flex;
+                    flex: 1 1 auto;
+
+                    span {
+                        display: block;
+                        width: 100%;
+                        background: $c-white;
                     }
                 }
             }

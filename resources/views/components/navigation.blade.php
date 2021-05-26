@@ -48,6 +48,9 @@
                     </a>
                 </li>
             @endforeach
+            <li class="nav-sub-list-filler">
+                <span></span>
+            </li>
         </ul>
     </div>
 </div>
