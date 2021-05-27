@@ -70,7 +70,7 @@ class Rambo
     public function getNameFromClassName($name)
     {
         $name = Str::afterLast($name, '\\');
-        return Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', $name)));
+        return trim(Str::ucfirst(implode(' ', preg_split('/(?=[A-Z])/', $name))));
     }
 
     public function navigation()
