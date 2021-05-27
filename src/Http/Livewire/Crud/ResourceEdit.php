@@ -2,8 +2,6 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
-use Illuminate\Support\Facades\View;
-
 class ResourceEdit extends FormController
 {
     public $component = 'rambo::livewire.crud.resource-edit';
