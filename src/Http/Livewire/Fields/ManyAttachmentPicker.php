@@ -6,6 +6,8 @@ use AngryMoustache\Media\Models\Attachment;
 
 class ManyAttachmentPicker extends LivewireField
 {
+    public $folder;
+
     protected $listeners = [
         'picker:update' => 'addAttachment',
     ];
@@ -14,6 +16,7 @@ class ManyAttachmentPicker extends LivewireField
     {
         parent::mount($field, $emit, $clearOnUpdate);
         $this->value = Attachment::whereIn('id', $this->value)->get();
+        $this->folder = $field->folder ?? 'uploads';
     }
 
     public function render()

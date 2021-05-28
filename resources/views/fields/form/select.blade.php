@@ -10,7 +10,7 @@
             placeholder="{{ $field->getLabel() }}"
             wire:model="{{ $field->getBindingName() }}"
         >
-            @if (! optional($field)->notNullable)
+            @if (! $field->notNullable)
                 <option value="">-</option>
             @endif
 

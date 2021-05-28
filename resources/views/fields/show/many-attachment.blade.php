@@ -1,10 +1,9 @@
 <div class="attachment-picker-many">
     <div class="attachment-picker-many-attachments">
-        @foreach ($field->getViewValue() as $key => $attachment)
-            <div
-                class="attachment-picker-many-attachments-item"
-                style="background-image: url('{{ $attachment->format('thumb') }}')"
-            ></div>
+        @foreach ($field->getShowValue() as $key => $attachment)
+            <a href="/admin/attachments/{{ $attachment->id }}" class="mr-1">
+                <img src="{{ $attachment->format('thumb') }}">
+            </a>
         @endforeach
     </div>
 </div>

@@ -1,6 +1,6 @@
-@if ($field->getViewValue()->isNotEmpty())
+@if ($field->getShowValue()->isNotEmpty())
     <ul class="habtm-picker-list">
-        @foreach ($field->getViewValue() as $item)
+        @foreach ($field->getShowValue() as $item)
             <li>
                 <a href="{{ $field->getShowRouteItem($item) }}">
                     {{ $item->{$field->getDisplayNameResource()} }}

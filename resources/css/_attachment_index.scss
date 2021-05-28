@@ -1,7 +1,50 @@
+.crud-index-attachments-container {
+    display: flex;
+    // align-items: flex-start;
+}
+
+.crud-index-attachments-folders {
+    width: 300px;
+    border-right: $border;
+
+    ul {
+        padding: 1rem;
+
+        li {
+            padding: .5rem;
+            cursor: pointer;
+            border-radius: .2rem;
+            margin-bottom: .5rem;
+
+            i {
+                margin-right: .5rem;
+            }
+
+            &.active {
+                background: $c-main;
+                color: $c-grey;
+
+                i {
+                    color: $c-grey;
+                }
+            }
+
+            &:hover:not(.active) {
+                color: $c-main;
+
+                i {
+                    color: $c-main;
+                }
+            }
+        }
+    }
+}
+
 .crud-index-attachments {
+    width: 100%;
     padding: 1.5rem;
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     grid-gap: 1.5rem;
     gap: 1.5rem;
 

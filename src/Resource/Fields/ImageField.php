@@ -8,7 +8,7 @@ class ImageField extends Field
 {
     public $showComponent = 'rambo::fields.show.image';
 
-    public function getViewValue()
+    public function getShowValue()
     {
         return optional(Attachment::find(parent::getValue()))->path();
     }

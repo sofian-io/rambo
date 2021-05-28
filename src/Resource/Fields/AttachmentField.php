@@ -10,7 +10,9 @@ class AttachmentField extends Field
 
     public $showComponent = 'rambo::fields.show.attachment';
 
-    public function getViewValue()
+    public $folder = 'uploads';
+
+    public function getShowValue()
     {
         return Attachment::find($this->getValue());
     }

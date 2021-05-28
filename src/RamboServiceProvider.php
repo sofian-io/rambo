@@ -4,6 +4,7 @@ namespace AngryMoustache\Rambo;
 
 use AngryMoustache\Rambo\Facades\Rambo as FacadeRambo;
 use AngryMoustache\Rambo\Http\Livewire\Auth\Login;
+use AngryMoustache\Rambo\Http\Livewire\Crud\AttachmentsIndexTable;
 use AngryMoustache\Rambo\Http\Livewire\Crud\IndexTable;
 use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceCreate;
 use AngryMoustache\Rambo\Http\Livewire\Crud\ResourceDelete;
@@ -61,6 +62,7 @@ class RamboServiceProvider extends ServiceProvider
         Livewire::component('rambo-crud-resource-delete', ResourceDelete::class);
         Livewire::component('rambo-crud-resource-edit', ResourceEdit::class);
         Livewire::component('rambo-crud-resource-show', ResourceShow::class);
+        Livewire::component('rambo-crud-attachments-index-table', AttachmentsIndexTable::class);
 
         /** FIELDS */
         Livewire::component('rambo-fields-attachment-picker', AttachmentPicker::class);

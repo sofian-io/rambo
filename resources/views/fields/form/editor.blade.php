@@ -5,7 +5,7 @@
 
     <div class="crud-form-field-input w-60" style="display: block;">
         <div
-            x-data="setupEditor{{ $field->getName() }}('{{ nl2br($field->getValue()) }}')"
+            x-data="setupEditor{{ $field->getName() }}({{ json_encode(nl2br($field->getValue())) }})"
             x-init="() => init($refs.element)"
         >
             <template x-if="editor">

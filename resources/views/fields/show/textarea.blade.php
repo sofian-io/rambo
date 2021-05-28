@@ -1,1 +1,1 @@
-{!! nl2br($field->getViewValue()) !!}
+{!! nl2br($field->getShowValue()) !!}

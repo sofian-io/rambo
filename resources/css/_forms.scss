@@ -56,3 +56,7 @@ input[type="submit"],
         opacity: .8;
     }
 }
+
+input[disabled] {
+    background: $c-grey;
+}

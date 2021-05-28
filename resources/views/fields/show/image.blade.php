@@ -1,3 +1,3 @@
-<a href="{{ $field->getViewValue() }}" target="_blank">
-    <img src="{{ $field->getViewValue() }}" class="w-50">
+<a href="{{ $field->getShowValue() }}" target="_blank">
+    <img src="{{ $field->getShowValue() }}" class="w-50">
 </a>

@@ -1,5 +1,5 @@
-@if ($field->getViewValue())
-    <a href="/admin/attachments/{{ optional($field->getViewValue())->id }}">
-        <img src="{{ optional($field->getViewValue())->format('thumb') }}">
+@if ($field->getShowValue())
+    <a href="/admin/attachments/{{ optional($field->getShowValue())->id }}">
+        <img src="{{ optional($field->getShowValue())->format('thumb') }}">
     </a>
 @endif

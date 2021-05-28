@@ -2,6 +2,8 @@
 
 namespace AngryMoustache\Rambo\Resource\Fields;
 
+use App\Enums\PullOriginEnum;
+
 class SelectField extends Field
 {
     public $component = 'rambo::fields.form.select';
@@ -9,6 +11,8 @@ class SelectField extends Field
     public $showComponent = 'rambo::fields.show.select';
 
     public $options = [];
+
+    public $notNullable = false;
 
     public function resource($resource)
     {
@@ -26,5 +30,14 @@ class SelectField extends Field
         }
 
         return $this->options;
+    }
+
+    public function getShowValue()
+    {
+        if ($this->resource) {
+            return $this->getValue();
+        }
+
+        return $this->getOptions()[$this->getValue()] ?? null;
     }
 }

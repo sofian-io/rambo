@@ -24,6 +24,8 @@ class IndexTable extends Component
     public $filterQuery = '';
     public $filters = [];
 
+    public $component = 'rambo::livewire.crud.index-table';
+
     public $queryString = [
         'search' => ['except' => ''],
         'page' => ['except' => 1],
@@ -60,8 +62,8 @@ class IndexTable extends Component
 
         foreach ($resource->getFilters() as $key => $filter) {
             if (
-                $this->filters[$key]['enabled'] ?? false &&
-                $this->filters[$key]['fields'] ?? false
+                ($this->filters[$key]['enabled'] ?? false) &&
+                isset($this->filters[$key]['fields'])
             ) {
                 $query = $filter->handle($query, $this->filters[$key]['fields']);
             }
@@ -73,7 +75,7 @@ class IndexTable extends Component
             ->filter(fn ($filter) => $filter['enabled'] ?? false)
             ->count();
 
-        return view('rambo::livewire.crud.index-table', [
+        return view($this->component, [
             'resource' => $resource,
             'items' => $items,
             'enabledFilters' => $enabledFilters,

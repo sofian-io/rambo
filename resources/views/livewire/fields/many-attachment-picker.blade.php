@@ -17,5 +17,6 @@
         emit="picker:update"
         :clearOnUpdate="true"
         :field="null"
+        :folder="$folder"
     />
 </div>

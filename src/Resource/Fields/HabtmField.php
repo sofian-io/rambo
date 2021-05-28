@@ -22,7 +22,7 @@ class HabtmField extends Field
         return $value->pluck('id')->toArray();
     }
 
-    public function getViewValue()
+    public function getShowValue()
     {
         $value = $this->getValue();
 

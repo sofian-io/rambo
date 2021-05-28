@@ -4,9 +4,9 @@ namespace AngryMoustache\Rambo\Resource\Fields;
 
 class FileSizeField extends Field
 {
-    public function getViewValue()
+    public function getShowValue()
     {
-        $value = parent::getViewValue();
+        $value = parent::getShowValue();
         if ($value && gettype($value) === 'integer') {
             $value = ($value / 1000) . ' Mb';
         }

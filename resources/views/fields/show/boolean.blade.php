@@ -1,9 +1,9 @@
-@if ($field->getViewValue() === 1)
-    <span class="crud-show-boolean-green">
+@if ($field->getShowValue() === 1)
+    <span class="tag" style="background: rgb(7, 187, 7); border: 0">
         Yes
     </span>
 @else
-    <span class="crud-show-boolean-red">
+    <span class="tag" style="background: rgb(187, 7, 7); border: 0">
         No
     </span>
 @endif

@@ -80,7 +80,7 @@ class Field
             ?? null;
     }
 
-    public function getViewValue()
+    public function getShowValue()
     {
         return $this->getValue();
     }

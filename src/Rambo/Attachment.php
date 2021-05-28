@@ -6,6 +6,7 @@ use AngryMoustache\Rambo\Resource\Fields\Button;
 use AngryMoustache\Rambo\Resource\Fields\FileSizeField;
 use AngryMoustache\Rambo\Resource\Fields\ImageField;
 use AngryMoustache\Rambo\Resource\Fields\TextField;
+use AngryMoustache\Rambo\Resource\Filters\FolderFilter;
 use AngryMoustache\Rambo\Resource\Resource;
 
 class Attachment extends Resource
@@ -14,9 +15,11 @@ class Attachment extends Resource
 
     public $model = 'AngryMoustache\Media\Models\Attachment';
 
+    public $indexView = 'rambo::crud.attachments.index';
+
     public $indexTableView = 'rambo::components.crud.tables.attachments';
 
-    public $paginate = 18;
+    public $paginate = 15;
 
     public $searchableFields = [
         'original_name',
@@ -65,6 +68,13 @@ class Attachment extends Resource
 
             Button::make('submit')
                 ->label('Submit'),
+        ];
+    }
+
+    public function filters()
+    {
+        return [
+            FolderFilter::class,
         ];
     }
 }

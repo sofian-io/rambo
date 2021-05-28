@@ -11,4 +11,6 @@ class ManyAttachmentField extends HabtmField
     public $showComponent = 'rambo::fields.show.many-attachment';
 
     public $resource = Attachment::class;
+
+    public $folder = 'uploads';
 }

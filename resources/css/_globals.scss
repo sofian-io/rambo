@@ -58,6 +58,16 @@ u {
     display: flex;
 }
 
+.tag {
+    padding: .25rem .5rem;
+    border-radius: .2rem;
+    font-weight: bold;
+    font-size: .8rem;
+    color: $c-grey;
+    border-radius: .2rem;
+    overflow: hidden;
+}
+
 h1, .h1 {
     font-size: 3rem;
     font-family: $f-title;
@@ -130,6 +140,9 @@ h6, .h6 {
 }
 
 // Margins
+.m-1 { margin: 1rem !important; }
+.m-2 { margin: 2rem !important; }
+.m-3 { margin: 3rem !important; }
 .mt-1 { margin-top: 1rem !important; }
 .mt-2 { margin-top: 2rem !important; }
 .mt-3 { margin-top: 3rem !important; }
@@ -144,6 +157,9 @@ h6, .h6 {
 .ml-3 { margin-left: 3rem !important; }
 
 // Paddings
+.p-1 { padding: 1rem !important; }
+.p-2 { padding: 2rem !important; }
+.p-3 { padding: 3rem !important; }
 .pt-1 { padding-top: 1rem !important; }
 .pt-2 { padding-top: 2rem !important; }
 .pt-3 { padding-top: 3rem !important; }
