@@ -38,7 +38,8 @@ class Administrator extends Resource
                 ->hideFrom(['index', 'show']),
 
             AttachmentField::make('avatar_id')
-                ->label('Avatar'),
+                ->label('Avatar')
+                ->folder('avatars'),
 
             Button::make('submit')
                 ->label('Submit'),

@@ -20,7 +20,7 @@
 
             <div class="habtm-picker-grid">
                 @include('rambo::components.habtm.panel', [
-                    'items' => $selectedItems,
+                    'items' => $unselectedItems,
                 ])
 
                 <div class="habtm-picker-grid-seperator">
@@ -28,7 +28,7 @@
                 </div>
 
                 @include('rambo::components.habtm.panel', [
-                    'items' => $unselectedItems,
+                    'items' => $selectedItems,
                 ])
             </div>
         </div>

@@ -2,9 +2,11 @@
 
 namespace AngryMoustache\Rambo\Rambo;
 
+use AngryMoustache\Media\Models\Attachment as ModelsAttachment;
 use AngryMoustache\Rambo\Resource\Fields\Button;
 use AngryMoustache\Rambo\Resource\Fields\FileSizeField;
 use AngryMoustache\Rambo\Resource\Fields\ImageField;
+use AngryMoustache\Rambo\Resource\Fields\SelectField;
 use AngryMoustache\Rambo\Resource\Fields\TextField;
 use AngryMoustache\Rambo\Resource\Filters\FolderFilter;
 use AngryMoustache\Rambo\Resource\Resource;
@@ -19,7 +21,7 @@ class Attachment extends Resource
 
     public $indexTableView = 'rambo::components.crud.tables.attachments';
 
-    public $paginate = 15;
+    public $paginate = 18;
 
     public $searchableFields = [
         'original_name',
@@ -61,6 +63,8 @@ class Attachment extends Resource
                 ->label('File height')
                 ->readonly()
                 ->hideFrom(['edit']),
+
+            TextField::make('folder_location'),
 
             ImageField::make('id')
                 ->label('Image')

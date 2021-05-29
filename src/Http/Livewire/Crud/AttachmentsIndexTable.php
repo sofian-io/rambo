@@ -3,8 +3,8 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
 use AngryMoustache\Media\Models\Attachment;
+use AngryMoustache\Rambo\Facades\Rambo;
 use AngryMoustache\Rambo\Resource\Resource;
-use Illuminate\Support\Str;
 
 class AttachmentsIndexTable extends IndexTable
 {
@@ -22,9 +22,12 @@ class AttachmentsIndexTable extends IndexTable
         $this->folders = Attachment::pluck('folder_location')
             ->unique()
             ->mapWithKeys(function ($folder) {
-                return [$folder => Str::of(implode(' ', preg_split('/(?=[A-Z])/', $folder)))
-                    ->afterLast('.')
-                    ->ucfirst()
+                return [
+                    $folder => ucwords(
+                        str_replace('.', ' - ',
+                            implode(' ', preg_split('/(?=[A-Z])/', $folder))
+                        )
+                    )
                 ];
             });
 
@@ -48,6 +51,7 @@ class AttachmentsIndexTable extends IndexTable
 
     public function changeFolder($folder)
     {
+        $this->page = 1;
         $this->currentFolder = $folder;
     }
 
