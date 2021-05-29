@@ -3,9 +3,9 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Auth;
 
 use AngryMoustache\Rambo\Facades\Rambo;
-use Livewire\Component;
+use AngryMoustache\Rambo\Http\Livewire\RamboComponent;
 
-class Login extends Component
+class Login extends RamboComponent
 {
     public $email = '';
     public $password = '';

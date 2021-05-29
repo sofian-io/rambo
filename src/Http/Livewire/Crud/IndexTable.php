@@ -3,11 +3,11 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
 use AngryMoustache\Rambo\Facades\Rambo;
+use AngryMoustache\Rambo\Http\Livewire\RamboComponent;
 use AngryMoustache\Rambo\Resource\Resource;
-use Livewire\Component;
 use Livewire\WithPagination;
 
-class IndexTable extends Component
+class IndexTable extends RamboComponent
 {
     use WithPagination;
 

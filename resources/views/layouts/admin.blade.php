@@ -10,6 +10,10 @@
         <livewire:styles>
     </head>
     <body>
+
+        <livewire:scripts>
+        <script src="{{ asset('vendor/rambo/js/index.js') }}"></script>
+
         {{-- Nav --}}
         <x-rambo::navigation />
 
@@ -22,7 +26,7 @@
             </div>
         </div>
 
-        <livewire:scripts>
-        <script src="{{ asset('vendor/rambo/js/index.js') }}"></script>
+        {{-- Toasts --}}
+        <x-rambo-toasts />
     </body>
 </html>

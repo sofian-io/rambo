@@ -2,6 +2,8 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
+use AngryMoustache\Rambo\Facades\Rambo;
+
 class ResourceEdit extends FormController
 {
     public $component = 'rambo::livewire.crud.resource-edit';
@@ -41,6 +43,8 @@ class ResourceEdit extends FormController
             $this->item->{$relation}()->detach();
             $this->item->{$relation}()->sync($values);
         }
+
+        Rambo::toast($resource->getSingularLabel() . ' succesfully updated!');
 
         return redirect($resource->show($this->item->id));
     }

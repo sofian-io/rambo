@@ -16,7 +16,9 @@ use AngryMoustache\Rambo\Http\Livewire\Fields\ManyAttachmentPicker;
 use AngryMoustache\Rambo\Http\Livewire\Fields\PasswordInput;
 use AngryMoustache\Rambo\Http\Livewire\Fields\YoutubeLink;
 use AngryMoustache\Rambo\Rambo;
+use AngryMoustache\Rambo\View\Components\Toasts;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -39,6 +41,8 @@ class RamboServiceProvider extends ServiceProvider
         Route::bind('resource', function ($value) {
             return FacadeRambo::resource($value);
         });
+
+        Blade::component('rambo-toasts', Toasts::class);
     }
 
     public function register()
@@ -70,7 +74,6 @@ class RamboServiceProvider extends ServiceProvider
         Livewire::component('rambo-fields-many-attachment-picker', ManyAttachmentPicker::class);
         Livewire::component('rambo-fields-password-input', PasswordInput::class);
         Livewire::component('rambo-fields-youtube-link', YoutubeLink::class);
-
     }
 
     private function config()

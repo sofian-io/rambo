@@ -3,10 +3,10 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
 use AngryMoustache\Rambo\Facades\Rambo;
+use AngryMoustache\Rambo\Http\Livewire\RamboComponent;
 use AngryMoustache\Rambo\Resource\Resource;
-use Livewire\Component;
 
-class ResourceItem extends Component
+class ResourceItem extends RamboComponent
 {
     public $component;
     public $resourceName;

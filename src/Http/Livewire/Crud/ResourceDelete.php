@@ -2,6 +2,8 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
+use AngryMoustache\Rambo\Facades\Rambo;
+
 class ResourceDelete extends ResourceItem
 {
     public $component = 'rambo::livewire.crud.resource-delete';
@@ -14,6 +16,7 @@ class ResourceDelete extends ResourceItem
     public function confirm()
     {
         $this->item->delete();
+        Rambo::toast($this->resource()->getSingularLabel() . ' succesfully deleted');
         return redirect($this->resource()->index());
     }
 }

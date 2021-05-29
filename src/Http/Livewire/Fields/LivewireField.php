@@ -2,9 +2,9 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Fields;
 
-use Livewire\Component;
+use AngryMoustache\Rambo\Http\Livewire\RamboComponent;
 
-class LivewireField extends Component
+class LivewireField extends RamboComponent
 {
     public $clearOnUpdate;
     public $emit;

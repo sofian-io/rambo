@@ -84,6 +84,15 @@ class Rambo
         ];
     }
 
+    public function toast($message, $type = 'ok')
+    {
+        session()->push('rambo-toasts', [
+            'message' => $message,
+            'type' => $type,
+            'show' => true,
+        ]);
+    }
+
     private function fetchResource($resource)
     {
         if (is_array($resource)) {

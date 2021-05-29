@@ -1,0 +1,51 @@
+.rambo-toasts {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    z-index: 100000000;
+    pointer-events: none;
+
+    &-toast {
+        width: 100%;
+        margin-bottom: 1rem;
+        animation: toast-enter .5s;
+        background: $c-main;
+        border-radius: .2rem;
+        box-shadow: 0.2rem 0.2rem 5px 0px rgba(black, .4);
+
+        span {
+            display: block;
+            padding: 1rem;
+            color: $c-grey;
+            font-family: $f-title;
+            font-size: 1.1rem;
+        }
+
+        &-leave {
+            opacity: 0;
+            animation: toast-leave .5s;
+        }
+    }
+}
+
+@keyframes toast-enter {
+    0% {
+        opacity: 0;
+        margin-left: 100%;
+    }
+    100% {
+        opacity: 1;
+        margin-right: 0;
+    }
+}
+
+@keyframes toast-leave {
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+    }
+}

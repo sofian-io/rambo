@@ -2,6 +2,8 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
+use AngryMoustache\Rambo\Facades\Rambo;
+
 class ResourceCreate extends FormController
 {
     public $component = 'rambo::livewire.crud.resource-create';
@@ -14,6 +16,8 @@ class ResourceCreate extends FormController
         foreach ($this->habtmRelations() as $relation => $values) {
             $savedModel->{$relation}()->sync($values);
         }
+
+        Rambo::toast($resource->getSingularLabel() . ' succesfully created');
 
         return redirect($resource->show($savedModel->id));
     }
