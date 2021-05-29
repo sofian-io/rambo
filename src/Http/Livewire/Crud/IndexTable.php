@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
 use AngryMoustache\Rambo\Facades\Rambo;
+use AngryMoustache\Rambo\Http\Livewire\Crud\Traits\HasDeleteAction;
 use AngryMoustache\Rambo\Http\Livewire\RamboComponent;
 use AngryMoustache\Rambo\Resource\Resource;
 use Livewire\WithPagination;
@@ -10,6 +11,7 @@ use Livewire\WithPagination;
 class IndexTable extends RamboComponent
 {
     use WithPagination;
+    use HasDeleteAction;
 
     public $resourceName;
 

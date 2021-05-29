@@ -51,3 +51,9 @@
         @endforeach
     </tbody>
 </table>
+
+@if ($deleting)
+    <x-rambo::modals.delete-item-modal
+        :deleting="$deleting"
+    />
+@endif

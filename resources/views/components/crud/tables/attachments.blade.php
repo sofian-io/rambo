@@ -40,3 +40,9 @@
         @endforeach
     </div>
 </div>
+
+@if ($deleting)
+    <x-rambo::modals.delete-item-modal
+        :deleting="$deleting"
+    />
+@endif

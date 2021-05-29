@@ -2,6 +2,7 @@
 
 namespace AngryMoustache\Rambo\Http\Livewire;
 
+use AngryMoustache\Rambo\Http\Livewire\Crud\Traits\HasDeleteAction;
 use Livewire\Component;
 
 class RamboComponent extends Component
