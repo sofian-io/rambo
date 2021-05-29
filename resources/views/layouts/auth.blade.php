@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Rambo</title>
         <link href="{{ asset('vendor/rambo/css/app.css') }}" rel="stylesheet">
+        <link rel="shortcut icon" href="{{ asset('vendor/rambo/images/favicon.png') }}">
     </head>
     <body class="auth">
         <div class="content">

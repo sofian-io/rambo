@@ -2,8 +2,11 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    background: $gradient;
     padding-top: 25vh;
+    background-image: $gradient-flat;
+    background-size: 200%;
+    background-position: left;
+    animation: background-animation 10s infinite alternate;
 
     &-card {
         margin: 0 auto;
@@ -25,4 +28,9 @@
             }
         }
     }
+}
+
+@keyframes background-animation {
+    from { background-position: left; }
+    to { background-position: right; }
 }

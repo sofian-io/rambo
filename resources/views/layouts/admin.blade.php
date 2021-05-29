@@ -7,13 +7,10 @@
         <title>{{ config('app.name') }} | Rambo</title>
         <link href="{{ asset('vendor/rambo/css/app.css') }}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/989b502037.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="{{ asset('vendor/rambo/images/favicon.png') }}">
         <livewire:styles>
     </head>
     <body>
-
-        <livewire:scripts>
-        <script src="{{ asset('vendor/rambo/js/index.js') }}"></script>
-
         {{-- Nav --}}
         <x-rambo::navigation />
 
@@ -28,5 +25,8 @@
 
         {{-- Toasts --}}
         <x-rambo-toasts />
+
+        <livewire:scripts>
+        <script src="{{ asset('vendor/rambo/js/index.js') }}"></script>
     </body>
 </html>

@@ -109,6 +109,7 @@ class RamboServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../public/css' => public_path('vendor/rambo/css'),
             __DIR__ . '/../public/js' => public_path('vendor/rambo/js'),
+            __DIR__ . '/../public/images' => public_path('vendor/rambo/images'),
         ], 'rambo-required-assets');
     }
 }
