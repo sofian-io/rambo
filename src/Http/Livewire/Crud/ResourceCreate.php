@@ -19,6 +19,6 @@ class ResourceCreate extends FormController
 
         Rambo::toast($resource->getSingularLabel() . ' succesfully created');
 
-        return redirect($resource->show($savedModel->id));
+        return redirect($resource->routeAfterCreate($savedModel));
     }
 }

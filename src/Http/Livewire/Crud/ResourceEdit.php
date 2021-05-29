@@ -46,6 +46,6 @@ class ResourceEdit extends FormController
 
         Rambo::toast($resource->getSingularLabel() . ' succesfully updated!');
 
-        return redirect($resource->show($this->item->id));
+        return redirect($resource->routeAfterEdit($this->item));
     }
 }

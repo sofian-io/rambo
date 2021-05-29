@@ -49,4 +49,24 @@ trait Routing
             'id' => $id,
         ]);
     }
+
+    public function routeAfterCreate($item)
+    {
+        return $this->show($item->id);
+    }
+
+    public function routeAfterEdit($item)
+    {
+        return $this->show($item->id);
+    }
+
+    public function routeAfterDelete()
+    {
+        return $this->index();
+    }
+
+    public function routeAfterCancelDelete($item)
+    {
+        return $this->show($item->id);
+    }
 }

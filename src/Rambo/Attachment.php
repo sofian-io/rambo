@@ -81,4 +81,9 @@ class Attachment extends Resource
             FolderFilter::class,
         ];
     }
+
+    public function routeAfterEdit($item)
+    {
+        return $this->index();
+    }
 }

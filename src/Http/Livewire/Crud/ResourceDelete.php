@@ -10,13 +10,13 @@ class ResourceDelete extends ResourceItem
 
     public function cancel()
     {
-        return redirect($this->resource()->show($this->item->id));
+        return redirect($this->resource()->routeAfterCancelDelete($this->item));
     }
 
     public function confirm()
     {
         $this->item->delete();
         Rambo::toast($this->resource()->getSingularLabel() . ' succesfully deleted');
-        return redirect($this->resource()->index());
+        return redirect($this->resource()->routeAfterDelete());
     }
 }
