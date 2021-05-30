@@ -6,7 +6,10 @@
     <template x-for="(toast, key) in toasts" :key="key">
         <div
             class="rambo-toasts-toast"
-            :class="{ 'rambo-toasts-toast-leave': (! toast.show) }"
+            :class="{
+                'rambo-toasts-toast-leave': (! toast.show),
+                [toast.type]: true
+            }"
         >
             <span x-text="toast.message"></span>
         </div>

@@ -14,7 +14,9 @@ $c-main: rgb(102, 126, 234);
 $c-main-dark: rgb(75, 100, 209);
 $c-secondary: rgb(118, 75, 162);
 $c-secondary-dark: rgb(90, 52, 129);
-$c-orange: orange;
+$c-orange: #d38d00;
+$c-red: #e14141;
+$c-green: #0bae0c;
 
 $gradient: linear-gradient(180deg, $c-main 0%, $c-secondary 100%);
 $gradient-flat: linear-gradient(90deg, $c-main 0%, $c-secondary 100%);

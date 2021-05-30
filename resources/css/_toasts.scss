@@ -13,7 +13,7 @@
         animation: toast-enter .5s;
         background: $c-main;
         border-radius: .2rem;
-        box-shadow: 0.2rem 0.2rem 5px 0px rgba(black, .4);
+        box-shadow: 0.1rem 0.1rem 5px 0px rgba(black, .3);
 
         span {
             display: block;
@@ -27,6 +27,10 @@
             opacity: 0;
             animation: toast-leave .5s;
         }
+
+        &.ok { background: $c-green; }
+        &.warning { background: $c-orange; }
+        &.error { background: $c-red; }
     }
 }
 

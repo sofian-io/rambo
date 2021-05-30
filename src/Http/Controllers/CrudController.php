@@ -2,6 +2,7 @@
 
 namespace AngryMoustache\Rambo\Http\Controllers;
 
+use AngryMoustache\Rambo\Facades\Rambo;
 use AngryMoustache\Rambo\Resource\Resource;
 use App\Http\Controllers\Controller;
 
@@ -25,6 +26,10 @@ class CrudController extends Controller
     {
         $resource = $resource->item($id);
         $item = $resource->item;
+
+        if (! $item) {
+            return $this->notFound($resource, $id);
+        }
 
         return view($resource->showView(), [
             'resource' => $resource,
@@ -64,6 +69,10 @@ class CrudController extends Controller
         $resource = $resource->item($id);
         $item = $resource->item;
 
+        if (! $item) {
+            return $this->notFound($resource, $id);
+        }
+
         return view($resource->editView(), [
             'resource' => $resource,
             'item' => $item,
@@ -85,6 +94,10 @@ class CrudController extends Controller
         $resource = $resource->item($id);
         $item = $resource->item;
 
+        if (! $item) {
+            return $this->notFound($resource, $id);
+        }
+
         return view($resource->deleteView(), [
             'resource' => $resource,
             'item' => $item,
@@ -99,5 +112,11 @@ class CrudController extends Controller
                 'label' => 'Deleting: ' . optional($item)->{$resource->getDisplayName()} ?? $id,
             ]],
         ]);
+    }
+
+    private function notFound($resource, $id)
+    {
+        Rambo::toast("{$resource->getSingularLabel()} with id ${id} not found", 'error');
+        return redirect($resource->index());
     }
 }
