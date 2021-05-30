@@ -34,6 +34,13 @@ class FormController extends RamboComponent
     {
         $resource = $this->resource();
 
+        if (count($this->getErrorBag()->all()) > 0){
+            $this->toast(
+                'Unable to save, please check if you filled in all fields correctly',
+                'error'
+            );
+        }
+
         return view($this->component, [
             'resource' => $resource,
         ]);
