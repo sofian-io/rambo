@@ -25,6 +25,9 @@ Route::middleware('web')->group(function () use ($adminRoute) {
         Route::get("/${adminRoute}", DashboardController::class)
             ->name('rambo.dashboard');
 
+        /**
+         * Resources
+         */
         Route::get("/${adminRoute}/{resource}", [CrudController::class, 'index'])
             ->name('rambo.crud.index');
 

@@ -68,6 +68,11 @@ class Field
         return $this->name;
     }
 
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
     public function getBindingName()
     {
         return ($this->bindingName ?? 'fields') . '.' . $this->getName();

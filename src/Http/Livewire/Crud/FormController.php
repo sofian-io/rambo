@@ -23,18 +23,22 @@ class FormController extends RamboComponent
         'field:unset' => 'unsetField',
     ];
 
+    public $hasSubmitted = false;
+
     public function mount(Resource $resource)
     {
         $this->currentUrl = request()->url();
         $this->resourceName = $resource->routebase();
         $this->rules = $resource->validationFieldStack();
+        $this->fields = $resource->defaultValues();
     }
 
     public function render()
     {
         $resource = $this->resource();
 
-        if (count($this->getErrorBag()->all()) > 0){
+        if ($this->hasSubmitted && count($this->getErrorBag()->all()) > 0){
+            $this->hasSubmitted = false;
             $this->toast(
                 'Unable to save, please check if you filled in all fields correctly',
                 'error'
@@ -72,6 +76,7 @@ class FormController extends RamboComponent
 
     public function submit()
     {
+        $this->hasSubmitted = true;
         if ($this->rules !== []) {
             $this->validate();
         }

@@ -41,4 +41,13 @@ trait Fields
             ->mapWithKeys(fn ($field) => ["fields.{$field->getName()}" => $field->rules])
             ->toArray();
     }
+
+    // Defaults
+    public function defaultValues()
+    {
+        return collect($this->fieldStack())
+            ->filter(fn ($field) => $field->default !== null)
+            ->mapWithKeys(fn ($field) => [$field->getName() => $field->getDefault()])
+            ->toArray();
+    }
 }
