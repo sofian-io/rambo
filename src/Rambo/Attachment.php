@@ -23,6 +23,8 @@ class Attachment extends Resource
 
     public $paginate = 18;
 
+    public $defaultSortDir = 'desc';
+
     public $searchableFields = [
         'original_name',
         'alt_name',

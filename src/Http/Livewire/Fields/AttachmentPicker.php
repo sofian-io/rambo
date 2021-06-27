@@ -38,6 +38,7 @@ class AttachmentPicker extends LivewireField
         if ($this->selecting) {
             $attachments = Attachment::where('alt_name', 'LIKE', "%{$this->search}%")
                 ->orWhere('original_name', 'LIKE', "%{$this->search}%")
+                ->orderBy('created_at', 'desc')
                 ->paginate(15);
         }
 

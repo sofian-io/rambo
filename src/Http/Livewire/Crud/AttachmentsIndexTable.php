@@ -54,26 +54,4 @@ class AttachmentsIndexTable extends IndexTable
         $this->page = 1;
         $this->currentFolder = $folder;
     }
-
-    // public function setFilters(Resource $resource)
-    // {
-    //     $this->changeFolder($this->currentFolder);
-
-    //     if ($filterQuery = request()->get('filterQuery')) {
-    //         $this->filters = json_decode(base64_decode($filterQuery), true);
-    //         $this->filterQuery = $filterQuery;
-    //         $this->currentFolder = $this->filters['folder-filter']['fields']['folder_location'] ?? '0';
-    //     }
-    // }
-
-    // public function changeFolder($folder)
-    // {
-    //     $this->currentFolder = $folder;
-    //     $this->filters['folder-filter'] = [
-    //         'enabled' => true,
-    //         'fields' => ['folder_location' => $this->currentFolder]
-    //     ];
-
-    //     $this->updatedFilters();
-    // }
 }

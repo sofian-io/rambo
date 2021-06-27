@@ -3,6 +3,7 @@
 namespace AngryMoustache\Rambo\Http\Livewire\Fields;
 
 use AngryMoustache\Media\Models\Attachment;
+use Illuminate\Database\Eloquent\Collection;
 
 class ManyAttachmentPicker extends LivewireField
 {
@@ -15,8 +16,14 @@ class ManyAttachmentPicker extends LivewireField
     public function mount($field, $emit = null, $clearOnUpdate = null)
     {
         parent::mount($field, $emit, $clearOnUpdate);
-        $this->value = Attachment::whereIn('id', $this->value)->get();
         $this->folder = $field->folder ?? 'uploads';
+
+        $value = new Collection();
+        foreach ($this->value as $attachment) {
+            $value->push(Attachment::withoutGlobalScopes()->find($attachment));
+        }
+
+        $this->value = $value;
     }
 
     public function render()
@@ -36,5 +43,17 @@ class ManyAttachmentPicker extends LivewireField
         $this->value->pull($index);
         $this->emitValue($this->value->pluck('id'));
         $this->updated($this->name);
+    }
+
+    public function sortAttachments($attachments)
+    {
+        $value = $this->value;
+        $this->value = new Collection();
+
+        foreach ($attachments as $attachment) {
+            $this->value->push($value[$attachment['value']]);
+        }
+
+        $this->emitValue($this->value->pluck('id'));
     }
 }
