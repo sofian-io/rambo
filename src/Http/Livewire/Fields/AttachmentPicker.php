@@ -17,12 +17,19 @@ class AttachmentPicker extends LivewireField
     public $folder = '';
     public $uploading = false;
     public $selecting = false;
+    public $multipleUpload;
 
-    public function mount($field, $emit = 'picker:update', $clearOnUpdate = null, $folder = null)
-    {
+    public function mount(
+        $field,
+        $emit = 'picker:update',
+        $clearOnUpdate = null,
+        $folder = null,
+        $multipleUpload = false
+    ) {
         parent::mount($field, $emit, $clearOnUpdate);
         $this->value = Attachment::find($this->value);
         $this->folder = $folder ?? $field->folder ?? 'uploads';
+        $this->multipleUpload = $multipleUpload;
     }
 
     public function render()
@@ -52,11 +59,28 @@ class AttachmentPicker extends LivewireField
 
     public function uploadImage()
     {
+        if (is_array($this->upload)) {
+            $this->createMulipleAttachmentsFromUpload();
+            $this->upload = null;
+            return;
+        }
+
         $attachment = $this->createAttachmentFromUpload();
 
         $this->upload = null;
         if (optional($attachment)->id) {
             $this->updateAttachment($attachment);
+        }
+    }
+
+    public function createMulipleAttachmentsFromUpload()
+    {
+        foreach ($this->upload as $upload) {
+            $attachment = $this->createAttachmentFromUpload($upload);
+
+            if (optional($attachment)->id) {
+                $this->updateAttachment($attachment);
+            }
         }
     }
 
@@ -92,9 +116,9 @@ class AttachmentPicker extends LivewireField
         return $this->queryString;
     }
 
-    private function createAttachmentFromUpload()
+    private function createAttachmentFromUpload($file = null)
     {
-        $file = $this->upload;
+        $file ??= $this->upload;
 
         if (! is_file($file->getRealPath())) {
             return null;

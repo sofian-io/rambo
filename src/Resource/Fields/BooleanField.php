@@ -7,4 +7,6 @@ class BooleanField extends Field
     public $component = 'rambo::fields.form.boolean';
 
     public $showComponent = 'rambo::fields.show.boolean';
+
+    public $default = 0;
 }

@@ -18,5 +18,6 @@
         :clearOnUpdate="true"
         :field="null"
         :folder="$folder"
+        :multipleUpload="true"
     />
 </div>

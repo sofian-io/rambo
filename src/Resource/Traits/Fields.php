@@ -46,7 +46,6 @@ trait Fields
     public function defaultValues()
     {
         return collect($this->fieldStack())
-            ->filter(fn ($field) => $field->default !== null)
             ->mapWithKeys(fn ($field) => [$field->getName() => $field->getDefault()])
             ->toArray();
     }

@@ -2,14 +2,14 @@
 
 namespace AngryMoustache\Rambo\Resource;
 
+use AngryMoustache\Rambo\Resource\Traits\Actions;
 use AngryMoustache\Rambo\Resource\Traits\Fields;
+use AngryMoustache\Rambo\Resource\Traits\Filters;
 use AngryMoustache\Rambo\Resource\Traits\Labels;
 use AngryMoustache\Rambo\Resource\Traits\Queries;
+use AngryMoustache\Rambo\Resource\Traits\Rendering;
 use AngryMoustache\Rambo\Resource\Traits\Routing;
 use AngryMoustache\Rambo\Resource\Traits\Searching;
-use AngryMoustache\Rambo\Resource\Traits\Actions;
-use AngryMoustache\Rambo\Resource\Traits\Filters;
-use AngryMoustache\Rambo\Resource\Traits\Rendering;
 use Illuminate\Support\Str;
 
 abstract class Resource

@@ -39,7 +39,7 @@ class RamboServiceProvider extends ServiceProvider
         $this->livewire();
 
         Route::bind('resource', function ($value) {
-            return FacadeRambo::resource($value);
+            return FacadeRambo::resource($value) ?? abort(404);
         });
 
         Blade::component('rambo-toasts', Toasts::class);

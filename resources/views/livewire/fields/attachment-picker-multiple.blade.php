@@ -28,7 +28,6 @@
     @if ($uploading)
         <x-rambo::modals.attachment-upload-modal
             :upload="$upload"
-            :multipleUpload="$multipleUpload"
         />
     @elseif ($selecting)
         <x-rambo::modals.attachment-select-modal

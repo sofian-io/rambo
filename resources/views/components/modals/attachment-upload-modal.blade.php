@@ -5,10 +5,23 @@
         </div>
 
         <div class="modal-card-content" wire:loading.remove>
-            <input id="upload" type="file" wire:model="upload">
+            <input
+                id="upload"
+                type="file"
+                wire:model="upload"
+                @if ($multipleUpload) multiple @endif
+            >
 
             @if ($upload)
-                <img src="{{ $upload->temporaryUrl() }}">
+                @if ($multipleUpload)
+                    @foreach ($upload as $item)
+                        @if ($item)
+                            <img src="{{ $item->temporaryUrl() }}">
+                        @endif
+                    @endforeach
+                @else
+                    <img src="{{ $upload->temporaryUrl() }}">
+                @endif
             @endif
         </div>
 

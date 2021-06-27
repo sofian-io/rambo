@@ -2,8 +2,6 @@
 
 namespace AngryMoustache\Rambo\Resource\Fields;
 
-use App\Enums\PullOriginEnum;
-
 class SelectField extends Field
 {
     public $component = 'rambo::fields.form.select';
