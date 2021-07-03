@@ -37,8 +37,8 @@ trait Fields
         return collect($this->fields())
             ->map(fn ($field) => $field->getNestedFields())
             ->flatten()
-            ->whereNotNull('rules')
-            ->mapWithKeys(fn ($field) => ["fields.{$field->getName()}" => $field->rules])
+            ->mapWithKeys(fn ($field) => ["fields.{$field->getName()}" => $field->getRules()])
+            ->filter()
             ->toArray();
     }
 

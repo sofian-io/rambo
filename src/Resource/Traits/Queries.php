@@ -15,6 +15,11 @@ trait Queries
         return $this->model()::withoutGlobalScopes();
     }
 
+    public function ramboQuery()
+    {
+        return $this->model()::withoutGlobalScopes();
+    }
+
     public function indexQuery()
     {
         return $this->query();

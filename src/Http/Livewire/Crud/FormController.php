@@ -4,6 +4,7 @@ namespace AngryMoustache\Rambo\Http\Livewire\Crud;
 
 use AngryMoustache\Rambo\Facades\Rambo;
 use AngryMoustache\Rambo\Http\Livewire\RamboComponent;
+use AngryMoustache\Rambo\Resource\Fields\Field;
 use AngryMoustache\Rambo\Resource\Resource;
 
 class FormController extends RamboComponent
@@ -81,16 +82,17 @@ class FormController extends RamboComponent
             $this->validate();
         }
 
+        $id = (isset($this->item) ? $this->item->id : null);
         $resource = $this->resource();
 
-        if (method_exists($resource, 'sluggify')) {
-            $this->fields = $resource->sluggify($this->fields);
-        }
-
         // BeforeSave methods
-        collect($resource->formFieldStack('', true))->each(function ($field) {
+        collect($resource->formFieldStack('', true))->each(function (Field $field) use ($id) {
             $name = $field->getName();
-            if (isset($this->fields[$name])) {
+            if (! empty($name)) {
+                $field->resource = $this->resource();
+                $field->formFields = $this->fields;
+                $field->itemId = $id;
+
                 $this->fields[$name] = $field->beforeSave($this->fields[$name]);
             }
         });
