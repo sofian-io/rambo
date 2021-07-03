@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 class SlugField extends Field
 {
+    public $sluggingField = 'name';
+
     public function beforeSave($value)
     {
         $fields = $this->formFields;
