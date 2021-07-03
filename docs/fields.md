@@ -32,7 +32,6 @@ When adding a field, you should be aware that the first argument you pass in the
 
 ```php
 AttachmentField::make('image_id')
-    ->label('Image')
 ```
 
 ### <a name="label"></a>Label
@@ -64,7 +63,7 @@ You can define a default value for your field by calling the `default` method.
 
 ```php
 TextField::make('name')
-    ->value('Clark Kent')
+    ->default('Clark Kent')
 ```
 
 ### <a name="custom-component"></a>Custom component
