@@ -9,11 +9,11 @@ class SlugField extends Field
     public function beforeSave($value)
     {
         $fields = $this->formFields;
-        if ($this->itemId || ! empty($fields[$this->resource->getSlugField()])) {
+        if ($this->itemId && ! empty($fields[$this->getName()])) {
             return $value;
         }
 
-        $slug = Str::slug($fields[$this->resource->getSlugNameField()]);
+        $slug = Str::slug($fields[$this->sluggingField]);
 
         $slugCount = 0;
         $safetyCount = 0;
@@ -34,7 +34,7 @@ class SlugField extends Field
     public function checkSlugExists($slug)
     {
         return $this->resource->ramboQuery()
-            ->where($this->resource->getSlugField(), $slug)
+            ->where($this->getName(), $slug)
             ->first();
     }
 }
