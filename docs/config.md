@@ -16,7 +16,7 @@ With this, you can change the route prefix, by default this is `admin`.
 
 ## <a name="resources"></a>resources
 
-This contains the list of all available resources, you can group them together in arrays to create a fodler structure.
+This contains the list of all available resources, you can group them together in arrays to create a folder structure.
 
 ```php
 'resources' => [
