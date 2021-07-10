@@ -47,6 +47,7 @@ trait Fields
     {
         return collect($this->fieldStack())
             ->mapWithKeys(fn ($field) => [$field->getName() => $field->getDefault()])
+            ->filter()
             ->toArray();
     }
 }
