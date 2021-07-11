@@ -38,6 +38,7 @@ class ResourceEdit extends FormController
     {
         $resource = $this->resource();
         $this->item->update($this->fields);
+        $this->item->touch();
 
         foreach ($this->habtmRelations() as $relation => $values) {
             $this->item->{$relation}()->detach();
