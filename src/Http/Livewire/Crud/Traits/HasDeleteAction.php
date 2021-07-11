@@ -11,13 +11,13 @@ trait HasDeleteAction
         $resource = $this->resource();
         $this->deleting = [
             'id' => $id,
-            'name' => $resource->model()::find($id)->{$resource->getDisplayName()},
+            'name' => $resource->model()::withoutGlobalScopes()->find($id)->{$resource->getDisplayName()},
         ];
     }
 
     public function deleteItem($id)
     {
-        $this->resource()->model()::find($id)->delete();
+        $this->resource()->model()::withoutGlobalScopes()->find($id)->delete();
         $this->deleting = null;
     }
 

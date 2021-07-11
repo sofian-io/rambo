@@ -11,7 +11,7 @@ class ResourceCreate extends FormController
     public function saveData()
     {
         $resource = $this->resource();
-        $savedModel = $resource->model()::create($this->fields);
+        $savedModel = $resource->model()::withoutGlobalScopes()->create($this->fields);
 
         foreach ($this->habtmRelations() as $relation => $values) {
             $savedModel->{$relation}()->sync($values);
