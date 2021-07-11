@@ -5,7 +5,7 @@
             type="submit"
             name="{{ $field->getName() }}"
             placeholder="{{ $field->getLabel() }}"
-            wire:click="submit"
+            wire:click="{{ $field->getAction() }}"
         >
     </div>
 </div>
