@@ -28,7 +28,7 @@ class HabtmField extends Field
 
         if (is_array($value)) {
             $model = (new $this->resource)->model();
-            $value = $model::whereIn('id', $value)->get();
+            $value = $model::withoutGlobalScopes()->whereIn('id', $value)->get();
         }
 
         return $value;
