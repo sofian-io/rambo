@@ -2,6 +2,7 @@
 
 namespace AngryMoustache\Rambo;
 
+use AngryMoustache\Rambo\Http\Middleware\RamboAuthMiddleware;
 use AngryMoustache\Rambo\Models\Administrator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -120,5 +121,13 @@ class Rambo
         array_pop($path);
 
         return $path;
+    }
+
+    public function serving()
+    {
+        return in_array(
+            RamboAuthMiddleware::class,
+            request()->route()->middleware()
+        );
     }
 }
