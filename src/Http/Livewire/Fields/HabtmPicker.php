@@ -23,7 +23,7 @@ class HabtmPicker extends LivewireField
         $this->model = $resource->model();
         $this->displayName = $resource->getDisplayName();
         $this->itemComponent = $resource->habtmComponent();
-        $this->value = $this->model::whereIn('id', $this->value)->get();
+        $this->value = $this->model::withoutGlobalScopes()->whereIn('id', $this->value)->get();
     }
 
     public function render()
@@ -61,7 +61,7 @@ class HabtmPicker extends LivewireField
         if (in_array($item, $this->value->pluck('id')->toArray())) {
             $this->value = $this->value->reject(fn ($value) => $value->id === $item); // Remove
         } else {
-            $this->value[] = $this->model::find($item); // Add
+            $this->value[] = $this->model::withoutGlobalScopes()->find($item); // Add
         }
 
         $this->emitValue($this->value->pluck('id')->toArray());
