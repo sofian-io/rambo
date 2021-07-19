@@ -6,6 +6,7 @@ In this page you will find all the fields that you can use in your resources.
   * [Custom component](#custom-component)
   * [Adding a field](#adding-field)
   * [Label](#label)
+  * [Sortable](#sortable)
   * [Validation](#validation)
   * [Default values](#defaults)
   * [Custom component](#custom-component)
@@ -41,6 +42,15 @@ If you want your label in the CMS to be prettier, you can call the `->label($lab
 ```php
 AttachmentField::make('image_id')
     ->label('Image')
+```
+
+### <a name="sortable"></a>Sortable
+
+If you want your column to be sortable, you can add `->sortable()` to the field.
+
+```php
+TextField::make('title')
+    ->sortable()
 ```
 
 ### <a name="validation"></a>Validation
