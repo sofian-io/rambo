@@ -18,6 +18,7 @@ In this page you will find all the fields that you can use in your resources.
 * [Button](#button)
 * [Editor](#editor)
 * [HABTM](#habtm)
+* [Has Many](#has-many)
 * [Password](#password)
 * [Select](#select)
 * [Tab Group](#tab-group)
@@ -164,6 +165,18 @@ You always need to pass a resource, to tell the field what you are relating with
 HabtmField::make('tags')
     ->resource(\App\Rambo\Tag::class),
 ```
+
+## <a name="has-many"></a>Has Many
+A field that represents a Has Many relation.
+The first parameter in this field is the relation name.
+You always need to pass a resource, to tell the field what you are relating with.
+
+```php
+HasMany::make('tags')
+    ->resource(\App\Rambo\Tag::class),
+```
+
+This field will only be shown on the `show` view of a resource.
 
 ## <a name="password"></a>Password
 A password field, if left empty, nothing will be saved/overwritten.
