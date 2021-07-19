@@ -6,6 +6,7 @@ In this page you will find all the fields that you can use in your resources.
   * [Custom component](#custom-component)
   * [Adding a field](#adding-field)
   * [Label](#label)
+  * [Hiding fields](#hiding-fields)
   * [Sortable](#sortable)
   * [Validation](#validation)
   * [Default values](#defaults)
@@ -51,6 +52,14 @@ If you want your column to be sortable, you can add `->sortable()` to the field.
 ```php
 TextField::make('title')
     ->sortable()
+```
+
+### <a name="hiding-fields"></a>Hiding fields
+
+You can hide you fields from certain views using `->hideFrom([])`.
+```php
+TextField::make('title')
+    ->hideFrom(['index', 'show', 'edit', 'create'])
 ```
 
 ### <a name="validation"></a>Validation
