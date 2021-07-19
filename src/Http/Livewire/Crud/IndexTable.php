@@ -127,4 +127,12 @@ class IndexTable extends RamboComponent
     {
         $this->filterModal = !$this->filterModal;
     }
+
+    public function parseAction($action, $id, $resource)
+    {
+        $resource = new $resource;
+        $item = $resource->model()::withoutGlobalScopes()->find($id);
+        $action = new $action($resource);
+        $action->parse($item);
+    }
 }

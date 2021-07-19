@@ -1,8 +1,10 @@
 <?php
 
-namespace AngryMoustache\Rambo\Resource\Actions;
+namespace AngryMoustache\Rambo\Resource\ShowActions;
 
-class DeleteAction extends Action
+use AngryMoustache\Rambo\Resource\Actions\LivewireAction;
+
+class DeleteAction extends LivewireAction
 {
     public $icon = 'far fa-trash-alt';
 

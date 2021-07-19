@@ -1,8 +1,10 @@
 <?php
 
-namespace AngryMoustache\Rambo\Resource\Actions;
+namespace AngryMoustache\Rambo\Resource\ShowActions;
 
-class EditAction extends Action
+use AngryMoustache\Rambo\Resource\Actions\LinkAction;
+
+class EditAction extends LinkAction
 {
     public $icon = 'far fa-edit';
 

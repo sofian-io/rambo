@@ -7,7 +7,6 @@ class Action
     public $component = 'rambo::components.crud.action';
     public $icon;
     public $item;
-    public $livewireAction;
     public $label;
     public $resource;
     public $currentUrl;
@@ -17,24 +16,6 @@ class Action
         $this->resource = $resource;
         $this->item = $item ?? $resource->item;
         $this->currentUrl = $currentUrl;
-    }
-
-    public function render()
-    {
-        $currentUrl = $this->getCurrentUrl();
-        $link = $this->getLink();
-
-        if ($currentUrl === $link) {
-            return '';
-        }
-
-        return view($this->component, [
-            'label' => $this->getLabel(),
-            'icon' => $this->getIcon(),
-            'link' => $link,
-            'currentUrl' => $currentUrl,
-            'livewireAction' => $this->getLivewireAction(),
-        ]);
     }
 
     public function getLink()
@@ -55,10 +36,5 @@ class Action
     public function getCurrentUrl()
     {
         return $this->currentUrl;
-    }
-
-    public function getLivewireAction()
-    {
-        return $this->livewireAction;
     }
 }

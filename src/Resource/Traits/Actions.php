@@ -2,9 +2,9 @@
 
 namespace AngryMoustache\Rambo\Resource\Traits;
 
-use AngryMoustache\Rambo\Resource\Actions\DeleteAction;
-use AngryMoustache\Rambo\Resource\Actions\EditAction;
-use AngryMoustache\Rambo\Resource\Actions\ShowAction;
+use AngryMoustache\Rambo\Resource\ShowActions\DeleteAction;
+use AngryMoustache\Rambo\Resource\ShowActions\EditAction;
+use AngryMoustache\Rambo\Resource\ShowActions\ShowAction;
 use AngryMoustache\Rambo\Resource\IndexActions\CreateAction;
 use AngryMoustache\Rambo\Resource\IndexActions\OverviewAction;
 

@@ -32,7 +32,7 @@ Let's take the `ShowAction` as an example of an action:
 ```php
 <?php
 
-namespace AngryMoustache\Rambo\Resource\Actions;
+namespace AngryMoustache\Rambo\Resource\ShowActions;
 
 class ShowAction extends Action
 {

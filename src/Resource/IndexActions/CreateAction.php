@@ -2,7 +2,9 @@
 
 namespace AngryMoustache\Rambo\Resource\IndexActions;
 
-class CreateAction extends IndexAction
+use AngryMoustache\Rambo\Resource\Actions\LinkAction;
+
+class CreateAction extends LinkAction
 {
     public $icon = 'fas fa-plus';
 
