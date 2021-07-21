@@ -127,7 +127,7 @@ class Rambo
     {
         return in_array(
             RamboAuthMiddleware::class,
-            request()->route()->middleware()
+            optional(request()->route())->middleware() ?? []
         );
     }
 }
