@@ -1,4 +1,4 @@
-@if ($field->getShowValue() === 1)
+@if (in_array($field->getShowValue(), [1, true]))
     <span class="tag" style="background: rgb(7, 187, 7); border: 0">
         Yes
     </span>
