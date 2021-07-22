@@ -85,14 +85,14 @@ class FormController extends RamboComponent
         $id = (isset($this->item) ? $this->item->id : null);
         $resource = $this->resource();
 
-        // BeforeSave methods
+        // BeforeSave methods & defaults
         collect($resource->formFieldStack('', true))->each(function (Field $field) use ($id) {
             $name = $field->getName();
             if (! empty($name)) {
                 $field->resource = $this->resource();
                 $field->formFields = $this->fields;
                 $field->itemId = $id;
-
+                $this->fields[$name] ??= $field->getDefault();
                 $this->fields[$name] = $field->beforeSave($this->fields[$name] ?? null);
             }
         });
