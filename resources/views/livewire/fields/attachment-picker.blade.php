@@ -2,25 +2,21 @@
     @if ($value)
         <div class="attachment-picker-selection">
             <img src="{{ $value->format('thumb') }}">
-        </div>
-
-        <div class="attachment-picker-actions">
-            <a class="button" wire:click.prevent="openSelectModal">
-                Select attachment
-            </a>
-
-            <a class="button" wire:click.prevent="clearSelection">
-                Clear selection
-            </a>
+            <i
+                wire:click="clearSelection"
+                class="button fa fa-trash"
+            ></i>
         </div>
     @else
         <div class="attachment-picker-actions">
             <a class="button" wire:click.prevent="openSelectModal">
-                Select attachment
+                <i class="far fa-images mr-1"></i>
+                Select
             </a>
 
             <a class="button" wire:click.prevent="openUploadModal">
-                Upload attachment
+                <i class="fas fa-upload mr-1"></i>
+                Upload
             </a>
         </div>
     @endif
