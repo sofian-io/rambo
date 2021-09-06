@@ -57,7 +57,12 @@ class Rambo
 
     protected function attemptLogin($email, $password)
     {
-        return Auth::guard('admin')->attempt(['email' => $email, 'password' => $password], false);
+        return $this->guard()->attempt(['email' => $email, 'password' => $password], false);
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 
     public function logout()
