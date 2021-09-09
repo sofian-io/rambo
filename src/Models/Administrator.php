@@ -28,4 +28,9 @@ class Administrator extends Authenticatable
             'id' => $this->id,
         ]);
     }
+
+    public function scopeOnline($query)
+    {
+        return $query->where('online', true);
+    }
 }

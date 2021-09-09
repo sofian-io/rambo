@@ -44,6 +44,7 @@ class Rambo
         }
 
         $user = Administrator::where('email', $email)
+            ->online()
             ->get()
             ->skipUntil(function ($user) use ($password) {
                 return (password_verify($password, $user->password));
